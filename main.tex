@@ -1,0 +1,52 @@
+\documentclass{fkbook}
+
+\newcommand{\fklogo}{\includegraphics[width=1cm, keepaspectratio=true]{logo.png}}
+\usepackage{tikz-cd}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+
+\renewpagestyle{main}{
+  \sethead{Forest Kobayashi}{\scshape\chaptertitle}{Topology Through Inquiry}
+  \headrule
+  \setfoot{Last Updated \today}{}{\thepage\ of \pageref{LastPage}}
+} % odd
+
+\usepackage{caption}
+
+\usepackage{scalerel}
+
+\renewcommand{\epsilon}{\lunateepsilon}
+% Homotopy equivalence
+
+\usepackage{boxedminipage}
+
+\newenvironment{problem}[1][Problem \thesection.]
+{\begin{boxedminipage}{\linewidth}\textbf{#1.}}
+{\end{boxedminipage}}
+
+\usepackage{wasysym}
+
+\begin{document}
+
+\pagestyle{plain}
+\frontmatter
+
+\fkauthor{Forest Kobayashi}
+\fktitle{Homology Theory}
+\fksubtitle{Notes \& Exercises from my Independent Study}
+\fkalttitle{(Or: \itshape If I could save Klein in a bottle \eighthnote)}
+\fkaffiliation{{Department of Mathematics\\}{\itshape Harvey Mudd College\\}}
+\fksupervisor{Francis Su}
+\fksupervisoraffiliation{Department of Mathematics, Harvey Mudd College}
+
+\maketitlepage
+\tableofcontents
+\mainmatter
+\chapter{Introduction}
+\pagestyle{main}
+This document is a compendium of notes, exercises, and other miscellany from my
+independent study in Homology Theory.
+
+\end{document}

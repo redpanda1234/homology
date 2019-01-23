@@ -49,4 +49,34 @@
 This document is a compendium of notes, exercises, and other miscellany from my
 independent study in Homology Theory.
 
+\chapter{Chapter 12: Classification of 2-Manifolds}
+
+\section{Examples of 2-Manifolds}
+\begin{problem}[12.1]
+  Show that the torus $\TT^2$ is homeomorphic to $\mathbb{S}^1 \times
+  \mathbb{S}^1$
+\end{problem}
+\begin{proof}
+  Let $\sim$ be the relation on $[0,1] \times [0,1]$ defined as follows:
+  $\forall x \in [0,1]$,
+  \[
+    \begin{cases}
+      (0,x) \sim (1,x) \\
+      (x,0) \sim (x,1)
+    \end{cases}
+  \]
+  and $\sim$ relates no other points. Then $\TT^2 \cong \pn{\bk{0,1} \times
+    \bk{0,1} / \sim}$
+  % Take a parameterization of $\TT^2$ by $\mb r : \RR^2 \to \RR^3$ as follows:
+  % \[
+  %   \mb r(\theta, \phi) =
+  %   \begin{cases}
+  %     x(\theta, \phi) &= (R + r\cos(\phi))\cos(\theta) \\
+  %     y(\theta, \phi) &= (R + r\cos(\phi))\sin(\theta) \\
+  %     z(\theta, \phi) &= r\sin(\theta)
+  %   \end{cases}
+  % \]
+  % where $R$ i
+\end{proof}
+
 \end{document}

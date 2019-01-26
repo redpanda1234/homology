@@ -1,8 +1,5 @@
 \documentclass{fkbook}
 
-\newcommand{\fklogo}{\includegraphics[width=1cm, keepaspectratio=true]{logo.png}}
-\usepackage{tikz-cd}
-
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
 
@@ -23,7 +20,7 @@
 \usepackage{boxedminipage}
 
 \newenvironment{problem}[1][Problem \thesection.]
-{\begin{boxedminipage}{\linewidth}\textbf{#1.}}
+{\noindent\begin{boxedminipage}{\linewidth}\textbf{#1.}}
 {\end{boxedminipage}}
 
 \usepackage{wasysym}
@@ -96,13 +93,60 @@ of some stuff I do.
       (x,y) \sim (x+1, y)
     \end{cases}
   \]
-  then $\TT^2 \cong (\RR^2 / \sim) \cong \RR^2 / \ZZ^2$. Now, let $\equiv$ be an
-  equivalence relation on $\RR$ defined by $\forall x \in \RR, x \equiv x+1$.
-  Then $\mathbb{S}^1 \cong (\RR / \equiv) \cong \RR/\ZZ$. Then $\mathbb{S}^1
-  \times \mathbb{S}^1 \cong (\RR / \ZZ) \times (\RR / \ZZ)$. WTS $(\RR/\ZZ)
-  \times (\RR / \ZZ) \cong \RR^2 / \ZZ^2$.\footnote{In general, $(X/\sim_X)
-    \times (Y/\sim_Y) \cong (X \times Y)/(\sim_X \times \sim_Y)$ doesn't hold),
-    but we'll see if we can make it happen here.}
+  then $\TT^2 \cong (\RR^2 / \sim) \cong \RR^2 / \ZZ^2 = \RR^2 / $. Note that
+  $\RR^2/\ZZ^2 \cong \RR/\ZZ \times \RR/\ZZ$, which, by similar reasoning is
+  homeomorphic to $\mathbb{S}^1 \times \mathbb{S}^1$.
 \end{proof}
+\begin{problem}[12.2]
+  For a given number of holes, demonstrate that the $n$-holed torus where the
+  holes are lined up is homeomorphic to an $n$-holed torus where the holes are
+  arranged in a circle.
 
+  \emph{Note: for exercises like this that ask you to demonstrate a geometric
+    homeomorphism, we are not askign you to define a formal homeomorphism --- no
+    equations are expected. Rather, it suffices to describe a process by which
+    you would systematically distort one figure to look like the other.}
+\end{problem}
+
+\noindent \emph{Description:} First, twist the lined-up-holes torus (stretching
+as needed) such that the holes rest on the vertices of a regular $n$-gon. Then,
+simply stretch the body outwards until a disk shape is achieved. \hfill $\square$
+\begin{definition}
+  Define the \emph{projective plane} (also called the \emph{real projective
+    2-space}), denoted $\RRP^2$, to be the space of all lines in $\RR^3$ that
+  pass through the origin. The basis for the topology is the collection of open
+  cones with the cone point at the origin.
+\end{definition}
+\begin{problem}[12.3]
+  \begin{enumerate}
+    \item Show that $\RRP^2 \cong \mathbb{S}^2/\ip{x \sim -x}$, that is, the
+      projective plane is homeomorphic to the 2-sphere with diametrically
+      opposite points identified.
+    \item Show that $\RRP^2$ is also homeomorphic to a disk with two edges on
+      its boundary (called a \emph{bigon}) identified.
+    \item Show that the klein bottle can be realized as a square with certain
+      edges identified.
+  \end{enumerate}
+\end{problem}
+\begin{proof}~
+  \begin{enumerate}
+    \item \textbf{Claim:} Take a parameterization of each of the lines
+      comprising $\RRP^2$ by $\mb r(t) = t \hat{\mb r}$, chosen such that for
+      any two $\mb r_1,\mb r_2$, $\ip{\mb r_1, \mb r_2} \geq 0$. Then $f$
+      % defined by $\mb r\im{\RR} \xmapsto{f} \hat{\mb r}$ is the desired
+      homeomorphism.
+
+      \textbf{Proof of claim:} Let $U \in \RRP^2$, and let $\ms B$ be the basis
+      described above. Since $U$ is open, $\exists B = \set{B_i \MID i \in I}
+      \subseteq \ms B \st$
+      \[
+        U = \bigcup_{i \in I} B_i.
+      \]
+
+      \[
+        \im{a} \qquad \im{\RR} \qquad \im
+      \]
+
+  \end{enumerate}
+\end{proof}
 \end{document}

@@ -14,7 +14,7 @@
 
 \usepackage{scalerel}
 
-\renewcommand{\epsilon}{\lunateepsilon}
+% \renewcommand{\epsilon}{\lunateepsilon}
 % Homotopy equivalence
 
 \usepackage{boxedminipage}
@@ -22,6 +22,9 @@
 \newenvironment{problem}[1][Problem \thesection.]
 {\noindent\begin{boxedminipage}{\linewidth}\textbf{#1.}}
 {\end{boxedminipage}}
+\newenvironment{recall}
+{\noindent\begin{center}\begin{boxedminipage}{.95\linewidth}\textbf{Recall:}}
+{\end{boxedminipage}\end{center}}
 
 \usepackage{wasysym}
 \setlength{\parindent}{1.5em}
@@ -66,6 +69,8 @@ of some stuff I do.
   \item $\onto$ denotes surjection.
   \item $\into$ denotes injection.
   \item Thus, $\bij$ denotes bijection.
+  \item \textbf{Important:} I use $f\im[A]$ for the image of $A$ under $f$, and
+    $f\pre[B]$ for the inverse image of $B$ under $f$.
   \item $\sim$ and $\equiv$ are used for equivalence relations. $\cong$ is used
     to denote homeomorphism. $\simeq$ is for Homotopy equivalence.
   \item $\epsilon$ is for trivial elements (e.g., the trivial path), while
@@ -128,25 +133,57 @@ simply stretch the body outwards until a disk shape is achieved. \hfill $\square
       edges identified.
   \end{enumerate}
 \end{problem}
-\begin{proof}~
+\begin{proof}
+  \textbf{COME BACK TO THIS AFTER ASKING PROF.\ SU ABOUT THE LEVEL OF RIGOR
+    EXPECTED HERE!}
   \begin{enumerate}
-    \item \textbf{Claim:} Take a parameterization of each of the lines
-      comprising $\RRP^2$ by $\mb r(t) = t \hat{\mb r}$, chosen such that for
-      any two $\mb r_1,\mb r_2$, $\ip{\mb r_1, \mb r_2} \geq 0$. Then $f$
-      % defined by $\mb r\im{\RR} \xmapsto{f} \hat{\mb r}$ is the desired
-      homeomorphism.
+    \item \textbf{Claim:} Take some arbitrary point $\mb r(t)$, and give it a
+      parameterization by $\mb r_0(t) = t \mb{\hat{r_0}}$, with the orientation
+      chosen arbitrarily. Now, take a parameterization of each of the other
+      lines in $\RRP^2$ by $\mb r(t) = t \hat{\mb r}$ chosen such that
+      $\ip{\mb{\hat r}, \mb{\hat{r}_0}} \geq 0$. Then $f$ given by $f(\mb r) =
+      \mb{\hat{r}}$ is a homeomorphism.
 
-      \textbf{Proof of claim:} Let $U \in \RRP^2$, and let $\ms B$ be the basis
-      described above. Since $U$ is open, $\exists B = \set{B_i \MID i \in I}
-      \subseteq \ms B \st$
+      \textbf{Proof of claim:} Let $U \in \ms T(\RRP^2)$, and let $\ms B$ be the
+      basis described above. Since $U$ is open, $\exists B = \set{B_i \MID i \in
+        I} \subseteq \ms B \st$
       \[
         U = \bigcup_{i \in I} B_i.
       \]
-
-      \[
-        \im{a} \qquad \im{\RR} \qquad \im
-      \]
-
+      Suppose that $U$ contains no lines $\mb r(t) \st \ip{\mb{\hat r},
+        \mb{\hat{r}_0}} = 0$. Then
+      \begin{align*}
+        f\im[U]
+        &= f\im[\bigcup_{i \in I}B_i] \\
+        &= \bigcup_{i \in I} f\im[B_i]
+      \end{align*}
+      is a union of spherical caps.
+    \item Take any two antipodal points, draw a great circle through them, and
+      apply the result above.
+    \item
   \end{enumerate}
+\end{proof}
+
+\begin{recall}
+  A set $A \subset X$ is said to be \emph{dense} iff $\ol{A} = X$. A topological
+  space $X$ is said to be \emph{separable} iff $X$ has a countable dense subset.
+\end{recall}
+
+\begin{definition}[1-manifold]
+  A topological space is an \emph{1-manifold} iff it is a separable metrizable
+  space in which every point is in an open set homeomorphic to an open interval
+  in $\RR^1$.
+\end{definition}
+\begin{problem}[12.4]
+  Suppose $M$ is a compact, connected 1-manifold. Then $M$ is triangulable. That
+  is, $M$ is homeomorphic to a subset $C$ of $\RR^n$ consisting of a finite
+  collection of straight line segments where any two segments of $C$ are either
+  disjoint or meet at an endpoint of each.
+\end{problem}
+\begin{proof}
+  Let $\forall x \in M$, let $C_x$ denote an open set containing $x$ such that
+  Let $C = \set{C_i \MID i \in I}$ be an open cover of $M$. Then because $M$ is
+  compact, there exists a finite subcover $C' = \set{C_i \MID i \in I'}$, where
+  $I'$ is finite. (Unfinished)
 \end{proof}
 \end{document}

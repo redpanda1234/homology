@@ -1,0 +1,75 @@
+\chapter{Bases, Subspaces, Products: Creating New Spaces}
+\section{Bases}~
+\begin{definition}
+  Let $\ms T$ be a topology, and $\ms B \subset \ms T$. Then call $\ms B$ a
+  \emph{basis} for $\ms T$ iff $\forall U \in \ms T$, $\exists \ms B_u =
+  \set{B_\alpha}_{\alpha \in \lambda}$ such that
+  \[
+    \bigcup_{\alpha \in \lambda} B_\alpha = U.
+  \]
+  If $B \in \ms B$, we say $B$ is a \emph{basis element} or \emph{basic open
+    set}.
+\end{definition}
+
+\begin{problem}[4.1]
+  Let $(X,\ms T)$ be a topological space and $\ms B$ be a collection of subsets
+  of $X$. Then $\ms B$ is a basis for $\ms T$ iff
+  \begin{enumerate}[label=\arabic*.]
+    \item $\ms B \subset \ms T$, and
+    \item $\forall U \in \ms T$ and $p \in U$, $\exists V \in \ms B \st p \in V
+      \subset U$.
+  \end{enumerate}
+\end{problem}
+\begin{proof}
+  Actually, both directions here are pretty trivial, so we'll omit proof.
+\end{proof}
+\begin{problem}[4.2]
+  \begin{enumerate}
+    \item Show that $\ms B_1 = \set{\pn{a,b} \subset \RR \MID a,b \in \QQ}$ is a
+      basis for the standard topology on $\RR$.
+    \item Let $\ms B_2 = \set{\pn{a,b} \cup \pn{c,d} \subset \RR \MID a < b < c
+        < d \text{ are distinct irrational numbers}}$. Show that this is also a
+      basis for $\ms T_{\rm std}$.
+  \end{enumerate}
+\end{problem}
+\begin{proof}
+  We offer a sketch.
+  \begin{enumerate}
+    \item We show that $\ms B_1$ generates the standard basis on $\ms T_{\rm
+        std}$ as follows: first, we show that $\ms B_1$ generates at least the
+      set of all $(a,b)$ such that $a,b \in \RR - \QQ$. To do so, select any
+      such $(a,b)$, and take the infinite union of $\pn{a_k, b_k}$ where
+      $\pn{a_k}_{i=1}^\infty$ is a rational sequence converging to $a$, and
+      similar for $b$. Once this is done, use closure under union again to get
+      all $(a,b)$ where only one of $\set{a,b}$ is rational. From this, we
+      obtain the standard basis.
+    \item Proceed by a similar idea to the above, this time using irrational
+      sequences, and performing a union with some other open set at the end to
+      ``plug up'' the hole in the middle.
+  \end{enumerate}
+\end{proof}
+\begin{problem}[4.3]
+  Suppose $X$ is a set and $\ms B$ is a collection of subsets of $X$. Then $\ms
+  B$ is a topology on $X$ iff
+  \begin{enumerate}
+    \item Each point of $X$ is in some element of $\ms B$, and
+    \item If $U$ and $V$ are sets in $\ms B$ and $p$ is a point in $U \cap V$,
+      there is a set $W$ in $\ms B$ such that $p \in W \subset (U \cap V)$.
+  \end{enumerate}
+\end{problem}
+\begin{proof}~
+  \begin{iffproof}
+    \item Suppose $\ms B$ is a basis for some topology on $X$. Then the first
+      point follows trivially from the fact that $\ms B$ covers $X$. Now, let
+      $U, V \in \ms B$, and $p \in U \cap V$. Observe that every element of $\ms
+      B$ is open, hence $U,V$ are open as well. Then $U \cap V$ is open, hence
+      there must exist a subset $\ms B' \subset \ms B$ the union of whose
+      elements is $(U \cap V)$. The claim follows by simply selecting an element
+      of $\ms B'$ containing $p$.
+    \item For the reverse direction, take an arbitrary open set $Y$. Build up a
+      superset of $Y$ by unioning elements of $\ms B$ together.
+  \end{iffproof}
+\end{proof}
+%%% Local Variables:
+%%% TeX-master: "solutions"
+%%% End:

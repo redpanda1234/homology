@@ -1,0 +1,267 @@
+\chapter{Topological Spaces: Fundamentals}
+\begin{problem}[3.1]
+  Let $\set{U_i}_{i=1}^n$ be a finite collection of open sets in a topological
+  space $(X, \ms T)$. Then
+  \[
+    \bigcap_{i=1}^n U_i
+  \]
+  is open.
+\end{problem}
+\begin{proof}
+  Trivial proof by induction.
+\end{proof}
+\begin{problem}[3.2]
+  Why does your proof not prove the false statement that the infinite
+  intersection of open sets is necessarily open?
+\end{problem}
+\begin{proof}[Solution.]
+  Induction only proves that a claim holds for any natural number $n \in \NN$.
+  It does not show that the claim holds for $\aleph_0$.
+\end{proof}
+\begin{problem}[3.3]
+  Prove that a set $U$ is open in a topological space $(X, \ms T)$ if and only
+  if for every point $x \in U$, there exists an open set $U_x$ such that $x \in
+  U_x \subset U$.
+\end{problem}
+\begin{proof}
+  Let $U \subseteq X$.
+  \begin{iffproof}
+    \item Suppose $U$ is open. Let $x \in U$ be arbitrary. Then take $U_x = U$
+      to obtain the desired result.
+    \item Suppose that $\forall x \in U$, there exists an open set $U_x \st x
+      \in U_x \subset U$. Then let
+      \[
+        V = \bigcup_{x \in U} U_x.
+      \]
+      WTS $V = U$. Observe that $\forall x \in U$, $\exists U_x \subset V \st
+      U_x \ni x$ (by definition of $V$), hence $x \in U \implies x \in V$. Thus
+      $U \subset V$. Now, since each $U_x \subset U$, we obtain $V \subset U$.
+      Thus $V = U$.
+    \end{iffproof}
+    This proves the claim.
+\end{proof}
+\begin{problem}[3.4]
+  Verify that $\ms T_{\rm std}$ is a topology on $\RR^n$; in other words, it
+  satisfies the four conditions of the definition of a topology.
+\end{problem}
+\begin{proof}~
+  \begin{enumerate}[label=\arabic*.]
+    \item It is vacuously true that $\forall x \in \varnothing$, $\exists
+      \epsilon > 0 \st B_{\epsilon}(x) \in \varnothing$, hence we have
+      $\varnothing \in \ms T_{\rm std}$.
+    \item Let $x \in \RR^n$. Then $\forall \epsilon > 0$, we have
+      $B_{\epsilon}(x) \subset \RR^n$, thus $\RR^n \in \ms T_{\rm std}$.
+    \item Let $U,V \in \ms T_{\rm std}$ be arbitrary, and let $W = U \cap V$.
+      Let $x \in W$ be arbitrary. Then $x \in U$ and $x \in V$, hence $\exists
+      \epsilon_U, \epsilon_V > 0 \st B_{\epsilon_U}(x) \subset U$ and
+      $B_{\epsilon_V}(x) \subset V$. Let $\epsilon_x = \min\set{\epsilon_U,
+        \epsilon_V}$. Then $B_{\epsilon_x}(x) \subset U$ and $B_{\epsilon}(x)
+      \subset V$, and thus $B_{\epsilon_x}(x) \subset W$. Thus $W \in \ms T_{\rm
+      std}$, as desired.
+    \item Let $\set{U_\alpha}_{\alpha \in \lambda}$ be an arbitrary collection
+      of open sets, and let $V = \bigcup_{\alpha \in \lambda} U_\alpha$. Let $x
+      \in V$ be arbitrary. Then $\exists U_{x} \in \set{U_\alpha}_{\alpha \in
+        \lambda} \st x \in U_x$. Since $U_x \in \ms T_{\rm std}$, $\exists
+      \epsilon > 0 \st B_{\epsilon}(x) \subset U_x$. But $U_x \subset V$, hence
+      $B_\epsilon(x) \subset V$. Since $x$ was chosen to be arbitrary, this
+      shows $V \in \ms T_{\rm std}$.
+  \end{enumerate}
+  Since $\ms T_{\rm std}$ satisfies the topological axioms, we see that it
+  indeed is a topology on $\RR^n$.
+\end{proof}
+\begin{problem}[3.5]
+  Verify that the discrete, indiscrete, finite complement, and countable
+  complement topologies are indeed topologies for any set $X$.
+\end{problem}
+\begin{proof}~
+  \begin{enumerate}
+    \item Discrete topology --- trivial
+    \item Indiscrete topology --- trivial
+    \item Finite complement topology (denoted here by $\ms T_{\rm fc}$). Let
+      $\set{U_\alpha}_{\alpha \in \lambda} \subset \ms T_{\rm fc}$, and let $U,V
+      \in \set{U_\alpha}_{\alpha \in \lambda}$. Then
+      \begin{enumerate}[label=\arabic*.]
+        \item Suppose $U = \varnothing$. By definition, we have $\varnothing \in
+          \ms T_{\rm fc}$, so axiom 1 holds.
+        \item Let $U = X$. Then $X - U = X - X = \varnothing$, which is finite.
+          Thus $X \in \ms T_{\rm fc}$.
+        \item Let $W = U \cap V$. Then by DeMorgan's Laws,
+          \begin{align*}
+            X - W
+            &= X - U\cap V \\
+            &= (X - U) \cup (X - V).
+          \end{align*}
+          But $U,V \in \ms T_{\rm fc} \implies X - U, X-V$ are finite. Since the
+          union of two finite sets is finite, we have $U \cap V \in T_{\rm fc}$,
+          as desired.
+        \item Let $W = \bigcup_{\alpha\in\lambda} U_\alpha$. Again, by
+          DeMorgan's Laws, we have
+          \begin{align*}
+            X - \bigcup_{\alpha \in \lambda} U_\alpha
+            &= \bigcap_{\alpha \in \lambda} X - U_\alpha.
+          \end{align*}
+          Arbitrary intersections of finite sets are finite, hence we have $X -
+          W$ is finite, whence $W \in \ms T_{\rm fc}$.
+      \end{enumerate}
+      Thus, $\ms T_{\rm fc}$ is a topology, as desired.
+    \item Countable complement (denoted here by $\ms T_{\rm cc}$). Quantify all
+      variables as above, replacing $\ms T_{\rm fc}$ with $\ms T_{\rm cc}$. The
+      proofs are identical to those above, replacing ``finite'' with
+      ``countable.''
+  \end{enumerate}
+\end{proof}
+\begin{problem}[3.6]
+  Describe some of the open sets you get if $\RR$ is endowed with the topologies
+  described above (standard, discrete, indiscrete, finite complement, and
+  countable complement). Specifically, identify sets that demonstrate the
+  differences among these topologies, that is, find sets that are open in some
+  topologies but not in others. For each of the topologies, determine if the
+  interval $(0,1)$ is an open set in that topology.
+\end{problem}
+\begin{proof}
+  \begin{enumerate}
+    \item In the discrete topology, $\set{x}$ is open for all $x$, while
+      $\pn{0,1}$ is not. $\set{x}$ is not open in the other topologies listed.
+    \item In the indiscrete topology, our only open sets are $\varnothing and
+      X$.
+    \item In the finite complement topology, $X - \set{x}$ is open, but it is
+      not in the indiscrete topology. $\pn{0,1}$ is not open here.
+    \item In the countable complement topology, $\RR - \QQ$ is open, but
+      $\pn{0,1}$ is not.
+  \end{enumerate}
+\end{proof}
+\begin{problem}[3.7]
+  Give an example of a topological space and a collection of open sets in that
+  topological space that show that the infite intersection of open sets need not
+  be open.
+\end{problem}
+\begin{proof}
+  Endow $\RR$ with the standard topology. Then
+  \[
+    \bigcap_{n \in \NN} \pn{-\frac{1}{2^n}, \frac{1}{2^n}} = \set{0}
+  \]
+  is an infinite intersection of open sets yielding a set that is not open.
+\end{proof}
+\section*{3.3 --- Limit Points and Closed Sets}~
+\begin{definition}
+  Let $(X,\ms T)$ be a topological space, $A$ a subset of $X$, and $p$ a point
+  in $X$. Then $p$ is a \emph{limit point} of $A$ iff $\forall U \in \ms T \st p
+  \in U$, $\pn{U - \set{p}} \cap A \neq \varnothing$. Notice $p$ need not be in
+  $A$
+\end{definition}
+\begin{problem}[3.8]
+  Let $X = \RR$ and $A = \pn{1,2}$. Verify that $0$ is a limit point of $A$ in
+  the indiscrete topology and the finite complement topology, but not in the
+  standard topology nor the discrete topology on $\RR$.
+\end{problem}
+\begin{proof}\color{red}
+  In the indiscrete topology, the only open set containing $0$ is $\RR$, and
+  $\RR \cap \pn{0,1} \neq \varnothing$. Hence, $0$ is a limit point. In the case
+  of the finite complement topology, let $U$ be an arbitrary open set containing
+  $0$. Then $U = \RR - X$, where $X$ is finite. Take $X' = X \cup \set{0}$, and
+  $U' = \RR - X'$, and observe that $X'$ is still finite, hence $U'$ is open.
+\end{proof}
+
+\begin{problem}[3.9]
+  Suppose $p \not \in A$ in a topological space $(X, \ms T)$. Then $p$ is not a
+  limit point of $A$ if and only if there exists a neighborhood $U$ of $p$ such
+  that $U \cap A =\varnothing$.
+\end{problem}
+\begin{proof}
+  $p$ is not a limit point of $A$ iff $\exists U \in \ms T \st p \in U, (U -
+  \set{p}) \cap A = \varnothing \iff U \cap A = \varnothing$ (since $p \not \in
+  A$).
+\end{proof}
+\begin{definition}
+  Let $(X, \ms T)$ be a topological space, $A$ be a subset of $X$, and $p$ be a
+  point in $X$. If $p \in A$ but $p$ is not a limit point of $A$, then $p$ is an
+  \emph{isolated point} of $A$.
+\end{definition}
+\begin{problem}[3.10]
+  If $p$ is an isolated point of a set $A$ in a topological space $X$, then
+  there exists an open set $U$ such that $U \cap A = \set{p}$.
+\end{problem}
+\begin{proof}
+  Let $p \in A$, and suppose that $p$ is not a limit point of $A$. Then $\exists
+  U \in \ms T \st p \in U, (U - \set{p}) \cap A = \varnothing$. Then $U \cap A =
+  \set{p}$.
+\end{proof}
+\begin{problem}[3.11]
+  Give an example of sets $A$ in various topological spaces $(X,\ms T)$ with
+  \begin{enumerate}[label=\arabic*.]
+    \item A limit point of $A$ that is an element of $A$;
+    \item A limit point of $A$ that is not an element of $A$;
+    \item An isolated point of $A$;
+    \item A point not in $A$ that is not a limit point of $A$.
+  \end{enumerate}
+\end{problem}
+\begin{proof}~
+  \begin{enumerate}[label=\arabic*.]
+    \item
+  \end{enumerate}
+\end{proof}
+
+\begin{problem}[3.12]
+  Which sets are closed in a set $X$ with
+  \begin{enumerate}
+    \item The discrete topology?
+    \item The indiscrete topology?
+    \item The finite complement topology?
+    \item The countable complement topology?
+  \end{enumerate}
+\end{problem}
+\begin{proof}
+
+\end{proof}
+\begin{problem}[3.13]
+  For any topological space $(X, \ms T)$ and $A \subset X$, $\ol{A}$ is closed.
+  That is, for any set $A$ in a topological space, $\ol{\ol A} = \ol A$.
+\end{problem}
+\begin{proof}
+  Let
+\end{proof}
+
+\begin{problem}[3.14]
+  Let $(X, \ms T)$ be a topological space. Then the set $A$ is closed iff $X -
+  A$ is open.
+\end{problem}
+\begin{proof}~
+  \begin{iffproof}
+    \item Suppose $A$ is closed. Then $A$ contains all of its limit points.
+      Hence, if $p \not \in A$, $p$ is not a limit point of $A$. Thus, $\forall
+      p \in X - A,\ \exists U_p \in \ms T \st p \in U_p,\ U_p \cap A =
+      \varnothing.$ Hence, we have
+      \[
+        X - A = \bigcup_{p \in X - A} U_p.
+      \]
+      Since this is a union of open sets, it follows that $X-A$ is open.
+    \item Suppose $(X -A)$ is open. Let $p$ be a limit point of $A$, and
+      suppose, to obtain a contradiction, that $p \not \in A$. Then $p \in
+      (X-A)$. Since $(X-A)$ is open and contains $p$, then by the definition of
+      a limit point, $((X-A) - \set{p}) \cap A \neq \varnothing$. But $(X - A) -
+      \set{p} \subset (X-A)$, and $(X-A) \cap A = \varnothing$, a contradiction.
+      Thus $p \in A$. Since $p$ was an arbitrary limit point of $A$, we thus
+      have $A$ contains all its limit points, so $\ol{A}$.
+  \end{iffproof}
+\end{proof}
+
+\begin{problem}[3.15]
+  Let $(X, \ms T)$ be a topological space, and let $U$ be an open set and $A$ be
+  a closed subset of $X$. Then the set $U - A$ is open and the set $A - U$ is
+  closed.
+\end{problem}
+\begin{proof}~
+  \begin{enumerate}
+    \item WTS $(U-A)$ is open. Let $p \in U$, and suppose that $p\not\in A$.
+      Then because $A$ closed, it follows that $p$ cannot be a limit point of A.
+      Hence $\exists V_p \in \ms T \st p \in V_p$, $V_p \cap A = \varnothing$.
+      $V$ is open implies $U_p = V\cap U$ is open (finite intersection of open
+      sets is open). Note that $U_p \subset U$, and $U_p \cap A = \varnothing$.
+      Hence
+    \item
+  \end{enumerate}
+\end{proof}
+
+%%% Local Variables:
+%%% TeX-master: "solutions"
+%%% End:

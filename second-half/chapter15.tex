@@ -54,9 +54,13 @@ We define some basic Euclidean sets for use in homeomorphisms.
 \section{Simplicial Complexes}~
 \begin{definition}[Affine Independence]
   Let $X = \set{v_0, \ldots, v_k} \subset \RR^n$. We say $X$ is \emph{affinely
-    independent} if $\set{v_1 - v_0, \ldots, v_k - v_0}$ is linearly
-  independent.
+    independent} if $\set{v_1 - v_i, \ldots, v_k - v_i}$ is linearly
+  independent for all $v_i$.
 \end{definition}
+\begin{example}
+  $X = \set{(0,1), (-\sqrt{3}/2, -1/2), (\sqrt{3}/2, -1/2)}$ is affinely
+  independent.
+\end{example}
 \begin{definition}[Convex combination]
   A \emph{convex combination} of $v_0, \ldots, v_k$ is a linear combination
   of these points whose coefficients are nonnegative and sum to 1.
@@ -64,8 +68,187 @@ We define some basic Euclidean sets for use in homeomorphisms.
 \begin{definition}
   A \emph{$k$-simplex} is the set of all convex combinations of $k+1$ affinely
   independent points in $\RR^n$. For affinely independent points $v_0, \ldots,
-  v_k$ in $\RR^n$, $\set{v_0\cdots v_k}$ denotes
+  v_k$ in $\RR^n$, $\set{v_0\cdots v_k}$ denotes the $k$-simplex
+  \[
+    \set{\lambda_0 v_0 + \lambda_1v_1 + \cdots + \lambda_kv_k \MID \forall i -
+      1, \ldots, k;\ 0 \leq \lambda_i \leq 1 \text{ and } \sum_{i=0}^k \lambda_i
+    = 1}
+  \]
+  each $v_i$ is called a \emph{vertex} of $\set{v_0 \cdots v_k}$. Any point $x$
+  in the $k$-simplex is specified uniquely by the $k+1$ coefficients
+  $(\lambda_i)$; these coefficients are called the \emph{barycentric coordinates
+    of $x$.} The \emph{barycentric coordinate of $x$ with respect to vertex
+    $v_i$} is the coefficient $\lambda_i$.
 \end{definition}
+\begin{definition}
+  Any simplex $\tau$ whose vertices are a nonempty subset of the vertices of a
+  $k$-simplex $\sigma$ is called a \emph{face} of $\sigma$. If the number of
+  vertices is $i+1$, then $\tau$ has \emph{dimension} $i$ and is called an
+  $i$-face of $\sigma$ and $\tau$ has \emph{codimension} $k-i$, the number of
+  dimensions below the top dimension.
+\end{definition}
+\textbf{Notational Note:} if $\sigma = \simp k$, the $(k-1)$-dimensional face of
+$\sigma$ obtained by deleting the vertex $v_j$ from the list of vertices of
+$\sigma$ is denoted by $\simpdel{i}{k}$.
+\begin{problem}[15.11]
+  Show that if $\sigma$ is a simplex and $\tau$ is one of its faces, then $\tau
+  \subset \sigma$.
+\end{problem}
+\begin{solution}
+  This is fairly trivial, so we offer just a sketch. Suppose $\mb v \in \tau$.
+  Then write $\mb v$ as an element of $\sigma$ by taking $\lambda_i = 0$ for all
+  those $v_i \not \in \tau$.
+\end{solution}
+\begin{definition}
+  A \emph{simplicial complex} $K$ (in $\RR^n$) is a collection of simplicies in
+  $\RR^n$ satisfying the following conditions.
+  \begin{enumerate}[label=\arabic*.]
+    \item If a simplex $\sigma$ is in $K$, then each face of $\sigma$ is also in
+      $K$.
+    \item Any two simplices in $K$ are either disjoint or their intersection is
+      a face of each.
+  \end{enumerate}
+\end{definition}
+\begin{problem}[15.13]
+  Exhibit a collection of simplices that satisfies condition (1) but not
+  condition (2) in the definition of a simplicial complex.
+\end{problem}
+\begin{solution}
+  Consider the following diagram, where the interior of each simplex is taken to
+  be in the complex.
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[every node/.style={circle,draw=black, fill=white, inner sep=0pt,minimum size=7pt}]
+      % Simplex 1
+      \coordinate (A) at (0,0);
+      \coordinate (B) at (3,4.5);
+      \coordinate (C) at (5,-1);
+
+      % Simplex 2
+      \coordinate (D) at (2.5,1);
+      \coordinate (E) at (6,3.8);
+      \coordinate (F) at (9,.5);
+
+      \draw[fill=blue!50!white, fill opacity=.5] (A) -- (B) -- (C) -- (A);
+      \draw[fill=red!50!white, fill opacity=.5] (D) -- (E) -- (F) -- (D);
+
+      \draw[name path=B--C] (B) -- (C);
+      \draw[name path=D--E] (D) -- (E);
+      \draw[name path=D--F] (D) -- (F);
+
+      \path[name intersections={of=B--C and D--E, by=G}];
+      \path[name intersections={of=B--C and D--F, by=H}];
+
+      % nodes for simplex (1)
+      \node (a) at (A) {};
+      \node (b) at (B) {};
+      \node (c) at (C) {};
+
+      % nodes for simplex (2)
+      \node (d) at (D) {};
+      \node (e) at (E) {};
+      \node (f) at (F) {};
+    \end{tikzpicture}
+    \caption{An unfortunate collision}
+    \label{fig:non-simplicial-complex}
+  \end{figure}
+  Note that to fix this sorry situation, we can't just add two vertices at the
+  points of intersections of the lines above (then the intersection of the
+  resulting simplex with the two shone above would be non-trivial, but still not
+  a face of the larger ones). We'd actually need something much more
+  complicated.
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[every node/.style={circle,draw=black, fill=white, inner sep=0pt,minimum size=7pt}]
+      % Simplex 1
+      \coordinate (A) at (0,0);
+      \coordinate (B) at (3,4.5);
+      \coordinate (C) at (5,-1);
+
+      % Simplex 2
+      \coordinate (D) at (2.5,1);
+      \coordinate (E) at (6,3.8);
+      \coordinate (F) at (9,.5);
+
+      \draw[fill=blue!50!white, fill opacity=.5] (A) -- (B) -- (C) -- (A);
+      \draw[fill=red!50!white, fill opacity=.5] (D) -- (E) -- (F) -- (D);
+
+      \draw[name path=B--C] (B) -- (C);
+      \draw[name path=D--E] (D) -- (E);
+      \draw[name path=D--F] (D) -- (F);
+
+      \path[name intersections={of=B--C and D--E, by=G}];
+      \path[name intersections={of=B--C and D--F, by=H}];
+
+      \draw[dashed] (B) -- (E);
+      \draw[dashed] (C) -- (F);
+      \draw[dashed] (A) -- (D);
+      \draw[dashed] (D) -- (B);
+      \draw[dashed] (D) -- (C);
+
+      \node (g) at (G) {};
+      \node (h) at (H) {};
+
+      % nodes for simplex (1)
+      \node (a) at (A) {};
+      \node (b) at (B) {};
+      \node (c) at (C) {};
+
+      % nodes for simplex (2)
+      \node (d) at (D) {};
+      \node (e) at (E) {};
+      \node (f) at (F) {};
+    \end{tikzpicture}
+    \caption{Constructing a resolution}
+    \label{fig:non-simplicial-complex}
+  \end{figure}
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[every node/.style={circle,draw=black, fill=white, inner sep=0pt,minimum size=7pt}]
+      % Simplex 1
+      \coordinate (A) at (0,0);
+      \coordinate (B) at (3,4.5);
+      \coordinate (C) at (5,-1);
+
+      % Simplex 2
+      \coordinate (D) at (2.5,1);
+      \coordinate (E) at (6,3.8);
+      \coordinate (F) at (9,.5);
+
+      \draw[fill=blue!50!white, fill opacity=.5] (A) -- (B) -- (C) -- (A);
+      \draw[fill=red!50!white, fill opacity=.5] (D) -- (E) -- (F) -- (D);
+
+      \draw[name path=B--C] (B) -- (C);
+      \draw[name path=D--E] (D) -- (E);
+      \draw[name path=D--F] (D) -- (F);
+
+      \path[name intersections={of=B--C and D--E, by=G}];
+      \path[name intersections={of=B--C and D--F, by=H}];
+
+      \draw[fill=green!30!white] (B) -- (G) -- (D) -- (B);
+      \draw[fill=orange!30!white] (H) -- (C) -- (D) -- (H);
+      \draw[fill=pink!30!white] (A) -- (B) -- (D) -- (A);
+      \draw[fill=teal!25!white] (B) -- (E) -- (G) -- (B);
+      \draw[fill=black!10!white] (H) -- (F) -- (C) -- (H);
+
+      \node (g) at (G) {};
+      \node (h) at (H) {};
+
+      % nodes for simplex (1)
+      \node (a) at (A) {};
+      \node (b) at (B) {};
+      \node (c) at (C) {};
+
+      % nodes for simplex (2)
+      \node (d) at (D) {};
+      \node (e) at (E) {};
+      \node (f) at (F) {};
+    \end{tikzpicture}
+    \caption{The completed resolution}
+    \label{fig:non-simplicial-complex}
+  \end{figure}
+\end{solution}
+
 %%% Local Variables:
 %%% TeX-master: "main"
 %%% End:

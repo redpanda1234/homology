@@ -248,7 +248,112 @@ $\sigma$ is denoted by $\simpdel{i}{k}$.
     \label{fig:non-simplicial-complex}
   \end{figure}
 \end{solution}
+\begin{definition}
+  The \emph{underlying space} $\abs{K}$ of a simplicial complex $K$ is the set
+  \[
+    \abs{K} = \bigcup_{\sigma \in K} \sigma,
+  \]
+  the union of all simplices in $K$, with a topology consisting of sets whose
+  intersection with each simplex $\sigma \in K$ is open in $\sigma$. For finite
+  simplicial complexes, this topology is the topology inherited as a subspace of
+  $\RR^n$.
+\end{definition}
+\begin{problem}[15.14]
+  Let $K$ be the following simplicial complex:
+  \[
+    \text{(Omitted because it takes a long time to TeX out)}
+  \]
+  draw $K$ and its underlying space.
+\end{problem}
+\begin{solution}
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{.49\linewidth}
+      \centering
+      \begin{tikzpicture}[scale=2, every node/.style={circle,draw=black, fill=white, inner sep=0pt,minimum size=7pt}]
 
+        \coordinate (A) at (0,0);
+        \coordinate (B) at (0,1);
+        \coordinate (C) at (1,0);
+        \coordinate (D) at (0,-1);
+
+        \draw (A) -- (B) -- (C) -- (A);
+        \draw (A) -- (D);
+        \draw (D) -- (C);
+
+        \node (a) at (A) {};
+        \node (b) at (B) {};
+        \node (c) at (C) {};
+        \node (d) at (D) {};
+
+      \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}{.49\linewidth}
+      \centering
+      \begin{tikzpicture}[scale=2, every node/.style={circle,draw=black, fill=white, inner sep=0pt,minimum size=7pt}]
+
+        \coordinate (B) at (0,1);
+        \coordinate (C) at (1,0);
+        \coordinate (D) at (0,-1);
+
+        \draw (B) -- (C) -- (D) -- (B);
+      \end{tikzpicture}
+    \end{minipage}
+    \caption{$K$ (left) and its underlying space (right).}
+  \end{figure}
+\end{solution}
+\begin{definition}
+  A topological space $X$ is said to be \emph{triangulable} if it is
+  homeomorphic to the underlying space of a simplicial complex $K$. In that
+  case, we say $K$ is a \emph{triangulation} of $X$.
+\end{definition}
+\begin{problem}[15.15]
+  Show that the space shown in Figure 15.2 (not included here) is triangulable
+  by exhibiting a simplicial complex whose underlying space it is homeomorphic
+  to.
+\end{problem}
+\begin{solution}
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=2, every node/.style={circle,draw=black, fill=white, inner sep=0pt,minimum size=7pt}]
+
+      \coordinate (A) at (0,0);
+      \coordinate (B) at (-.866,.5);
+      \coordinate (C) at (-.866,-.5);
+      \coordinate (D) at (1,0);
+      \coordinate (E) at (1.866,.5);
+      \coordinate (F) at (1.866,-.5);
+
+      \draw (A) -- (B) -- (C) -- (A) -- (D);
+      \draw[fill=black!30!white] (D) -- (E) -- (F) -- (D);
+
+      \node (a) at (A) {};
+      \node (b) at (B) {};
+      \node (c) at (C) {};
+      \node (d) at (D) {};
+      \node (e) at (E) {};
+      \node (f) at (F) {};
+
+    \end{tikzpicture}
+    \caption{Such a simplicial complex. Note, the left triangle is unfilled.}
+  \end{figure}
+\end{solution}
+\begin{problem}[15.6]
+  For each $n \in \NN$, $\Ss^n$ is triangulable.
+\end{problem}
+\begin{proof}
+  We proceed by induction.
+
+  \begin{induction}
+    \item Note that $S^0$ is trivially triangulable by taking $K =
+      \set{\set{v_0}, \set{v_2}}$.
+    \item Suppose that for $k \in \NN \cup \set{0}$, $\Ss^k$ is triangulable by
+      a simplicial complex $K$.
+    \item Take $v_{k+1} \in \RR^{k+1}$ such that $v_{k+1} \in
+      (\vspan{K})^\perp$. Then
+  \end{induction}
+\end{proof}
+\section{Simplicial Maps and PL Homeomorphisms}
 %%% Local Variables:
 %%% TeX-master: "main"
 %%% End:

@@ -6,28 +6,29 @@
 \rhead{Topology Through Inquiry}
 \thispagestyle{fancy}
 \begin{document}
-\section*{General Comments}
+\section*{Large-Scale Comments}
 \begin{enumerate}
-  \item Given that many teachers / users of the book might not read \emph{every}
-    section, it would be helpful to add a glossary of all notation used
-    throughout the book, to make finding missing vocabulary easier.
+  \item Given that many courses using the book might not employ \emph{every}
+    section, it would be extremely helpful to add a glossary of all notation
+    used throughout the book to make it easier to find anything not covered.
   \item Throughout the first part of the book, lots of definitions are given
     with iffs. E.g., ``Call an object $x$ a \underline{\phantom{thingy}} iff it
-    satisfies properties \underline{\phantom{llist of properties}}.'' This
-    practice appears to not be taken in the second half.
+    satisfies properties \underline{\phantom{llist of properties}}.'' This isn't
+    as consistently adhered to in the second half.
 \end{enumerate}
 \section*{Chapter 3}
 \begin{enumerate}
-  \item Notational inconsistency. Section 3.1, page 53: ``there is a designated
+  \item Notational inconsistency. Section 3.1, page 46: ``there is a designated
     set $U_x$ in {\color{red} X} with $x \in U_x$ such that $f(U_x) \subset
     V$.'' Here, the {\color{red} X} should be in math font, i.e.\
     ${\color{green} X}$.
-  \item Possible undesirable formatting. Section 3.1, page 55: in the statement
+  \item Possible undesirable formatting. Section 3.1, page 48: in the statement
     of theorem 3.1 (``Let $\set{U_i}_{i=1}^n$ be a finite collection of open
     sets''), ``finite'' is not italicized, whereas the surrounding text is. This
     is likely due to the use of \verb|\emph| inside an italicized environment.
-    While this is indeed the expected behavior, it might be worth considering
-    using boldface instead to emphasize finite.
+    {\color{red} While this is indeed the expected behavior, it might be worth
+      considering using boldface together with italics to emphasize finite in
+      this context --- however, it's certainly a matter of personal preference.}
 \end{enumerate}
 \section*{Chapter 4}
 \begin{enumerate}
@@ -35,18 +36,17 @@
 \end{enumerate}
 \section*{Chapter 11}
 \begin{enumerate}
-  \item Simple typo. Section 11.4, page 194: ``Intuitively, we know what
-    {\color{red} at} hole is.'' Should be ``what {\color{green} a} hole is.''
-  \item Ambiguous parse structure. Section 11.4, page 194: ``Another category of
-    theorem we will prove is fixed point theorems.'' While this sentence is
-    grammatically correct if parsed as ``Another (category of (theorem we will
-    prove)) is (fixed point theorems),'' it is easy for a first-time reader to
-    parse the sentece as ``Another (category of theorem) we will prove is (fixed
-    point theorems),'' which I think has a number agreement error (``category of
-    theorem'' is singular, ``is'' is singular, ``fixed point theorems'' is
-    plural --- easy to not realize ``fixed point theorems'' is the title of the
-    category). Not sure if this is actually a problem though.
-  \item Number agreement error. Section 11.4, page 195: ``Another type of
+  \item Possibly ambiguous parse structure. Section 11.4, page 167: ``Another
+    category of theorem we will prove is fixed point theorems.'' While this
+    sentence is grammatically correct if parsed as ``Another (category of
+    (theorem we will prove)) is (fixed point theorems),'' {\color{red}it is easy
+      for a first-time reader to parse the sentence as ``Another (category of
+      theorem) we will prove is (fixed point theorems),'' which I think has a
+      number agreement error (``category of theorem'' is singular, ``is'' is
+      singular, ``fixed point theorems'' is plural --- easy to not realize
+      ``fixed point theorems'' is the title of the category).} Not sure if this
+    is actually a problem though.
+  \item Number agreement error. Section 11.4, page 167: ``Another type of
     theorem that we will prove {\color{red} are} theorems about geometric
     separation.'' This is sort of the dual of the part above --- ``type of
     theorem that we will prove'' is singular no matter how you parse it, ``are''
@@ -54,17 +54,12 @@
 \end{enumerate}
 \section*{Chapter 12}
 \begin{enumerate}
-  \item Notational error. Exercise 12.1, page 199: ``Show that the torus
-    {\color{red}$T^2$} is homeomorphic to $\mathbb{S}^1 \times \mathbb{S}^1$.''
-    Torus should be denoted $\mathbb{T}^2$.
-  \item Possible error. Section 12.1, page 201 --- ``The basis for the topology
+  \item Notational error. Exercise 12.1, page 170: ``Show that the torus
+    {\color{red}$T^2$} is homeomorphic to $\Ss^1 \times \Ss}^1$.'' Torus should
+    be denoted $\color{green}\TT^2$.
+  \item Possible error. Section 12.1, page 172 --- ``The basis for the topology
     is the collection of {\color{red}open cones} with the cone point at the
     origin.'' I believe this should be double cones?
-  % \item Possible grammatical error. Exercise 12.3.2, page 201 --- ``Show that
-  %   $\RRP^2$ is also homeomorphic to a disk with two edges on its boundary
-  %   (called a \textbf{bigon}){\bfseries \color{red},} identified as indicated in
-  %   Figure 12.7.'' The comma should not appear --- removing the parenthetical
-  %   expression, the comma creates an ungrammatical sentence.
 \end{enumerate}
 \section*{Chapter 15}
 \begin{enumerate}
@@ -74,25 +69,25 @@
       B^n = \set{(x_1, \ldots, x_n) \in \RR^n \MID x_1^2 + {\color{red} \ldots}
         + x_n^2 \leq 1}.
     \]
-    In the definition of of the $n$-cube above this, $\cdots$
+    In the definition of of the $n$-cube above this, {\color{red}$\cdots$
     (\verb|\cdots|) is used to indicate continuation of $\times$. Here, and in
     the definition of the standard $n$-sphere below it, $\ldots$ (\verb|\ldots|)
-    is used to indicate continuation of $+$. This may be a matter of personal
+    is used to indicate continuation of $+$.} This may be a matter of personal
     preference, but I've always assumed standard practice is to use $\ldots$
     (\verb|\ldots|)for the continuation of enumerations (e.g., sets or lists),
     and $\cdots$ (\verb|\cdots|) for the continuation of operations. Either way,
     it probably ought to be consistent between $+$ and $\times$.
-  \item Clarification suggestion. Section 15.1, definition of the standard
-    $n$-sphere. We define
+  \item Possible clarification suggestion. Section 15.1, definition of the
+    standard $n$-sphere. We define
     \[
       \Ss^n = \set{(x_0, \ldots, x_n) \in \RR^{n+1} \MID x_0^2 + \cdots + x_n^2
         = 1}.
     \]
-    Since we're reindexing from $0$ here (instead of adding an $x_{n+1}$
-    coordinate), it might be worth pointing that out to the reader, especially
-    seeing as both of the previous examples started indexing at $1$. This could
-    easily be incorporated into the note below without adding too much text,
-    however it's non-essential.
+    {\color{red}Since we're reindexing from $0$ here (instead of adding an
+      $x_{n+1}$ coordinate), it might be worth pointing that out to the reader,
+      especially seeing as both of the previous examples started their indexing
+      at $1$.} This could easily be incorporated into the note below without
+    adding too much text, however it's non-essential.
   \item Possible grammatical error. Section 15.1, definition of a manifold: ``An
     \emph{$n$-dimensional manifold} or \emph{$n$-manifold} is a {\color{red}
       separable, metric space, $M$} [\ldots]''. It seems like one or more of
@@ -103,16 +98,17 @@
   \item Notational inconsistency. Section 15.1. ``For example, in the
     {\color{red} closed disk $\DD^2$}, [\ldots]''. We defined $\DD^2$ to refer
     to the unit square in the section above. Should this be $B^2$ instead?
-  \item Incomplete definition. Section 15.2, definition of affinely independent.
-    ``recall that a set of points $v_0, \ldots, v_k$ in $\RR^n$ is
+  \item Possibly incomplete definition. Section 15.2, definition of affinely
+    independent. ``recall that a set of points $v_0, \ldots, v_k$ in $\RR^n$ is
     \emph{affinely independent} if $\set{v_1 - v_0, \ldots, v_k - v_0}$ is a
-    linearly independent set.'' {\color{red} It should be mentioned that we
-      require this for all $v_i$; $v_0$ is not privileged.}
-  \item Incomplete definition. Section 15.2, definition of convex combination.
-    ``A \emph{convex combination} of $v_0, \ldots, v_k$ is a linear combination
-    of those points whose coefficients sum to 1.'' {\color{red} I believe it
-      should also be mentioned that we require said coefficients to be
-      non-negative.}
+    linearly independent set.'' {\color{red} As far as I can tell, $v_0$ is not
+      privileged, hence it should be mentioned that we require this to hold for
+      all $v_i$?}
+  \item Possibly incomplete definition. Section 15.2, definition of convex
+    combination. ``A \emph{convex combination} of $v_0, \ldots, v_k$ is a linear
+    combination of those points whose coefficients sum to 1.'' {\color{red} I
+      believe it should also be mentioned that we require said coefficients to
+      be non-negative.}
   \item Unclear definition. Section 15.2, definition of the underlying space of
     a simplicial complex. ``[\ldots] with a topology of sets whose intersection
     with each simpliex $\sigma$ in $K$ is {\color{red} open in $\sigma$}.'' From

@@ -352,8 +352,18 @@ $\sigma$ is denoted by $\simpdel{i}{k}$.
     \item Take $v_{k+1} \in \RR^{k+1}$ such that $v_{k+1} \in
       (\vspan{K})^\perp$. Then
   \end{induction}
+  {\color{red} This proof is unfinished. Hey, future Forest --- you should
+    return to this later!}
 \end{proof}
 \section{Simplicial Maps and PL Homeomorphisms}
+We now define structure-preserving maps bewteen simplicial concepts.
+\begin{definition}
+  Let $X,Y$ be topological spaces. A function $f : X \to Y$ is called a
+  \emph{simplicial map} iff there exist simplicial complexes $K$ and $L$ such
+  that $\abs{K} = X$, $\abs{L} = Y$, and $f$ maps each simplex of $K$ linearly
+  onto a (possibly lower-dimensional) simplex in $L$.
+\end{definition}
+
 %%% Local Variables:
 %%% TeX-master: "main"
 %%% End:

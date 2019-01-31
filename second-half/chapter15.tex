@@ -1,0 +1,63 @@
+\chapter[Homological Prereqs]{Manifolds, Simplexes Complexes, and Triangulability: Building Blocks}
+
+\section{Manifolds}
+We define some basic Euclidean sets for use in homeomorphisms.
+\begin{definition}
+  The \emph{$n$-dimensional cube}, denoted $\DD^n$, is defined as
+  \begin{align*}
+    \DD^n
+    &= \set{\pn{x_1, \ldots, x_n} \in \RR^n \MID 0 \leq x_i \leq 1 \text{ for } i = 1, \ldots, n} \\
+    &= \overbrace{[0,1] \times [0,1] \times \cdots \times [0,1]}_{n \text{ times}} \subset \RR^n.
+  \end{align*}
+\end{definition}
+\begin{definition}
+  The \emph{standard $n$-ball}, denoted $B^n$, is
+  \[
+    B^n = \set{\pn{x_1, \ldots, x_n} \in \RR^n \MID x_1^2 + \cdots + x^2_n \leq
+      1}.
+  \]
+\end{definition}
+\begin{definition}
+  The \emph{standard $n$-sphere}, denoted $\Ss^n$, is
+  \[
+    \Ss^n = \set{(x_0, \ldots, x_n) \in \RR^{n+1} \MID x^2_0 + \cdots + x^2_n =
+      1}.
+  \]
+  note that here, our indices start at $0$.
+\end{definition}
+\begin{definition}
+  An \emph{$n$-dimensional manifold} or \emph{$n$-manifold} is a separable
+  metric space $M$ such that $\forall p \in M$, $\exists U \in \ms T(M) \st p
+  \in U$ and $U \cong V \subset \RR^n$.
+\end{definition}
+\begin{problem}[15.8]
+  If $M$ is an $n$-manifold and $U$ is an open subset of $M$, then $U$ is also
+  an $n$-manifold.
+\end{problem}
+\begin{proof}
+
+\end{proof}
+\begin{problem}[15.9]
+  If $M$ is an $m$-manifold and $N$ is an $n$-manifold, then $M \times N$ is an
+  $(m+n)$-manifold.
+\end{problem}
+\begin{proof}
+
+\end{proof}
+\begin{problem}[15.10]
+  Let $M^n$ be an $n$-dimensional manifold with boundary. Then $\partial M^n$ is
+  an $(n-1)$-manifold.
+\end{problem}
+\begin{proof}
+
+\end{proof}
+\section{Simplicial Complexes}~
+\begin{definition}[Affine Independence]
+  Let $X = \set{v_0, \ldots, v_k} \subset \RR^n$. We say $X$ is \emph{affinely
+    independent} if $\set{v_1 - v_0, \ldots, v_k - v_0}$ is linearly
+  independent.
+\end{definition}
+
+%%% Local Variables:
+%%% TeX-master: "main"
+%%% End:

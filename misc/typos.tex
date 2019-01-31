@@ -6,8 +6,14 @@
 \rhead{Topology Through Inquiry}
 \thispagestyle{fancy}
 \begin{document}
+\section*{General Suggestions}
+\begin{enumerate}
+  \item Given that many teachers / users of the book might not read \emph{every}
+    section, it would be helpful to add a glossary of all notation used
+    throughout the book, to make finding missing vocabulary easier.
+\end{enumerate}
 \section*{Chapter 3}
-\begin{itemize}
+\begin{enumerate}
   \item Notational inconsistency. Section 3.1, page 53: ``there is a designated
     set $U_x$ in {\color{red} X} with $x \in U_x$ such that $f(U_x) \subset
     V$.'' Here, the {\color{red} X} should be in math font, i.e.\
@@ -18,13 +24,13 @@
     is likely due to the use of \verb|\emph| inside an italicized environment.
     While this is indeed the expected behavior, it might be worth considering
     using boldface instead to emphasize finite.
-\end{itemize}
+\end{enumerate}
 \section*{Chapter 4}
-\begin{itemize}
+\begin{enumerate}
   \item
-\end{itemize}
+\end{enumerate}
 \section*{Chapter 11}
-\begin{itemize}
+\begin{enumerate}
   \item Simple typo. Section 11.4, page 194: ``Intuitively, we know what
     {\color{red} at} hole is.'' Should be ``what {\color{green} a} hole is.''
   \item Ambiguous parse structure. Section 11.4, page 194: ``Another category of
@@ -41,19 +47,71 @@
     separation.'' This is sort of the dual of the part above --- ``type of
     theorem that we will prove'' is singular no matter how you parse it, ``are''
     is plural.
-\end{itemize}
+\end{enumerate}
 \section*{Chapter 12}
-\begin{itemize}
+\begin{enumerate}
   \item Notational error. Exercise 12.1, page 199: ``Show that the torus
     {\color{red}$T^2$} is homeomorphic to $\mathbb{S}^1 \times \mathbb{S}^1$.''
     Torus should be denoted $\mathbb{T}^2$.
-\item Possible error. Section 12.1, page 201 --- ``The basis for the topology is
-  the collection of {\color{red}open cones} with the cone point at the origin.''
-  I believe this should be double cones?
-  \item Possible grammatical error. Exercise 12.3.2, page 201 --- ``Show that
-    $\RRP^2$ is also homeomorphic to a disk with two edges on its boundary
-    (called a \textbf{bigon}){\bfseries \color{red},} identified as indicated in
-    Figure 12.7.'' The comma should not appear --- removing the parenthetical
-    expression, the comma creates an ungrammatical sentence.
-\end{itemize}
+  \item Possible error. Section 12.1, page 201 --- ``The basis for the topology
+    is the collection of {\color{red}open cones} with the cone point at the
+    origin.'' I believe this should be double cones?
+  % \item Possible grammatical error. Exercise 12.3.2, page 201 --- ``Show that
+  %   $\RRP^2$ is also homeomorphic to a disk with two edges on its boundary
+  %   (called a \textbf{bigon}){\bfseries \color{red},} identified as indicated in
+  %   Figure 12.7.'' The comma should not appear --- removing the parenthetical
+  %   expression, the comma creates an ungrammatical sentence.
+\end{enumerate}
+\section*{Chapter 15}
+\begin{enumerate}
+  \item Small typesetting inconsistency. Section 15.1, definition of a standard
+    $n$-ball:
+    \[
+      B^n = \set{(x_1, \ldots, x_n) \in \RR^n \MID x_1^2 + {\color{red} \ldots}
+        + x_n^2 \leq 1}.
+    \]
+    In the definition of of the $n$-cube above this, $\cdots$
+    (\verb|\cdots|) is used to indicate continuation of $\times$. Here, and in
+    the definition of the standard $n$-sphere below it, $\ldots$ (\verb|\ldots|)
+    is used to indicate continuation of $+$. This may be a matter of personal
+    preference, but I've always assumed standard practice is to use $\ldots$
+    (\verb|\ldots|)for the continuation of enumerations (e.g., sets or lists),
+    and $\cdots$ (\verb|\cdots|) for the continuation of operations. Either way,
+    it probably ought to be consistent between $+$ and $\times$.
+  \item Clarification suggestion. Section 15.1, definition of the standard
+    $n$-sphere. We define
+    \[
+      \Ss^n = \set{(x_0, \ldots, x_n) \in \RR^{n+1} \MID x_0^2 + \cdots + x_n^2
+        = 1}.
+    \]
+    Since we're reindexing from $0$ here (instead of adding an $x_{n+1}$
+    coordinate), it might be worth pointing that out to the reader, especially
+    seeing as both of the previous examples started indexing at $1$. This could
+    easily be incorporated into the note below without adding too much text,
+    however it's non-essential.
+  \item Possible grammatical error. Section 15.1, definition of a manifold: ``An
+    \emph{$n$-dimensional manifold} or \emph{$n$-manifold} is a {\color{red}
+      separable, metric space, $M$} [\ldots]''. It seems like one or more of
+    these commas should not be there --- in this context, isn't ``metric'' usually
+    used as an adjective? Either way, the comma usage is inconsistent with that
+    in theorem 15.4 (``for a separable, metric space $M^n$, the following are
+    equivalent'').
+  \item Notational inconsistency. Section 15.1. ``For example, in the
+    {\color{red} closed disk $\DD^2$}, [\ldots]''. We defined $\DD^2$ to refer
+    to the unit square in the section above. Should this be $B^2$ instead?
+  \item Incomplete definition. Section 15.2, definition of affinely independent.
+    ``recall that a set of points $v_0, \ldots, v_k$ in $\RR^n$ is
+    \emph{affinely independent} if $\set{v_1 - v_0, \ldots, v_k - v_0}$ is a
+    linearly independent set.'' It should be mentioned that we require this for
+    all $v_i$; $v_0$ is not privileged.
+  \item Incomplete definition. Section 15.2, definition of convex combination.
+    ``A \emph{convex combination} of $v_0, \ldots, v_k$ is a linear combination
+    of those points whose coefficients sum to 1.'' It should also be mentioned
+    that we require said coefficients to be non-negative.
+  \item Minor typesetting inconsistency. Section 15.2, definition of a
+    $k$-simplex: ``For affinely independent points $v_0, \ldots, v_k \in \RR^n$,
+    $\set{v_0 {\color{red} \cdots} v_k}$ denotes the $k$-simplex [\ldots]''. It
+    seems that instead of $\cdots$ (\verb|\cdots|), we should have $,\ldots,$
+    (\verb|,\ldots,|).
+\end{enumerate}
 \end{document}

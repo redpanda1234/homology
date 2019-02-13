@@ -363,6 +363,44 @@ We now define structure-preserving maps bewteen simplicial concepts.
   that $\abs{K} = X$, $\abs{L} = Y$, and $f$ maps each simplex of $K$ linearly
   onto a (possibly lower-dimensional) simplex in $L$.
 \end{definition}
+\begin{definition}
+  A simplicial map $f$ is a simplicial homomorphism iff it's a bijection; in
+  that case, the two complexes are \emph{simplicially homeomorphic}
+\end{definition}
+\begin{problem}[15.17]
+  A simplicial map from $K$ to $L$ is determined by the images of the vertices
+  of $K$.
+\end{problem}
+\begin{solution}
+  Apply linearity and show the analog of images of liner combinations being
+  uniquely determined by the action on the basis.
+\end{solution}
+\begin{problem}[15.18]
+  A composition of simplicial maps is a simplicial map.
+\end{problem}
+\begin{solution}
+  Simply plug in arbitrary points and verify the properties hold.
+\end{solution}
+\begin{definition}
+  Let $K$ be a simplicial complex. Then a simplicial complex $K'$ is a
+  \emph{subdivision} of $K$ iff each simplex of $K'$ is a subset of a simplex of
+  $K$ and each simplex of $K$ is the union of finitely many simplices of $K'$.
+\end{definition}
+\begin{definition}
+  If $K$ and $L$ are complexes, a continuous map $f : \abs{K} \to \abs{L}$ is
+  called \emph{piecewise linear} or \emph{PL} if and only if there are
+  subdivisions $K'$ of $K$ and $L'$ of $L$ such that $f$ is a simplicial map
+  from $K'$ to $L'$. If there exist subdivisions such that $f$ is a simplicial
+  homomorphism, then $f$ is a \emph{PL homomorphism} and the spaces are \emph{PL
+  homeomorphic.}
+\end{definition}
+\begin{problem}[15.21]
+  A composition of PL maps is PL. A PL homeomorphism is an equivalence relation.
+\end{problem}
+\begin{problem}[15.22]
+  PL homeomorphic complexes are homeomorphic as topological spaces.
+\end{problem}
+
 
 %%% Local Variables:
 %%% TeX-master: "main"

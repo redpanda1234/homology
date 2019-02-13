@@ -1,5 +1,131 @@
 \chapter{Simplicial $\ZZ_2$-Homology: Physical Algebra}
+\section{Intro}
+This chapter, we'll talk about \emph{homology}, which captures holes in a much
+more satisfying way than higher homotopy groups do.
+\begin{adjustwidth}{1.5em}{}
+  \begin{remark}
+    Although not exactly accurate, a good way to start to understand homology for
+    a space $X$ is to view an $n$-manifold in $X$ that is not the boundary of an
+    $(n+1)$-manifold-with-boundary as capturing some geometry of $X$ while an
+    $n$-manifold that is the boundary of an $(n+1)$-dimensional
+    manifold-with-boundary is not detecting any hole or structure.
+  \end{remark}
+\end{adjustwidth}
+\section{Chains, Cycles, Boundaries, and the Homology Groups}
+\begin{definition}
+  An \emph{$n$-chain} of $K$ is a finite formal sum
+  \[
+    \sum_{i=1}^k \sigma_i
+  \]
+  of distinct $n$-simplices in $K$. Note that the dimensions of the simplices
+  must be the same. So \emph{chain} will mean $n$-chain whenever the dimension
+  is either unimportant or understood.
+\end{definition}
+\begin{definition}
+  The \emph{$n$-chain group of $K$} (with coefficients in $\zmod{2}$), denoted
+  $\mathsf{C}_n(K)$, is the collection of $n$-chains in $K$ under formal
+  addition modulo 2. If there are no $n$-simplices in $K$, the $n$-chain group
+  of $K$ is defined to be trivial (containing the ``empty'' chain).
+\end{definition}
+\begin{problem}[16.1]
+  Check that $\msf C_n(K)$ is an abelian group.
+\end{problem}
+\begin{solution}
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\epsilon = \sum_{i \in \varnothing} \sigma_i$.
+    \item Associativity inherited from $\cup$.
+    \item Closure inherited from $\cup$ over the domain given.
+    \item Existence of inverses --- since we're taking formal linear
+      combinations over $\zmod{2}$, then every element is its own inverse.
+  \end{enumerate}
+  Finally, to see that $\msf C_n(K)$ is abelian, observe that $+$ in $\msf
+  C_n(K)$ inherits commutativity from $\cup$.
+\end{solution}
+\begin{definition}
+  The \emph{$\zmod{2}$-boundary of an $n$-simplex $\sigma = \simp{n}$} is
+  defined by
+  \[
+    \partial \sigma = \sum_{i=0}^n \simpdel{i}{n}
+  \]
+  the formal sum of the $(n-1)$-faces of $\sigma$.
 
+  For a 0-simplex, the $\zmod{2}$ boundary is defined to be $0 \in \msf
+  C_{-1}(K)$.
+\end{definition}
+\begin{definition}
+  The \emph{$\zmod{2}$ boundary of an $n$-chain} is the sum of the boundaries of
+  the simplices. That is, $\partial_n : \msf C_n(K) \to \msf C_{n-1}(K)$ is
+  given by
+  \[
+    \partial\pn{\sum_{i=1}^k \sigma_i} = \sum_{i=1}^k \partial(\sigma_i)
+  \]
+\end{definition}
+\begin{problem}[16.2]
+  Verify that $\partial$ is a homomorphism, and use the definition to compute
+  the $\zmod{2}$ boundary of $\sigma_1 + \sigma_2$ in Figure 16.1
+\end{problem}
+\begin{solution}
+  The homomorphism is straightforward. $\partial(\sigma_1 + \sigma_2) = e_1 +
+  e_2 + e_4 + e_5$.
+\end{solution}
+\begin{definition}
+  An \emph{$n$-cycle} is an $n$-chain of $K$ whose boundary is zero. The set of
+  all $n$-cycles on $K$ is denoted $\msf Z_n(K)$. An \emph{$n$-boundary} is an
+  $n$-chain that is the boundary of an $(n+1)$-chain of $K$. The set of all
+  $n$-boundaries is denoted $\msf B_n(K)$.
+\end{definition}
+% \begin{problem}[16.3]
+
+% \end{problem}
+\begin{problem}[16.4]
+  Both $\msf Z_n(K)$ and $\msf B_n(K)$ are subgroups of $\msf C_n(K)$. Moreover,
+  \[
+    \partial \circ \partial = 0.
+  \]
+  In other words, $\partial_n \circ \partial_{n+1} = 0$ foreach index $n \geq
+  0$. Hence, $\msf B_n(K) \subset \msf Z_n(K)$.
+\end{problem}
+\begin{solution}
+  Let $\sigma_1, \sigma_2 \in \msf Z_n(K)$. Then by linearity of $\partial_n$,
+  we have
+  \begin{align*}
+    \partial_n(\sigma_1 + \sigma_2)
+    &= \partial_n(\sigma_1) + \partial_n(\sigma_2) \\
+    &= 0
+  \end{align*}
+  and hence $\msf Z_n(K) < \msf C_n(K)$.
+
+  Now, let $\sigma_1, \sigma_2 \in \msf B_n(K)$. Then $\exists \tau_1, \tau_2
+  \in \msf Z_{n+1}(K)$ such that $\partial_{n+1}(\tau_1) = \sigma_1,
+  \partial_{n+1}(\tau_2) = \sigma_{2}$. Then by linearity of $\partial$, we have
+  \begin{align*}
+    \partial_{n+1}(\tau_1 + \tau_2)
+    &= \partial_{n+1}(\tau_1) + \partial_{n+1}(\tau_2) \\
+    &= \sigma_1 + \sigma_2
+  \end{align*}
+  hence $\msf B_n(K)$ is a subset closed under the operation, so we have $\msf
+  B_n(K) < \msf C_n(K)$.
+\end{solution}
+\begin{definition}
+  Two $n$-cycles $\alpha$ and $\beta$ in $K$ are \emph{equivalent} or
+  \emph{homologous} iff $\alpha-\beta = \partial(\gamma)$ for some $(n+1)$-chain
+  $\gamma$. In other words, $\alpha$ and $\beta$ are homologous iff they differ
+  by an element of the subgroup $\msf B_n(K)$, denoted by
+  \[
+    \alpha \sim_{\zmod{2}} \beta.
+  \]
+  The equivalence class of $\alpha$ is denoted by enclosing it in brackets
+  thusly: $[\alpha]$. For $\zmod{2}$ $n$-chains, observe that $\alpha - \beta =
+  \alpha + \beta$. So we see that two $n$-cycles are equivalent if together they
+  bound an $(n+1)$-chain.
+\end{definition}
+\begin{problem}[16.5]
+  List all the equivalence classes of $0$-cycles, 1-cycles, and 2-cycles in the
+  complex in Figure 16.1.
+\end{problem}
+\begin{solution}
+
+\end{solution}
 %%% Local Variables:
 %%% TeX-master: "main"
 %%% End:

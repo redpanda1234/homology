@@ -55,7 +55,7 @@
 \section*{Chapter 12}
 \begin{enumerate}
   \item Notational error. Exercise 12.1, page 170: ``Show that the torus
-    {\color{red}$T^2$} is homeomorphic to $\Ss^1 \times \Ss}^1$.'' Torus should
+    {\color{red}$T^2$} is homeomorphic to $\Ss^1 \times \Ss^1$.'' Torus should
     be denoted $\color{green}\TT^2$.
   \item Possible error. Section 12.1, page 172 --- ``The basis for the topology
     is the collection of {\color{red}open cones} with the cone point at the
@@ -115,6 +115,49 @@
     it's unclear from this which topology we're supposed to use to determine if
     the intersection is open in $\sigma$ --- I'm assuming the standard topology
     on $\RR^n$?
+  \item Simple typo. Section 15.3, definition of PL. ``A continuous map $f :
+    \abs{K} \to \abs{L}$ is called \emph{piecewise linear} if and only
+    {\color{red} it}'' --- should be ``if.''
 \end{enumerate}
+\section*{Chapter 16}
+\begin{enumerate}
+  \item Tricky to parse sentence, and also slight incosistency in phrasing.
+    Section 16.1, intuition: ``Although not exactly accurate, a good way to
+    start to understand homology for a space $X$ is to view an $n$-manifold in
+    $X$ that is not the boundary of an
+    {\color{red}$(n+1)$-manifold-with-boundary} as capturing some geometry of
+    $X$ while an $n$-manifold that is the boundary of an
+    {\color{red}$(n+1)$-dimensional manifold-with-boundary} is not detecting any
+    hole or structure.''
 
+    Seems like the two highlighted red regions should be phrased identically, to
+    make the connection between them clear? Also, it might be better to split
+    this up as follows: ``Although not exactly accurate, a good way to start to
+    understand homology for a space $X$ is to consider an $n$-manifold $M$. If
+    $M$ is not the boundary of an $(n+1)$-manifold-with-boundary, then $M$ can
+    capture some geometry of $X$, while if $M$ \emph{is} the boundary of some
+    $(n+1)$-manifold-with-boundary in $X$, then $M$ doesn't detect a hole or
+    structure. The key here is to notice that boundary relationships between
+    $n$-manifolds and $(n+1)$-manifolds in $X$ can carry information about the
+    presence of hollowness and/or holes.''
+  \item Not a big problem but the section does get a bit wordy in the motivating
+    example with Figure 16.1. Maybe it'd be easier to follow with more diagrams?
+    That said, the section as is still does a great job of delivering intuition
+    to the reader.
+  \item There's a bit of a throwaway comment (in red) and also a typo (in blue)
+    in the same example: ``In fact, these two sets of edges differ ({\color{red}
+      where we take the difference mod 2, meaning} we just look at the set of
+    all the edges that are in one set, but not {\color{blue}\bfseries it} in the
+    other) [\ldots]'' For a reader, it's a bit strange seeing the mention of
+    $\zmod{2}$ sort of shoehorned in like this. It's great intuition, but it
+    might be easier to digest if given in its own sentence instead of a
+    parenthetical?
+  \item Suggested additional definition. Section 16.2: before defining an
+    $n$-chain in $K$, it might be worth defining what a formal operation is?
+  \item Suggested clarification: in the definition of an $n$-chain group, it
+    seems we're actually defining is a module with formal linear combination
+    (even though we still refer to $\msf C_n(K)$ as a group)?
+  \item Ambiguous diagram. Section 16.2, first example: in figure 16.2, edges
+    and vertices are unlabled, but we name them in the following example.
+\end{enumerate}
 \end{document}

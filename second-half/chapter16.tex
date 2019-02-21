@@ -1,4 +1,4 @@
-\chapter{Simplicial $\ZZ_2$-Homology: Physical Algebra}
+\chapter[$\zmod{2}$ Homology]{Simplicial $\ZZ_2$-Homology: Physical Algebra}
 \section{Intro}
 This chapter, we'll talk about \emph{homology}, which captures holes in a much
 more satisfying way than higher homotopy groups do.
@@ -65,8 +65,22 @@ more satisfying way than higher homotopy groups do.
   the $\zmod{2}$ boundary of $\sigma_1 + \sigma_2$ in Figure 16.1
 \end{problem}
 \begin{solution}
-  The homomorphism is straightforward. $\partial(\sigma_1 + \sigma_2) = e_1 +
-  e_2 + e_4 + e_5$.
+  We want to show $\partial$ is a homomorphism.
+  \begin{enumerate}
+    \item Let $\epsilon_n \in \msf C_n(K)$ be identity. We want to show
+      $\partial(\epsilon_n) = \epsilon_{n-1}$. Taking the empty sum to be
+      identity, we see
+      \begin{align*}
+        \partial(\epsilon_n)
+        &=
+        \partial\pn{\sum_{i\in \varnothing} \sigma_i} \\
+        &= \sum_{i\in\varnothing} \partial\pn{\sigma_i} \\
+        &= \epsilon_{n-1}
+      \end{align*}
+      as desired.
+    \item That $\partial$ respects addition is definitional.
+  \end{enumerate}
+  We have $\partial(\sigma_1 + \sigma_2) = e_1 + e_2 + e_4 + e_5$.
 \end{solution}
 \begin{definition}
   An \emph{$n$-cycle} is an $n$-chain of $K$ whose boundary is zero. The set of
@@ -82,7 +96,7 @@ more satisfying way than higher homotopy groups do.
   \[
     \partial \circ \partial = 0.
   \]
-  In other words, $\partial_n \circ \partial_{n+1} = 0$ foreach index $n \geq
+  In other words, $\partial_n \circ \partial_{n+1} = 0$ for each index $n \geq
   0$. Hence, $\msf B_n(K) \subset \msf Z_n(K)$.
 \end{problem}
 \begin{solution}
@@ -97,7 +111,9 @@ more satisfying way than higher homotopy groups do.
 
   Now, let $\sigma_1, \sigma_2 \in \msf B_n(K)$. Then $\exists \tau_1, \tau_2
   \in \msf Z_{n+1}(K)$ such that $\partial_{n+1}(\tau_1) = \sigma_1,
-  \partial_{n+1}(\tau_2) = \sigma_{2}$. Then by linearity of $\partial$, we have
+  \partial_{n+1}(\tau_2) = \sigma_{2}$. Since $\msf Z_{n+1}(K) < \msf
+  C_{n+1}(K)$, then $\tau_1 + \tau_2 \in \msf Z_{n+1}(K)$. Now, by linearity of
+  $\partial$, we have
   \begin{align*}
     \partial_{n+1}(\tau_1 + \tau_2)
     &= \partial_{n+1}(\tau_1) + \partial_{n+1}(\tau_2) \\
@@ -124,7 +140,227 @@ more satisfying way than higher homotopy groups do.
   complex in Figure 16.1.
 \end{problem}
 \begin{solution}
+  {\color{red} maybe the next exercise will be more informative.}
+\end{solution}
+\begin{definition}
+  The \emph{$n$\textsuperscript{th}-homology group} (with coefficients in
+  $\zmod{2}$) of a finite simplicial complex $K$, denoted $\msf H_n(K)$, is the
+  additive group whose elements are equivalence classes of cycles under the
+  $\zmod{2}$-equivalence defined above, with $\bk{\alpha} + \bk{\beta} =
+  \bk{\alpha +\beta}$. I.e.,
+  \[
+    \msf H_n(K) = \msf Z_n(K)/\msf B_n(K)
+  \]
+\end{definition}
+\begin{problem}[F1]
+  Consider the simplicial complex given below in Figure \ref{fig:F1}. Then for
+  $n = 0, 1, 2$,
+  \begin{enumerate}
+    \item describe elements of $\msf C_n(K)$,
+    \item compute $\msf Z_n(K)$,
+    \item compute $\msf B_n(K)$, and
+    \item compute $\msf H_n(K)$.
+  \end{enumerate}
+\end{problem}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[
+      every node/.style={
+        circle,
+        draw=black,
+        fill=white,
+        inner sep=0pt,
+        minimum size=7pt
+      }
+    ]
 
+    \coordinate (v1) at (0,0);
+    \coordinate (v2) at (2,3);
+    \coordinate (v3) at (2.6,1);
+    \coordinate (v4) at (2.5,-1.4);
+    \coordinate (v5) at (5,.6);
+    \coordinate (v6) at (7,.9);
+
+    \draw[fill=gray!50!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+    \draw[fill=gray!50!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+    \draw (v1) -- (v4);
+    \draw (v2) -- (v5);
+    \draw (v5) -- (v6);
+
+    \node (wv1) at (v1) {};
+    \node (wv2) at (v2) {};
+    \node (vv2) at (v2) {};
+    \node (vv3) at (v3) {};
+    \node (vv4) at (v4) {};
+    \node (vv5) at (v5) {};
+    \node (vv6) at (v6) {};
+
+    \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+    \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+    \node[draw=none, xshift=.7em, yshift=.8em] (wv3) at (v3) {$v_3$};
+    \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+    \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+    \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+  \end{tikzpicture}
+  \caption{Simplicial complex $K$}
+  \label{fig:F1}
+\end{figure}
+\begin{solution}
+  First, we redraw the simplicial complex as follows:
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        scale = .6,
+        every node/.style={
+          circle,
+          draw=black,
+          fill=white,
+          inner sep=0pt,
+          minimum size=7pt
+        }
+      ]
+
+      \coordinate (v1) at (-3,0);
+      \coordinate (v2) at (0,3);
+      \coordinate (v3) at (0,0);
+      \coordinate (v4) at (0,-3);
+      \coordinate (v5) at (3,0);
+      \coordinate (v6) at (6,0);
+
+      \draw[fill=gray!50!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+      \draw[fill=gray!50!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+      \draw (v1) -- (v4);
+      \draw (v2) -- (v5);
+      \draw (v5) -- (v6);
+
+      \node (wv1) at (v1) {};
+      \node (wv2) at (v2) {};
+      \node (vv2) at (v2) {};
+      \node (vv3) at (v3) {};
+      \node (vv4) at (v4) {};
+      \node (vv5) at (v5) {};
+      \node (vv6) at (v6) {};
+
+      \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+      \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+      \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+      \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+      \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+      \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+    \end{tikzpicture}
+    \caption{Simplicial complex $K$, straightened out}
+  \end{figure}
+  For the purposes of this problem, take angled brackets indicate span. We have
+  \begin{enumerate}[label=(\roman*)]
+    \item We calculate the $k=0$ case.
+      \begin{enumerate}
+        \item Elements of $\msf C_0(K)$ are formal linear combinations over the
+          set $\set{v_1, v_2, \ldots, v_6}$. Then
+          \[
+            \msf C_0(K) = \ip[Big]{v_1, v_2, v_3, v_4, v_5, v_6}
+          \]
+          that is, collections of points in $\msf C_0(K)$.
+        \item Let $\sigma_1, \ldots, \sigma_k \in \msf C_0(K).$ Then by definition,
+          \begin{align*}
+            \partial\pn{\sum_{i=1}^k \sigma_i}
+            &= \sum_{i=1}^k \partial(\sigma_i)\\
+            &= \sum_{i=1}^k 0 \\
+            &= 0
+          \end{align*}
+          hence $\msf Z_n(K) = \msf C_n(K)$.
+        \item A $\sigma \in \msf C_0(K)$ is an $n$-boundary if $\exists \tau \in
+          \msf C_{1}(K)$ with $\partial(\tau) = \sigma$. Note, for any
+          $1$-dimensional face $\set{v_iv_j} \in K$,
+          \begin{align*}
+            \partial(\set{v_iv_j})
+            &= \set{v_i \widehat{v_j}} + \set{\widehat{v_i}v_j} \\
+            &= \set{v_i} + \set{v_j} \\
+            &= \delta_{ij}.
+          \end{align*}
+          Hence, any edge formed of a pair of two distinct vertices yields a
+          nonempty boundary. Hence, we first count all edges:
+          \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[
+              scale = .6,
+              every node/.style={
+                circle,
+                draw=black,
+                fill=white,
+                inner sep=0pt,
+                minimum size=7pt
+              }
+              ]
+
+              \coordinate (v1) at (-3,0);
+              \coordinate (v2) at (0,3);
+              \coordinate (v3) at (0,0);
+              \coordinate (v4) at (0,-3);
+              \coordinate (v5) at (3,0);
+              \coordinate (v6) at (6,0);
+
+              \draw[fill=gray!50!white] (v1) -- (v2)
+              % draw and label the edge between v1 and v2
+              node[draw=none, midway, above left, xshift=-.3em, yshift=-.2em]
+              {\color{red} $e_1$} -- (v3)
+              % draw the edge between v2 and v3, and label it as well
+              node[draw=none, midway, right, xshift=.2em] {\color{red} $e_2$}
+              -- (v1)
+              % draw the edge between v3 and v1, and label it as well
+              node[draw=none, midway, below] {\color{red}$e_3$} -- cycle;
+
+              \draw (v1) -- (v4) node[draw=none, midway, below left] {\color{red} $e_4$};
+
+              \draw[fill=gray!50!white] (v3) -- (v4)
+              % edge between v3 and and v4
+              node[draw=none, midway, left] {\color{red} $e_5$} -- (v5)
+              % edge
+              node[draw=none, midway, below right] {\color{red}$e_7$} -- (v3)
+              %
+              node[draw=none, midway, above] {\color{red} $e_6$} -- cycle;
+
+
+              \draw (v2) -- (v5) node[draw=none, midway, above right] {\color{red} $e_8$};
+              \draw (v5) -- (v6) node[draw=none, midway, above] {\color{red} $e_9$};
+
+              \node (wv1) at (v1) {};
+              \node (wv2) at (v2) {};
+              \node (vv2) at (v2) {};
+              \node (vv3) at (v3) {};
+              \node (vv4) at (v4) {};
+              \node (vv5) at (v5) {};
+              \node (vv6) at (v6) {};
+
+              \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+              \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+              \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+              \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+              \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+              \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+            \end{tikzpicture}
+            \caption{Simplicial complex $K$ with simple edges}
+          \end{figure}
+          Since $\msf B_0(K)$ is a subgroup of $\msf C_0(K)$, by closure under
+          $+$, we see that any $v_i+v_j$ in $K$ such that there exists a path
+          from $v_i$ to $v_j$ (when $K$ is considered a graph) is an element of
+          $\msf B_0(K)$. In fact, we can say more:
+
+          \textbf{Claim:} The elements of $\msf B_n$ are exactly those $\sigma
+          \in \msf C_0(K)$ with an even number of vertices.
+
+          \textbf{Proof:} Let $\sigma \in \msf C_0(K)$. Suppose $\sigma =
+          \set{v_0} + \set{v_1} + \cdots + \set{v_k}$, where $k$ is even. Then
+          \[
+            \tau = \sum_{i=1}^{k/2} \set{v_{2i}v_{2i+1}}
+          \]
+          yields $\partial(\tau) = \sigma$.
+
+
+
+      \end{enumerate}
+  \end{enumerate}
 \end{solution}
 %%% Local Variables:
 %%% TeX-master: "main"

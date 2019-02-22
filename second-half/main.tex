@@ -1,7 +1,17 @@
 \documentclass{fkbook}
 
-\setcounter{tocdepth}{4}
-\setcounter{secnumdepth}{4}
+% For resolution of that one triangulation
+\usetikzlibrary{intersections}
+
+% For the tetrahedron thing
+\usetikzlibrary{backgrounds}
+
+% Compile diagrams separately
+\usetikzlibrary{external}
+\tikzexternalize
+
+% For 3d plots
+\usepackage{tikz-3dplot}
 
 
 \renewpagestyle{main}{
@@ -10,12 +20,7 @@
   \setfoot{Last Updated \today}{}{\thepage\ of \pageref{LastPage}}
 } % odd
 
-\usepackage{boxedminipage}
 
-% For resolution of that one triangulation
-\usetikzlibrary{intersections}
-% Compile diagrams separately
-\usetikzlibrary{external}\tikzexternalize
 % For music note in subtitle
 \usepackage{wasysym}
 \setlength{\parindent}{1.5em}
@@ -69,8 +74,9 @@ of some stuff I do.
   \item $\ol{U}$ denotes the closure of $U$, $\interior{U}$ is the interior of
     $U$.
   \item $A^c$ is $A$ complement.
-  \item $\simp{k}$ denotes a simplex on $k+1$ vertices. $\simpdel{i}{k}$ is the
-    same simplex with the $i$\textsuperscript{th} vertex deleted.
+  \item $\simp{k}$ denotes a simplex on $k+1$ vertices (that is, a $k$-simplex).
+    $\simpdel{i}{k}$ is the same simplex with the $i$\textsuperscript{th} vertex
+    deleted.
   \item $[n] = \set{i \MID i = 0,1,\ldots, n}$.
 \end{itemize}
 
@@ -130,7 +136,8 @@ Hm
 
 \end{document}
 %%% Local Variables:
+%%% coding: utf-8
 %%% mode: latex
 %%% TeX-master: t
-%%% TeX-command-extra-options: "-shell-escape"
-%%% End
+%%% TeX-engine: default-shell-escape
+%%% End:

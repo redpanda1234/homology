@@ -976,14 +976,46 @@ more satisfying way than higher homotopy groups do.
           have representative elements $\mb 0, \partial(A_1), \partial(A_2),
           \partial(A_1) + \partial(A_2)$)
       \end{enumerate}
+    \item For $k=2$, we have
+      \begin{enumerate}
+        \item $\msf C_2(K) \cong \zmod{2} \times \zmod{2}$
+        \item $\msf Z_2(K) \cong \mb 0$
+        \item $\msf B_2(K) \cong \mb 0$
+        \item And hence $\msf H_2(K) \cong \mb 0$.
+      \end{enumerate}
   \end{enumerate}
 \end{solution}
 \begin{problem}[16.7]
   If $K$ is a one-point space, $\msf H_n(K) \cong 0$ for $n \geq 0$, and $\msf
-  H_0(K) \cong \ZZ$.
+  H_0(K) \cong \zmod{2}$.
 \end{problem}
 \begin{solution}
-  For $n > 0$, $\msf C_n(K)$ is the trivial group, and so $\msf H_n(K) \cong 0$.
+  For $n > 0$, $\msf C_n(K)$ is the trivial group. Since $\msf Z_n(K) \leq \msf
+  C_n(K)$, we thus have $\msf Z_n(K) \cong 0$, and so $\msf H_n(K) \cong 0$.
+
+  For the $n = 0$, note that $\msf Z_0(K) = \msf C_0(K) \cong \zmod{2}$ (every
+  point is definitionally a 0-cycle). Since $K$ contains no 1-simplices, $\msf
+  B_0(K) = \mb 0$, hence $\msf H_0(K) \cong \zmod{2}$.
+\end{solution}
+\begin{definition}[Simplicially connected]
+  Let $K$ be a simplicial complex. Then we call $K$ \emph{simplicially
+    connected} iff for all pairs of 0-simplices $v_0, v_n \in K$, there exists a
+  sequence of 0-simplices $\set{v_i}_{i\in [n]}$ such that for all $i \in [n]$
+  (with $i \neq n$), $\set{v_iv_{i+1}}$ is a 1-simplex in $K$. Note, this
+  corresponds exactly to $K$ being connected as a graph, where the 0-simplices
+  represent vertices, and the 1-simplices represent edges.
+\end{definition}
+\begin{problem}[16.8]
+  If $K$ is connected, then $\msf H_0(K) \cong \zmod{2}$. If $K$ has $r$
+  connected components, then
+  \[
+    \msf H_0(K)\cong \prod_{i=1}^r \zmod{2}
+  \]
+\end{problem}
+\begin{solution}
+  \begin{enumerate}
+    \item
+  \end{enumerate}
 \end{solution}
 %%% Local Variables:
 %%% TeX-master: "main"

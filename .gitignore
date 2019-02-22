@@ -6,4 +6,6 @@
 *.out
 *.synctex.gz
 *.fdb_latexmk
+*.auxlock
+main-figure*
 auto/

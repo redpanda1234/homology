@@ -14,7 +14,8 @@
 
 % For resolution of that one triangulation
 \usetikzlibrary{intersections}
-
+% Compile diagrams separately
+\usetikzlibrary{external}\tikzexternalize
 % For music note in subtitle
 \usepackage{wasysym}
 \setlength{\parindent}{1.5em}
@@ -61,12 +62,16 @@ of some stuff I do.
   \item \textbf{Important:} I use $f\fim[A]$ for the image of $A$ under $f$, and
     $f\fpre[B]$ for the inverse image of $B$ under $f$.
   \item $\sim$ and $\equiv$ are used for equivalence relations. $\cong$ is used
-    to denote homeomorphism. $\simeq$ is for Homotopy equivalence.
+    to denote homeomorphism and isomorphism of groups. $\simeq$ is for Homotopy
+    equivalence.
   \item $\epsilon$ is for trivial elements (e.g., the trivial path), while
     $\varepsilon$ is for small positive quantities.
   \item $\ol{U}$ denotes the closure of $U$, $\interior{U}$ is the interior of
     $U$.
-  \item
+  \item $A^c$ is $A$ complement.
+  \item $\simp{k}$ denotes a simplex on $k+1$ vertices. $\simpdel{i}{k}$ is the
+    same simplex with the $i$\textsuperscript{th} vertex deleted.
+  \item $[n] = \set{i \MID i = 0,1,\ldots, n}$.
 \end{itemize}
 
 \section*{Updates:}
@@ -127,4 +132,5 @@ Hm
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
+%%% TeX-command-extra-options: "-shell-escape"
 %%% End

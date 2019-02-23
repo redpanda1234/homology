@@ -168,7 +168,7 @@ more satisfying way than higher homotopy groups do.
   \]
 \end{definition}
 \begin{problem}[F1]
-  Consider the simplicial complex given below in Figure \ref{fig:F1}. Then for
+  Consider the simplicial complex given below in Figure \cref{fig:F1}. Then for
   $n = 0, 1, 2$,
   \begin{enumerate}
   \item describe elements of $\msf C_n(K)$,
@@ -1300,42 +1300,6 @@ more satisfying way than higher homotopy groups do.
     \tdplotsetmaincoords{70}{80}
     \begin{tikzpicture}[tdplot_main_coords, scale=2]
       \path
-      coordinate (A) at (0,0,0)
-      coordinate (B) at (2,0,0)
-      coordinate (C) at (1,1.732,0)
-      coordinate (x) at (1,.577,1.733);
-
-      \fill[red!30!white,draw=black] (A)--(B)--(C)--cycle;
-
-      \path
-      coordinate (P1) at ($.2*(A) + .5*(B) + .4*(C)$)
-      coordinate (P2) at ($.3*(A) + .5*(B) + .2*(C)$)
-      coordinate (P3) at ($.2*(A) + .2*(B) + .6*(C)$)
-      coordinate (P4) at ($.7*(A) + .2*(B) + .1*(C)$);
-
-      \foreach \v in {P1,P2,P3,P4}{
-        % Take the difference and go slightly past it
-        \draw[-latex,dashed] (x) -- ($1.3*(\v) - .3*(x)$);
-        \draw[fill=black] (\v) circle (0.5pt);
-      }
-
-      \foreach \v in {A,B,C}{
-        % Take the difference and go slightly past it
-        \draw[-latex,dashed] (x) -- ($1.2*(\v) - .2*(x)$);
-        \draw[fill=black] (\v) circle (0.5pt);
-      }
-
-      \foreach \v/\position in {A/left,B/left,C/right,x/above} {
-        \draw[fill=black] (\v) circle (0.5pt) node [\position=0.2mm] {$\v$};
-      }
-    \end{tikzpicture}
-    \caption{$x$ sees a $2$-simplex}
-  \end{subfigure}
-  \begin{subfigure}{.49\linewidth}
-    \centering
-    \tdplotsetmaincoords{70}{80}
-    \begin{tikzpicture}[tdplot_main_coords, scale=2]
-      \path
       coordinate (B) at (2,0,0)
       coordinate (C) at (1,1.732,0)
       coordinate (x) at (.6,.577,1.533)
@@ -1367,10 +1331,146 @@ more satisfying way than higher homotopy groups do.
         \draw[fill=black] (\v) circle (0.5pt) node [\position=0.2mm] {$\v$};
       }
     \end{tikzpicture}
-    \caption{$x$ and $y$ both see a $1$-Simplex}
+    \caption{$x$ and $y$ both see a $1$-simplex $\sigma_1$}
+    \label{fig:see-sigma-1}
   \end{subfigure}
-\end{figure}
+  \begin{subfigure}{.49\linewidth}
+    \centering
+    \tdplotsetmaincoords{70}{80}
+    \begin{tikzpicture}[tdplot_main_coords, scale=2]
+      \path
+      coordinate (A) at (0,0,0)
+      coordinate (B) at (2,0,0)
+      coordinate (C) at (1,1.732,0)
+      coordinate (x) at (1,.577,1.733);
 
+      \fill[red!30!white,draw=black] (A)--(B)--(C)--cycle;
+
+      \path
+      coordinate (P1) at ($.2*(A) + .5*(B) + .4*(C)$)
+      coordinate (P2) at ($.3*(A) + .5*(B) + .2*(C)$)
+      coordinate (P3) at ($.2*(A) + .2*(B) + .6*(C)$)
+      coordinate (P4) at ($.7*(A) + .2*(B) + .1*(C)$);
+
+      \foreach \v in {P1,P2,P3,P4}{
+        % Take the difference and go slightly past it
+        \draw[-latex,dashed] (x) -- ($1.3*(\v) - .3*(x)$);
+        \draw[fill=black] (\v) circle (0.5pt);
+      }
+
+      \foreach \v in {A,B,C}{
+        % Take the difference and go slightly past it
+        \draw[-latex,dashed] (x) -- ($1.2*(\v) - .2*(x)$);
+        \draw[fill=black] (\v) circle (0.5pt);
+      }
+
+      \foreach \v/\position in {A/left,B/left,C/right,x/above} {
+        \draw[fill=black] (\v) circle (0.5pt) node [\position=0.2mm] {$\v$};
+      }
+    \end{tikzpicture}
+    \caption{$x$ sees a $2$-simplex $\sigma_2$}
+    \label{fig:see-sigma-2}
+  \end{subfigure}
+  \caption{Simplices being seen}
+  \label{fig:seeing}
+\end{figure}
+\begin{remark}
+  Note, that when there are multiple $k$-simplices in $K$, the picture might not
+  be quite as simple.
+\end{remark}
+\begin{definition}
+  Let $K$ be a finite complex and $x$ a point that sees $K$. If $\sigma =
+  \simp{k}$ is a simplex of $K$, define the \emph{cone} of $x$ over $\sigma$ to
+  be the simplex
+  \[
+    \Cone_x(\sigma) = \set{xv_0\cdots v_k}.
+  \]
+\end{definition}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{.49\linewidth}
+    \centering
+    \tdplotsetmaincoords{70}{80}
+    \begin{tikzpicture}[tdplot_main_coords, scale=2]
+      \path
+      coordinate (B) at (2,0,0)
+      coordinate (C) at (1,1.732,0)
+      coordinate (x) at (.6,.577,1.533)
+      coordinate (y) at (1.8,1.077,1.733);
+
+      \draw (B)--(C);
+
+      \fill [opacity=.5, red!30!white] (x) -- (B) -- (C) -- cycle;
+      \fill [opacity=.5, blue!30!white] (y) -- (B) -- (C) -- cycle;
+
+      \draw[dashed] (x) -- (B) (x) -- (C);
+      \draw[dashed] (y) -- (B) (y) -- (C);
+
+      \foreach \v/\position in {B/left,C/right,x/above,y/above right} {
+        \draw[fill=black] (\v) circle (0.5pt) node [\position=0.2mm] {$\v$};
+      }
+    \end{tikzpicture}
+    \caption{$\Cone_x(\sigma_1)$, $\Cone_y(\sigma_1)$}
+    \label{fig:cone-sigma-1}
+  \end{subfigure}
+  \begin{subfigure}{.49\linewidth}
+    \centering
+    \tdplotsetmaincoords{70}{80}
+    \begin{tikzpicture}[tdplot_main_coords, scale=2]
+      \path
+      coordinate (A) at (0,0,0)
+      coordinate (B) at (2,0,0)
+      coordinate (C) at (1,1.732,0)
+      coordinate (D) at (1,.577,1.733);
+
+      \fill[red!30!white,draw=black] (A)--(B)--(C)--cycle;
+
+      % Draw this first so it gets covered by the fill slightly
+      \draw (A) -- (C);
+
+      \fill [opacity=.5, red!30!white] (A) -- (B) -- (C) -- cycle;
+      \fill [opacity=.5, blue!30!white] (D) -- (B) -- (A) -- cycle;
+      \fill [opacity=.5, green!30!white] (D) -- (A) -- (C) -- cycle;
+      \fill [opacity=.5, orange!30!white] (D) -- (B) -- (C) -- cycle;
+      \draw[dashed] (A) -- (D) (B) -- (D) (C) -- (D);
+
+      % Draw this first so it gets covered by the fill slightly
+      \draw (A) -- (B) -- (C);
+
+      \foreach \v/\position in {A/left,B/left,C/right,D/above} {
+        \draw[fill=black] (\v) circle (0.5pt) node [\position=0.2mm] {$\v$};
+      }
+    \end{tikzpicture}
+    \caption{$\Cone_x(\sigma_2)$}
+    \label{fig:cone-sigma-2}
+  \end{subfigure}
+  \caption{Some cones}
+  \label{fig:cones}
+\end{figure}
+\begin{definition}
+  Define $x*K$, the \emph{cone over} $K$ to be the simplicial complex comprising
+  all simplices $\Cone_x(\sigma)$ for $\sigma \in K$, and all faces of such
+  simplices.
+\end{definition}
+\begin{remark}
+  Essentially, this just includes the base point and edges in
+  \cref{fig:cone-sigma-1} and the base point and edges \emph{and} faces in
+  \cref{fig:cone-sigma-2}.
+\end{remark}
+\begin{definition}
+  Define the \emph{simplicial cone operator} $\Cone_x : \msf C_n(K) \to \msf
+  C_{n+1}(x*K)$ by extending the definition of $\Cone_x(\sigma)$ linearly to
+  chains.
+\end{definition}
+\begin{problem}[16.11]
+  For $x$ seeing $K$, and $\sigma$ a simplex of $K$,
+  \[
+    \partial\ \Cone_x(\sigma) + \Cone_x(\partial \sigma) = \sigma.
+  \]
+\end{problem}
+\begin{solution}
+
+\end{solution}
 %%% Local Variables:
 %%% TeX-master: "main"
 %%% End:

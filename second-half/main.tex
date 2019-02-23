@@ -8,7 +8,7 @@
 
 % Compile diagrams separately
 \usetikzlibrary{external}
-\tikzexternalize
+\tikzexternalize[prefix=figures/]
 
 % For 3d plots
 \usepackage{tikz-3dplot}
@@ -20,6 +20,8 @@
   \setfoot{Last Updated \today}{}{\thepage\ of \pageref{LastPage}}
 } % odd
 
+% For better referencing
+\usepackage{cleveref}
 
 % For music note in subtitle
 \usepackage{wasysym}
@@ -136,8 +138,7 @@ Hm
 
 \end{document}
 %%% Local Variables:
-%%% coding: utf-8
-%%% mode: latex
 %%% TeX-master: t
 %%% TeX-engine: default-shell-escape
+%%% TeX-command-extra-option: -pdf
 %%% End:

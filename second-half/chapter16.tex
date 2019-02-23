@@ -32,11 +32,11 @@ more satisfying way than higher homotopy groups do.
 \end{problem}
 \begin{solution}
   \begin{enumerate}[label=(\arabic*)]
-    \item $\epsilon = \sum_{i \in \varnothing} \sigma_i$.
-    \item Associativity inherited from $\cup$.
-    \item Closure inherited from $\cup$ over the domain given.
-    \item Existence of inverses --- since we're taking formal linear
-      combinations over $\zmod{2}$, then every element is its own inverse.
+  \item $\epsilon = \sum_{i \in \varnothing} \sigma_i$.
+  \item Associativity inherited from $\cup$.
+  \item Closure inherited from $\cup$ over the domain given.
+  \item Existence of inverses --- since we're taking formal linear
+    combinations over $\zmod{2}$, then every element is its own inverse.
   \end{enumerate}
   Finally, to see that $\msf C_n(K)$ is abelian, observe that $+$ in $\msf
   C_n(K)$ inherits commutativity from $\cup$.
@@ -67,18 +67,18 @@ more satisfying way than higher homotopy groups do.
 \begin{solution}
   We want to show $\partial$ is a homomorphism.
   \begin{enumerate}
-    \item Let $\epsilon_n \in \msf C_n(K)$ be identity. We want to show
-      $\partial(\epsilon_n) = \epsilon_{n-1}$. Taking the empty sum to be
-      identity, we see
-      \begin{align*}
-        \partial(\epsilon_n)
-        &=
+  \item Let $\epsilon_n \in \msf C_n(K)$ be identity. We want to show
+    $\partial(\epsilon_n) = \epsilon_{n-1}$. Taking the empty sum to be
+    identity, we see
+    \begin{align*}
+      \partial(\epsilon_n)
+      &=
         \partial\pn{\sum_{i\in \varnothing} \sigma_i} \\
-        &= \sum_{i\in\varnothing} \partial\pn{\sigma_i} \\
-        &= \epsilon_{n-1}
-      \end{align*}
-      as desired.
-    \item That $\partial$ respects addition is definitional.
+      &= \sum_{i\in\varnothing} \partial\pn{\sigma_i} \\
+      &= \epsilon_{n-1}
+    \end{align*}
+    as desired.
+  \item That $\partial$ respects addition is definitional.
   \end{enumerate}
   We have $\partial(\sigma_1 + \sigma_2) = e_1 + e_2 + e_4 + e_5$.
 \end{solution}
@@ -171,22 +171,22 @@ more satisfying way than higher homotopy groups do.
   Consider the simplicial complex given below in Figure \ref{fig:F1}. Then for
   $n = 0, 1, 2$,
   \begin{enumerate}
-    \item describe elements of $\msf C_n(K)$,
-    \item compute $\msf Z_n(K)$,
-    \item compute $\msf B_n(K)$, and
-    \item compute $\msf H_n(K)$.
+  \item describe elements of $\msf C_n(K)$,
+  \item compute $\msf Z_n(K)$,
+  \item compute $\msf B_n(K)$, and
+  \item compute $\msf H_n(K)$.
   \end{enumerate}
 \end{problem}
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}[
-      every node/.style={
-        circle,
-        draw=black,
-        fill=white,
-        inner sep=0pt,
-        minimum size=7pt
-      }
+    every node/.style={
+      circle,
+      draw=black,
+      fill=white,
+      inner sep=0pt,
+      minimum size=7pt
+    }
     ]
 
     \coordinate (v1) at (0,0);
@@ -226,14 +226,14 @@ more satisfying way than higher homotopy groups do.
   \begin{figure}[H]
     \centering
     \begin{tikzpicture}[
-        scale = .6,
-        every node/.style={
-          circle,
-          draw=black,
-          fill=white,
-          inner sep=0pt,
-          minimum size=7pt
-        }
+      scale = .6,
+      every node/.style={
+        circle,
+        draw=black,
+        fill=white,
+        inner sep=0pt,
+        minimum size=7pt
+      }
       ]
 
       \coordinate (v1) at (-3,0);
@@ -269,740 +269,740 @@ more satisfying way than higher homotopy groups do.
   \end{figure}
   For the purposes of this problem, take angled brackets indicate span. We have
   \begin{enumerate}[label=(\roman*)]
-    \item We calculate the $k=0$ case.
-      \begin{enumerate}
-        \item Elements of $\msf C_0(K)$ are formal linear combinations over the
-          set $\set{v_1, v_2, \ldots, v_6}$. Then
-          \[
-            \msf C_0(K) = \ip[Big]{v_1, v_2, v_3, v_4, v_5, v_6}
-          \]
-          that is, collections of points in $\msf C_0(K)$.
-        \item Let $\sigma_1, \ldots, \sigma_k \in \msf C_0(K).$ Then by definition,
-          \begin{align*}
-            \partial\pn{\sum_{i=1}^k \sigma_i}
-            &= \sum_{i=1}^k \partial(\sigma_i)\\
-            &= \sum_{i=1}^k 0 \\
-            &= 0
-          \end{align*}
-          hence $\msf Z_n(K) = \msf C_n(K)$.
-        \item A $\sigma \in \msf C_0(K)$ is an $n$-boundary if $\exists \tau \in
-          \msf C_{1}(K)$ with $\partial(\tau) = \sigma$. Note, for any
-          $1$-dimensional face $\set{v_iv_j} \in K$,
-          \begin{align*}
-            \partial(\set{v_iv_j})
-            &= \set{v_i \widehat{v_j}} + \set{\widehat{v_i}v_j} \\
-            &= \set{v_i} + \set{v_j} \\
-            &= \delta_{ij}.
-          \end{align*}
-          Hence, any edge formed of a pair of two distinct vertices yields a
-          nonempty boundary. We first count all edges:
-          \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[
-              scale = .6,
-              every node/.style={
-                circle,
-                draw=black,
-                fill=white,
-                inner sep=0pt,
-                minimum size=7pt
-              }
-              ]
-
-              \coordinate (v1) at (-3,0);
-              \coordinate (v2) at (0,3);
-              \coordinate (v3) at (0,0);
-              \coordinate (v4) at (0,-3);
-              \coordinate (v5) at (3,0);
-              \coordinate (v6) at (6,0);
-
-              \draw[fill=gray!30!white] (v1) -- (v2)
-              % draw and label the edge between v1 and v2
-              node[draw=none, midway, above left, xshift=-.3em, yshift=-.2em]
-              {\color{red} $e_1$} -- (v3)
-              % draw the edge between v2 and v3, and label it as well
-              node[draw=none, midway, right, xshift=.2em] {\color{red} $e_2$}
-              -- (v1)
-              % draw the edge between v3 and v1, and label it as well
-              node[draw=none, midway, below] {\color{red}$e_3$} -- cycle;
-
-              \draw (v1) -- (v4) node[draw=none, midway, below left] {\color{red} $e_4$};
-
-              \draw[fill=gray!30!white] (v3) -- (v4)
-              % edge between v3 and and v4
-              node[draw=none, midway, left] {\color{red} $e_5$} -- (v5)
-              % edge
-              node[draw=none, midway, below right] {\color{red}$e_7$} -- (v3)
-              %
-              node[draw=none, midway, above] {\color{red} $e_6$} -- cycle;
-
-
-              \draw (v2) -- (v5) node[draw=none, midway, above right] {\color{red} $e_8$};
-              \draw (v5) -- (v6) node[draw=none, midway, above] {\color{red} $e_9$};
-
-              \node (wv1) at (v1) {};
-              \node (wv2) at (v2) {};
-              \node (vv2) at (v2) {};
-              \node (vv3) at (v3) {};
-              \node (vv4) at (v4) {};
-              \node (vv5) at (v5) {};
-              \node (vv6) at (v6) {};
-
-              \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-              \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-              \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-              \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-              \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-              \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-            \end{tikzpicture}
-            \caption{Simplicial complex $K$ with simple edges}
-          \end{figure}
-          Since $\msf B_0(K)$ is a subgroup of $\msf C_0(K)$, by closure under
-          $+$, we see that any $v_i+v_j$ in $K$ such that there exists a path
-          from $v_i$ to $v_j$ (when $K$ is considered a graph) is an element of
-          $\msf B_0(K)$. In fact, we can say more:
-
-          \textbf{Claim:} Since $K$ is connected as a graph, any even collection
-          of vertices is in $\msf B_n(K)$.
-
-          \textbf{Proof of Claim:} Suppose we have $\sigma = \set{v_{i_1}} +
-          \set{v_{i_2}} + \cdots + \set{v_{i_{2k}}}$, where $k \in \NN$. Then
-          for each $j = 1, \ldots, k$, let $\tau_j$ be a sum of edges representing
-          a path from $v_{i_j}$ to $v_{i_{j+1}}$. For example, if $v_{i_j} =
-          v_6$ and $v_{i_{j+1}} = v_2$, we could take the following approaches:
-          \begin{figure}[H]
-            \centering
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=blue, very thick] (v6) -- (v5) -- (v2);
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=red, very thick] (v6) -- (v5) -- (v3) -- (v2);
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=orange, very thick] (v6) -- (v5) -- (v4) -- (v3)-- (v2);
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=green, very thick] (v6) -- (v5) -- (v4) -- (v1) -- (v3) -- (v2);
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-          \end{figure}\clearpage
-          \begin{figure}[H]\ContinuedFloat
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=violet, very thick] (v6) -- (v5) -- (v4) -- (v1)-- (v2);
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=yellow, very thick] (v6) -- (v5) -- (v4) -- (v3) -- (v1) -- (v2);
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-            \caption{Some paths from $v_6$ to $v_2$}
-          \end{figure}
-          among others. Taking the sum of the constituent edges in each path
-          yields a sum of $1$-simplices with boundary $v_6,
-          v_2$.\footnote{Justification: note that the coefficient on any given
-            vertex when we apply $\partial$ is the degree of the vertex in our
-            path. Hence, only the initial and terminal vertex don't get mapped
-            to $0$.}
-        \item Since $\msf B_n(K)$ is the group of all collections of even
-          vertices in $\msf C_n(K)$, we have $\msf H_n(K) = \msf C_n(K)/\msf
-          B_n(K) \cong \zmod{2}$.
-      \end{enumerate}
-      \item Now, we calculate the $k=1$ case.
-        \begin{enumerate}
-          \item Elements of $\msf C_1(K)$ are collections of linear combinations
-            of the edges
-            \[
-              \msf C_1(K) = \ip{e_1, e_2, e_3, e_4, e_5, e_6, e_7, e_8, e_9}
-            \]
-          \item Elements of $\msf Z_1(K)$ are collections of edges such that
-            each vertex contained in an edge in the collection has even degree.
-            This corresponds to cyclic subgraphs of $K$ (as well as the empty
-            cycle), e.g.:
-          \begin{figure}[H]
-            \centering
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=blue, very thick] (v1) -- (v2) -- (v3) -- cycle;
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=red, very thick] (v1) -- (v2) -- (v5) -- (v3) -- (v1);
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-          \end{figure}
-          \clearpage
-          \begin{figure}[H]\ContinuedFloat
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=orange, very thick] (v1) -- (v2) -- (v5) -- (v4)-- (v3) -- cycle;
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=green, very thick] (v1) -- (v2) -- (v3) -- (v5) -- (v4) -- cycle;
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=violet, very thick] (v1) -- (v2) -- (v5) -- (v4) -- cycle;
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-            \begin{subfigure}{.49\linewidth}
-            \centering
-              \begin{tikzpicture}[
-                scale = .6,
-                every node/.style={
-                  circle,
-                  draw=black,
-                  fill=white,
-                  inner sep=0pt,
-                  minimum size=7pt
-                }
-                ]
-
-                \coordinate (v1) at (-3,0);
-                \coordinate (v2) at (0,3);
-                \coordinate (v3) at (0,0);
-                \coordinate (v4) at (0,-3);
-                \coordinate (v5) at (3,0);
-                \coordinate (v6) at (6,0);
-
-                \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-                \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-                \draw (v1) -- (v4);
-                \draw (v2) -- (v5);
-                \draw (v5) -- (v6);
-
-                \draw[draw=yellow, very thick] (v1) -- (v2) -- (v3) -- cycle;
-                \draw[draw=yellow, very thick] (v3) -- (v4) -- (v5) -- cycle;
-
-                \node (wv1) at (v1) {};
-                \node (wv2) at (v2) {};
-                \node (vv2) at (v2) {};
-                \node (vv3) at (v3) {};
-                \node (vv4) at (v4) {};
-                \node (vv5) at (v5) {};
-                \node (vv6) at (v6) {};
-
-                \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
-                \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
-                \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
-                \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
-                \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
-                \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
-              \end{tikzpicture}
-            \end{subfigure}
-            \caption{Some cycles in $K$}
-          \end{figure}
-        \item First, consider the following diagram:
-          \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[
-              scale = .6,
-              every node/.style={
-                circle,
-                draw=black,
-                fill=white,
-                inner sep=0pt,
-                minimum size=7pt
-              }
-              ]
-
-              \coordinate (v1) at (-3,0);
-              \coordinate (v2) at (0,3);
-              \coordinate (v3) at (0,0);
-              \coordinate (v4) at (0,-3);
-              \coordinate (v5) at (3,0);
-              \coordinate (v6) at (6,0);
-
-              \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
-
-              \draw (v1) -- (v4);
-
-              \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
-
-
-              \draw (v2) -- (v5) ;
-              \draw (v5) -- (v6) ;
-
-              \node (wv1) at (v1) {};
-              \node (wv2) at (v2) {};
-              \node (vv2) at (v2) {};
-              \node (vv3) at (v3) {};
-              \node (vv4) at (v4) {};
-              \node (vv5) at (v5) {};
-              \node (vv6) at (v6) {};
-
-              \node[draw=none,fill=none] (a1) at (-.9,.9) {$A_1$};
-              \node[draw=none,fill=none] (a1) at (.9,-.9) {$A_2$};
-            \end{tikzpicture}
-            \caption{Two $n=2$ simplices}
-          \end{figure}
-          $\mb 0_1$ bounds $\mb 0_2$. Since $\partial(A_1) \cap \partial(A_2) =
-          \varnothing$, then the other two cycles in $\msf B_1(K)$ are just
-          $\partial(A_1)$ and $\partial(A_2)$, respectively.
-        \item $\msf H_1(K) \cong \zmod{2} \times \zmod{2}$ (equivalence classes
-          have representative elements $\mb 0, \partial(A_1), \partial(A_2),
-          \partial(A_1) + \partial(A_2)$)
-      \end{enumerate}
-    \item For $k=2$, we have
-      \begin{enumerate}
-        \item $\msf C_2(K) \cong \zmod{2} \times \zmod{2}$
-        \item $\msf Z_2(K) \cong \mb 0$
-        \item $\msf B_2(K) \cong \mb 0$
-        \item And hence $\msf H_2(K) \cong \mb 0$.
-      \end{enumerate}
+  \item We calculate the $k=0$ case.
+    \begin{enumerate}
+    \item Elements of $\msf C_0(K)$ are formal linear combinations over the
+      set $\set{v_1, v_2, \ldots, v_6}$. Then
+      \[
+        \msf C_0(K) = \ip[Big]{v_1, v_2, v_3, v_4, v_5, v_6}
+      \]
+      that is, collections of points in $\msf C_0(K)$.
+    \item Let $\sigma_1, \ldots, \sigma_k \in \msf C_0(K).$ Then by definition,
+      \begin{align*}
+        \partial\pn{\sum_{i=1}^k \sigma_i}
+        &= \sum_{i=1}^k \partial(\sigma_i)\\
+        &= \sum_{i=1}^k 0 \\
+        &= 0
+      \end{align*}
+      hence $\msf Z_n(K) = \msf C_n(K)$.
+    \item A $\sigma \in \msf C_0(K)$ is an $n$-boundary if $\exists \tau \in
+      \msf C_{1}(K)$ with $\partial(\tau) = \sigma$. Note, for any
+      $1$-dimensional face $\set{v_iv_j} \in K$,
+      \begin{align*}
+        \partial(\set{v_iv_j})
+        &= \set{v_i \widehat{v_j}} + \set{\widehat{v_i}v_j} \\
+        &= \set{v_i} + \set{v_j} \\
+        &= \delta_{ij}.
+      \end{align*}
+      Hence, any edge formed of a pair of two distinct vertices yields a
+      nonempty boundary. We first count all edges:
+      \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[
+          scale = .6,
+          every node/.style={
+            circle,
+            draw=black,
+            fill=white,
+            inner sep=0pt,
+            minimum size=7pt
+          }
+          ]
+
+          \coordinate (v1) at (-3,0);
+          \coordinate (v2) at (0,3);
+          \coordinate (v3) at (0,0);
+          \coordinate (v4) at (0,-3);
+          \coordinate (v5) at (3,0);
+          \coordinate (v6) at (6,0);
+
+          \draw[fill=gray!30!white] (v1) -- (v2)
+          % draw and label the edge between v1 and v2
+          node[draw=none, midway, above left, xshift=-.3em, yshift=-.2em]
+          {\color{red} $e_1$} -- (v3)
+          % draw the edge between v2 and v3, and label it as well
+          node[draw=none, midway, right, xshift=.2em] {\color{red} $e_2$}
+          -- (v1)
+          % draw the edge between v3 and v1, and label it as well
+          node[draw=none, midway, below] {\color{red}$e_3$} -- cycle;
+
+          \draw (v1) -- (v4) node[draw=none, midway, below left] {\color{red} $e_4$};
+
+          \draw[fill=gray!30!white] (v3) -- (v4)
+          % edge between v3 and and v4
+          node[draw=none, midway, left] {\color{red} $e_5$} -- (v5)
+          % edge
+          node[draw=none, midway, below right] {\color{red}$e_7$} -- (v3)
+          %
+          node[draw=none, midway, above] {\color{red} $e_6$} -- cycle;
+
+
+          \draw (v2) -- (v5) node[draw=none, midway, above right] {\color{red} $e_8$};
+          \draw (v5) -- (v6) node[draw=none, midway, above] {\color{red} $e_9$};
+
+          \node (wv1) at (v1) {};
+          \node (wv2) at (v2) {};
+          \node (vv2) at (v2) {};
+          \node (vv3) at (v3) {};
+          \node (vv4) at (v4) {};
+          \node (vv5) at (v5) {};
+          \node (vv6) at (v6) {};
+
+          \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+          \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+          \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+          \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+          \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+          \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+        \end{tikzpicture}
+        \caption{Simplicial complex $K$ with simple edges}
+      \end{figure}
+      Since $\msf B_0(K)$ is a subgroup of $\msf C_0(K)$, by closure under
+      $+$, we see that any $v_i+v_j$ in $K$ such that there exists a path
+      from $v_i$ to $v_j$ (when $K$ is considered a graph) is an element of
+      $\msf B_0(K)$. In fact, we can say more:
+
+      \textbf{Claim:} Since $K$ is connected as a graph, any even collection
+      of vertices is in $\msf B_n(K)$.
+
+      \textbf{Proof of Claim:} Suppose we have $\sigma = \set{v_{i_1}} +
+      \set{v_{i_2}} + \cdots + \set{v_{i_{2k}}}$, where $k \in \NN$. Then
+      for each $j = 1, \ldots, k$, let $\tau_j$ be a sum of edges representing
+      a path from $v_{i_j}$ to $v_{i_{j+1}}$. For example, if $v_{i_j} =
+      v_6$ and $v_{i_{j+1}} = v_2$, we could take the following approaches:
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=blue, very thick] (v6) -- (v5) -- (v2);
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=red, very thick] (v6) -- (v5) -- (v3) -- (v2);
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=orange, very thick] (v6) -- (v5) -- (v4) -- (v3)-- (v2);
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=green, very thick] (v6) -- (v5) -- (v4) -- (v1) -- (v3) -- (v2);
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+      \end{figure}\clearpage
+      \begin{figure}[H]\ContinuedFloat
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=violet, very thick] (v6) -- (v5) -- (v4) -- (v1)-- (v2);
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=yellow, very thick] (v6) -- (v5) -- (v4) -- (v3) -- (v1) -- (v2);
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \caption{Some paths from $v_6$ to $v_2$}
+      \end{figure}
+      among others. Taking the sum of the constituent edges in each path
+      yields a sum of $1$-simplices with boundary $v_6,
+      v_2$.\footnote{Justification: note that the coefficient on any given
+        vertex when we apply $\partial$ is the degree of the vertex in our
+        path. Hence, only the initial and terminal vertex don't get mapped
+        to $0$.}
+    \item Since $\msf B_n(K)$ is the group of all collections of even
+      vertices in $\msf C_n(K)$, we have $\msf H_n(K) = \msf C_n(K)/\msf
+      B_n(K) \cong \zmod{2}$.
+    \end{enumerate}
+  \item Now, we calculate the $k=1$ case.
+    \begin{enumerate}
+    \item Elements of $\msf C_1(K)$ are collections of linear combinations
+      of the edges
+      \[
+        \msf C_1(K) = \ip{e_1, e_2, e_3, e_4, e_5, e_6, e_7, e_8, e_9}
+      \]
+    \item Elements of $\msf Z_1(K)$ are collections of edges such that
+      each vertex contained in an edge in the collection has even degree.
+      This corresponds to cyclic subgraphs of $K$ (as well as the empty
+      cycle), e.g.:
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=blue, very thick] (v1) -- (v2) -- (v3) -- cycle;
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=red, very thick] (v1) -- (v2) -- (v5) -- (v3) -- (v1);
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+      \end{figure}
+      \clearpage
+      \begin{figure}[H]\ContinuedFloat
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=orange, very thick] (v1) -- (v2) -- (v5) -- (v4)-- (v3) -- cycle;
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=green, very thick] (v1) -- (v2) -- (v3) -- (v5) -- (v4) -- cycle;
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=violet, very thick] (v1) -- (v2) -- (v5) -- (v4) -- cycle;
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{.49\linewidth}
+          \centering
+          \begin{tikzpicture}[
+            scale = .6,
+            every node/.style={
+              circle,
+              draw=black,
+              fill=white,
+              inner sep=0pt,
+              minimum size=7pt
+            }
+            ]
+
+            \coordinate (v1) at (-3,0);
+            \coordinate (v2) at (0,3);
+            \coordinate (v3) at (0,0);
+            \coordinate (v4) at (0,-3);
+            \coordinate (v5) at (3,0);
+            \coordinate (v6) at (6,0);
+
+            \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+            \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+            \draw (v1) -- (v4);
+            \draw (v2) -- (v5);
+            \draw (v5) -- (v6);
+
+            \draw[draw=yellow, very thick] (v1) -- (v2) -- (v3) -- cycle;
+            \draw[draw=yellow, very thick] (v3) -- (v4) -- (v5) -- cycle;
+
+            \node (wv1) at (v1) {};
+            \node (wv2) at (v2) {};
+            \node (vv2) at (v2) {};
+            \node (vv3) at (v3) {};
+            \node (vv4) at (v4) {};
+            \node (vv5) at (v5) {};
+            \node (vv6) at (v6) {};
+
+            \node[draw=none, xshift=-1em] (wv1) at (v1) {$v_1$};
+            \node[draw=none, yshift=1em] (wv2) at (v2) {$v_2$};
+            \node[draw=none, xshift=.8em, yshift=.8em] (wv3) at (v3) {$v_3$};
+            \node[draw=none, yshift=-1em] (wv4) at (v4) {$v_4$};
+            \node[draw=none, xshift=.7em, yshift=.8em] (wv5) at (v5) {$v_5$};
+            \node[draw=none, yshift=1em] (wv6) at (v6) {$v_6$};
+          \end{tikzpicture}
+        \end{subfigure}
+        \caption{Some cycles in $K$}
+      \end{figure}
+    \item First, consider the following diagram:
+      \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[
+          scale = .6,
+          every node/.style={
+            circle,
+            draw=black,
+            fill=white,
+            inner sep=0pt,
+            minimum size=7pt
+          }
+          ]
+
+          \coordinate (v1) at (-3,0);
+          \coordinate (v2) at (0,3);
+          \coordinate (v3) at (0,0);
+          \coordinate (v4) at (0,-3);
+          \coordinate (v5) at (3,0);
+          \coordinate (v6) at (6,0);
+
+          \draw[fill=gray!30!white] (v1) -- (v2) -- (v3) -- (v1) -- cycle;
+
+          \draw (v1) -- (v4);
+
+          \draw[fill=gray!30!white] (v3) -- (v4) -- (v5) -- (v3) -- cycle;
+
+
+          \draw (v2) -- (v5) ;
+          \draw (v5) -- (v6) ;
+
+          \node (wv1) at (v1) {};
+          \node (wv2) at (v2) {};
+          \node (vv2) at (v2) {};
+          \node (vv3) at (v3) {};
+          \node (vv4) at (v4) {};
+          \node (vv5) at (v5) {};
+          \node (vv6) at (v6) {};
+
+          \node[draw=none,fill=none] (a1) at (-.9,.9) {$A_1$};
+          \node[draw=none,fill=none] (a1) at (.9,-.9) {$A_2$};
+        \end{tikzpicture}
+        \caption{Two $n=2$ simplices}
+      \end{figure}
+      $\mb 0_1$ bounds $\mb 0_2$. Since $\partial(A_1) \cap \partial(A_2) =
+      \varnothing$, then the other two cycles in $\msf B_1(K)$ are just
+      $\partial(A_1)$ and $\partial(A_2)$, respectively.
+    \item $\msf H_1(K) \cong \zmod{2} \times \zmod{2}$ (equivalence classes
+      have representative elements $\mb 0, \partial(A_1), \partial(A_2),
+      \partial(A_1) + \partial(A_2)$)
+    \end{enumerate}
+  \item For $k=2$, we have
+    \begin{enumerate}
+    \item $\msf C_2(K) \cong \zmod{2} \times \zmod{2}$
+    \item $\msf Z_2(K) \cong \mb 0$
+    \item $\msf B_2(K) \cong \mb 0$
+    \item And hence $\msf H_2(K) \cong \mb 0$.
+    \end{enumerate}
   \end{enumerate}
 \end{solution}
 \begin{problem}[16.7]
@@ -1034,21 +1034,21 @@ more satisfying way than higher homotopy groups do.
 \end{problem}
 \begin{solution}
   \begin{enumerate}
-    \item Suppose $K$ is simplicially connected. We want to show $\msf H_0(K)
-      \cong \zmod{2}$. First, observe that $\msf Z_0(K) \cong \msf C_0(K)$
-      (every 0 simplex has trivial boundary). By properties of module
-      homomorphisms, for all $\sigma \in \msf B_0(K)$, $\sigma$ is a basis
-      element of $\msf B_0(K)$ iff $\exists \tau \in \msf C_1(K)$ such that
-      $\tau$ is a basis element of $\msf C_1(K)$, and $\partial_1(\tau) =
-      \sigma$. Thus, $\msf B_0(K)$ is spanned by $\set{\set{\set{v_i} +
-          \set{v_j}} \MID \set{v_iv_j} \in K}$. It follows that $\msf B_0(K)$
-      contains exactly those elements of $\msf C_0(K)$ with an even number of
-      vertices.\footnote{Since $\msf B_0(K)$ is generated by pairs.}
+  \item Suppose $K$ is simplicially connected. We want to show $\msf H_0(K)
+    \cong \zmod{2}$. First, observe that $\msf Z_0(K) \cong \msf C_0(K)$
+    (every 0 simplex has trivial boundary). By properties of module
+    homomorphisms, for all $\sigma \in \msf B_0(K)$, $\sigma$ is a basis
+    element of $\msf B_0(K)$ iff $\exists \tau \in \msf C_1(K)$ such that
+    $\tau$ is a basis element of $\msf C_1(K)$, and $\partial_1(\tau) =
+    \sigma$. Thus, $\msf B_0(K)$ is spanned by $\set{\set{\set{v_i} +
+        \set{v_j}} \MID \set{v_iv_j} \in K}$. It follows that $\msf B_0(K)$
+    contains exactly those elements of $\msf C_0(K)$ with an even number of
+    vertices.\footnote{Since $\msf B_0(K)$ is generated by pairs.}
 
-      It follows that $\msf H_0(K) = \msf Z_0(K)/\msf B_0(K) \cong \zmod{2}$
-      (any $0$-chain has either an even or odd number of vertices).
-    \item This follows by applying the above argument to each of the connected
-      components.
+    It follows that $\msf H_0(K) = \msf Z_0(K)/\msf B_0(K) \cong \zmod{2}$
+    (any $0$-chain has either an even or odd number of vertices).
+  \item This follows by applying the above argument to each of the connected
+    components.
   \end{enumerate}
 \end{solution}
 \begin{problem}[16.9]
@@ -1269,17 +1269,108 @@ more satisfying way than higher homotopy groups do.
     \label{fig:circumscribed}
   \end{figure}
   \begin{enumerate}[label=(\arabic*)]\setcounter{enumi}{-1}
-    \item $K$ is connected, so $\msf H_0(K) \cong \mb \zmod{2}$.
-    \item Elements of $\msf B_1(K)$ are linear combinations of $\bdy[2]{A_1}$,
-      $\bdy[2]{A_2}$, $\bdy[2]{A_3}$, and $\bdy[2]{A_4}$.
-      \begin{itemize}
-        \item Given any single edge, adding $A_i$
-      \end{itemize}
-    \item $\msf Z_2(K) = \set{\mb 0, A_1 + A_2 + A_3 + A_4} = B_2(K) \cong
-      \zmod{2}$, so $\msf H_2(K) \cong \mb 0$.
-    \item $\msf H_3(K) \cong \mb 0$.
+  \item $K$ is connected, so $\msf H_0(K) \cong \mb \zmod{2}$.
+  \item Elements of $\msf B_1(K)$ are linear combinations of $\bdy[2]{A_1}$,
+    $\bdy[2]{A_2}$, $\bdy[2]{A_3}$, and $\bdy[2]{A_4}$.
+    \begin{itemize}
+    \item Given any single edge, adding $A_i$
+    \end{itemize}
+  \item $\msf Z_2(K) = \set{\mb 0, A_1 + A_2 + A_3 + A_4} = B_2(K) \cong
+    \zmod{2}$, so $\msf H_2(K) \cong \mb 0$.
+  \item $\msf H_3(K) \cong \mb 0$.
   \end{enumerate}
 \end{solution}
+\begin{problem}[16.10]
+  Let $K$ be a triangulation of a 2-sphere that consists of the proper faces of
+  a 3-simplex. Compute $\msf H_n(K)$ for each $n$.
+\end{problem}
+\begin{solution}
+  Proceed as before for $k=0,1$. For $k=2$, note $\msf B_2(K) \cong \mb 0$.
+  Hence, $\msf H_2(K) \cong \zmod{2}$.
+\end{solution}
+\begin{definition}
+  Let $K$ be a simplicial complex with $\abs{K} \subset \RR^n$. A point $x
+  \not\in K$ can \emph{see} $K$ if any ray from $x$ intersects $\abs{K}$ at most
+  once (as seen in the following diagram).
+\end{definition}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{.49\linewidth}
+    \centering
+    \tdplotsetmaincoords{70}{80}
+    \begin{tikzpicture}[tdplot_main_coords, scale=2]
+      \path
+      coordinate (A) at (0,0,0)
+      coordinate (B) at (2,0,0)
+      coordinate (C) at (1,1.732,0)
+      coordinate (x) at (1,.577,1.733);
+
+      \fill[red!30!white,draw=black] (A)--(B)--(C)--cycle;
+
+      \path
+      coordinate (P1) at ($.2*(A) + .5*(B) + .4*(C)$)
+      coordinate (P2) at ($.3*(A) + .5*(B) + .2*(C)$)
+      coordinate (P3) at ($.2*(A) + .2*(B) + .6*(C)$)
+      coordinate (P4) at ($.7*(A) + .2*(B) + .1*(C)$);
+
+      \foreach \v in {P1,P2,P3,P4}{
+        % Take the difference and go slightly past it
+        \draw[-latex,dashed] (x) -- ($1.3*(\v) - .3*(x)$);
+        \draw[fill=black] (\v) circle (0.5pt);
+      }
+
+      \foreach \v in {A,B,C}{
+        % Take the difference and go slightly past it
+        \draw[-latex,dashed] (x) -- ($1.2*(\v) - .2*(x)$);
+        \draw[fill=black] (\v) circle (0.5pt);
+      }
+
+      \foreach \v/\position in {A/left,B/left,C/right,x/above} {
+        \draw[fill=black] (\v) circle (0.5pt) node [\position=0.2mm] {$\v$};
+      }
+    \end{tikzpicture}
+    \caption{$x$ sees a $2$-simplex}
+  \end{subfigure}
+  \begin{subfigure}{.49\linewidth}
+    \centering
+    \tdplotsetmaincoords{70}{80}
+    \begin{tikzpicture}[tdplot_main_coords, scale=2]
+      \path
+      coordinate (B) at (2,0,0)
+      coordinate (C) at (1,1.732,0)
+      coordinate (x) at (.6,.577,1.533)
+      coordinate (y) at (1.8,1.077,1.733);
+
+      \draw (B)--(C);
+
+      \path
+      coordinate (P1) at ($.5*(B) + .5*(C)$)
+      coordinate (P2) at ($.23*(B) + .77*(C)$)
+      coordinate (P3) at ($.7*(B) + .3*(C)$)
+      coordinate (P4) at ($.4*(B) + .6*(C)$);
+
+      \foreach \v in {P1,P2,P3,P4}{
+        % Take the difference and go slightly past it
+        \draw[-latex,dashed,color=red!30!white] (x) -- ($1.3*(\v) - .3*(x)$);
+        \draw[-latex,dashed,color=blue!30!white] (y) -- ($1.3*(\v) - .3*(y)$);
+        \draw[fill=black] (\v) circle (0.5pt);
+      }
+
+      \foreach \v in {B,C}{
+        % Take the difference and go slightly past it
+        \draw[-latex,dashed,color=red!30!white] (x) -- ($1.2*(\v) - .2*(x)$);
+        \draw[-latex,dashed,color=blue!30!white] (y) -- ($1.2*(\v) - .2*(y)$);
+        \draw[fill=black] (\v) circle (0.5pt);
+      }
+
+      \foreach \v/\position in {B/left,C/right,x/above,y/above right} {
+        \draw[fill=black] (\v) circle (0.5pt) node [\position=0.2mm] {$\v$};
+      }
+    \end{tikzpicture}
+    \caption{$x$ and $y$ both see a $1$-Simplex}
+  \end{subfigure}
+\end{figure}
+
 %%% Local Variables:
 %%% TeX-master: "main"
 %%% End:

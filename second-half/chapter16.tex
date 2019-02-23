@@ -1017,6 +1017,9 @@ more satisfying way than higher homotopy groups do.
   point is definitionally a 0-cycle). Since $K$ contains no 1-simplices, $\msf
   B_0(K) = \mb 0$, hence $\msf H_0(K) \cong \zmod{2}$.
 \end{solution}
+\begin{definition}[Acyclic]
+  Any space with the homology groups of a point is called \emph{acyclic}.
+\end{definition}
 \begin{definition}[Simplicially connected]
   Let $K$ be a simplicial complex. Then we call $K$ \emph{simplicially
     connected} iff for all pairs of 0-simplices $v_0, v_n \in K$, there exists a
@@ -1378,6 +1381,11 @@ more satisfying way than higher homotopy groups do.
   Note, that when there are multiple $k$-simplices in $K$, the picture might not
   be quite as simple.
 \end{remark}
+\begin{remark}
+  As far as I can tell, a point $x$ sees $K$ iff $x$ is in orthogonal complement
+  of the $k$-hyperplane containing $K$. Not sure if this is actually correct
+  though?
+\end{remark}
 \begin{definition}
   Let $K$ be a finite complex and $x$ a point that sees $K$. If $\sigma =
   \simp{k}$ is a simplex of $K$, define the \emph{cone} of $x$ over $\sigma$ to
@@ -1403,8 +1411,8 @@ more satisfying way than higher homotopy groups do.
       \fill [opacity=.5, red!30!white] (x) -- (B) -- (C) -- cycle;
       \fill [opacity=.5, blue!30!white] (y) -- (B) -- (C) -- cycle;
 
-      \draw[dashed] (x) -- (B) (x) -- (C);
-      \draw[dashed] (y) -- (B) (y) -- (C);
+      \draw[dotted] (x) -- (B) (x) -- (C);
+      \draw[dotted] (y) -- (B) (y) -- (C);
 
       \foreach \v/\position in {B/left,C/right,x/above,y/above right} {
         \draw[fill=black] (\v) circle (0.5pt) node [\position=0.2mm] {$\v$};
@@ -1428,11 +1436,11 @@ more satisfying way than higher homotopy groups do.
       % Draw this first so it gets covered by the fill slightly
       \draw (A) -- (C);
 
-      \fill [opacity=.5, red!30!white] (A) -- (B) -- (C) -- cycle;
-      \fill [opacity=.5, blue!30!white] (D) -- (B) -- (A) -- cycle;
-      \fill [opacity=.5, green!30!white] (D) -- (A) -- (C) -- cycle;
-      \fill [opacity=.5, orange!30!white] (D) -- (B) -- (C) -- cycle;
-      \draw[dashed] (A) -- (D) (B) -- (D) (C) -- (D);
+      \fill [opacity=.8, red!50!white] (A) -- (B) -- (C) -- cycle;
+      \fill [opacity=.4, blue!30!white] (D) -- (B) -- (A) -- cycle;
+      \fill [opacity=.4, blue!30!white] (D) -- (A) -- (C) -- cycle;
+      \fill [opacity=.4, blue!30!white] (D) -- (B) -- (C) -- cycle;
+      \draw[dotted] (A) -- (D) (B) -- (D) (C) -- (D);
 
       % Draw this first so it gets covered by the fill slightly
       \draw (A) -- (B) -- (C);
@@ -1457,6 +1465,38 @@ more satisfying way than higher homotopy groups do.
   \cref{fig:cone-sigma-1} and the base point and edges \emph{and} faces in
   \cref{fig:cone-sigma-2}.
 \end{remark}
+\begin{figure}[H]
+  \centering
+  \tdplotsetmaincoords{70}{80}
+  \begin{tikzpicture}[tdplot_main_coords, scale=2]
+    \path
+    coordinate (A) at (0,0,0)
+    coordinate (B) at (2,0,0)
+    coordinate (C) at (1,1.732,0)
+    coordinate (D) at (1,.577,1.733);
+
+    \fill[red!30!white,draw=black] (A)--(B)--(C)--cycle;
+
+    % Draw this first so it gets covered by the fill slightly
+    \draw (A) -- (C);
+
+    \fill [opacity=.5, red!30!white] (A) -- (B) -- (C) -- cycle;
+    \fill [opacity=.5, blue!30!white] (D) -- (B) -- (A) -- cycle;
+    \fill [opacity=.5, green!30!white] (D) -- (A) -- (C) -- cycle;
+    \fill [opacity=.5, orange!30!white] (D) -- (B) -- (C) -- cycle;
+    \draw[dashed] (A) -- (D) (B) -- (D) (C) -- (D);
+
+    % Draw this first so it gets covered by the fill slightly
+    \draw (A) -- (B) -- (C);
+
+    \foreach \v/\position in {A/left,B/left,C/right,D/above} {
+      \draw[fill=black] (\v) circle (0.5pt) node [\position=0.2mm] {$\v$};
+    }
+  \end{tikzpicture}
+  \caption{$x * \sigma_2$. Note, each of the faces is colored to indicate
+    inclusion in the complex.}
+  \label{fig:cone-over-sigma-2}
+\end{figure}
 \begin{definition}
   Define the \emph{simplicial cone operator} $\Cone_x : \msf C_n(K) \to \msf
   C_{n+1}(x*K)$ by extending the definition of $\Cone_x(\sigma)$ linearly to
@@ -1465,11 +1505,72 @@ more satisfying way than higher homotopy groups do.
 \begin{problem}[16.11]
   For $x$ seeing $K$, and $\sigma$ a simplex of $K$,
   \[
-    \partial\ \Cone_x(\sigma) + \Cone_x(\partial \sigma) = \sigma.
+    \partial\, \Cone_x(\sigma) + \Cone_x(\partial \sigma) = \sigma.
   \]
 \end{problem}
 \begin{solution}
+  Let $\sigma = \simp{k}$. Then
+  \begin{align*}
+    \partial\, \Cone_x(\sigma) + \Cone_x(\partial \sigma)
+    &= \pn{\set{\widehat{x}v_0\cdots v_k} + \sum_{i\in [k]} \simpdel{i}{k}} + \Cone_x \pn{\sum_{i\in [k]} \simpdel{i}{k}} \\
+    &= \sigma + \sum_{i\in [k]} \simpdel{i}{k} + \simpdel{i}{k} \\
+    &= \sigma + \sum_{i \in [k]} \mb 0 \\
+    &= \sigma
+  \end{align*}
+  as desired.
+\end{solution}
+\begin{problem}[16.12]
+  For any complex $K$ and $x$ seeing $K$, the complex $x*K$ is acyclic.
+\end{problem}
+\begin{solution}
 
+\end{solution}
+\begin{problem}[16.13]
+
+\end{problem}
+\begin{solution}
+
+\end{solution}
+\section{Induced Homomorphisms and Invariance}
+Fix two simplicial complexes $K$ and $L$.
+\begin{problem}[16.14]
+  Let $f : K \to L$ be a simplicial map. Carefully write out the definition of
+  the natural induced map from $n$-chains of $K$ to $n$-chains of $L$:
+  \[
+    f_{\# n} : \msf C_n(K) \to \msf C_n(L)
+  \]
+  and show that it is a homomorphism.
+\end{problem}
+\begin{solution}
+  We simply apply linear extension. For all $\sigma = \sum_{i \in I}
+  \simp[v^{(i)}]{n} \in \msf C_n(K)$, define
+  \begin{align*}
+    f_{\# n}(\sigma)
+    &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n} } \\
+    &= \sum_{i \in I} f_{\# n}\pn{\simp[v^{(i)}]{n}} \\
+    &= \sum_{i \in I} \set{f\pn{v_0^{(i)}}\cdots f\pn{v_n^{(i)}}}
+  \end{align*}
+  we want to show this is a homomorphism. Let $\sigma_1, \sigma_2 \in \msf
+  C_n(K)$ be arbitrary. Then
+  \begin{align*}
+    f_{\# n}\pn{\sigma_1 + \sigma_2}
+    &= f_{\# n} \pn{\sum_{k\in I \cup J} \simp[v^{(k)}]{n}} \\
+    &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n} + \sum_{j \in J} \simp[v^{(j)}]{n}} \\
+    &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n}} + f_{\# n}\pn{\sum_{j \in J} \simp[v^{(j)}]{n}} \\
+    &= f_{\# n}(\sigma_1) + f_{\# n}(\sigma_2)
+  \end{align*}
+  as desired. Is that\ldots all? I feel like I must be missing something here.
+\end{solution}
+The map $f_{\# n}$ is called the \emph{induced chain map.} The next exercise
+contains an important technicality about the induced chain map in the case where
+the image of an $n$-simplex is an $(n-1)$-simplex.
+\begin{problem}[16.15]
+  If the simplicial map $f : \abs{K} \to \abs{L}$ maps an $n$-simplex $\sigma$
+  to an $(n-1)$-simplex $\tau$, what is $f_{\# n}(\sigma)$?
+\end{problem}
+\begin{solution}
+  How is this possible when $\cod{f_{\# n}} = \msf C_n(L)$, and $\tau \in \msf
+  C_{n-1}(L)$? Do we simply take $\tau = \mb 0$?
 \end{solution}
 %%% Local Variables:
 %%% TeX-master: "main"

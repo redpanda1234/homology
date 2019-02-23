@@ -1429,7 +1429,7 @@ more satisfying way than higher homotopy groups do.
       coordinate (A) at (0,0,0)
       coordinate (B) at (2,0,0)
       coordinate (C) at (1,1.732,0)
-      coordinate (D) at (1,.577,1.733);
+      coordinate (x) at (1,.577,1.733);
 
       \fill[red!30!white,draw=black] (A)--(B)--(C)--cycle;
 
@@ -1437,15 +1437,15 @@ more satisfying way than higher homotopy groups do.
       \draw (A) -- (C);
 
       \fill [opacity=.8, red!50!white] (A) -- (B) -- (C) -- cycle;
-      \fill [opacity=.4, blue!30!white] (D) -- (B) -- (A) -- cycle;
-      \fill [opacity=.4, blue!30!white] (D) -- (A) -- (C) -- cycle;
-      \fill [opacity=.4, blue!30!white] (D) -- (B) -- (C) -- cycle;
-      \draw[dotted] (A) -- (D) (B) -- (D) (C) -- (D);
+      \fill [opacity=.4, blue!30!white] (x) -- (B) -- (A) -- cycle;
+      \fill [opacity=.4, blue!30!white] (x) -- (A) -- (C) -- cycle;
+      \fill [opacity=.4, blue!30!white] (x) -- (B) -- (C) -- cycle;
+      \draw[dotted] (A) -- (x) (B) -- (x) (C) -- (x);
 
       % Draw this first so it gets covered by the fill slightly
       \draw (A) -- (B) -- (C);
 
-      \foreach \v/\position in {A/left,B/left,C/right,D/above} {
+      \foreach \v/\position in {A/left,B/left,C/right,x/above} {
         \draw[fill=black] (\v) circle (0.5pt) node [\position=0.2mm] {$\v$};
       }
     \end{tikzpicture}

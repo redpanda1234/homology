@@ -7,5 +7,6 @@
 *.synctex.gz
 *.fdb_latexmk
 *.auxlock
+*.dvi
 main-figure*
 auto/

@@ -12,7 +12,7 @@ more satisfying way than higher homotopy groups do.
   \end{remark}
 \end{adjustwidth}
 \section{Chains, Cycles, Boundaries, and the Homology Groups}
-\begin{definition}
+\begin{definition}[$n$-chain]
   An \emph{$n$-chain} of $K$ is a finite formal sum
   \[
     \sum_{i=1}^k \sigma_i
@@ -21,7 +21,7 @@ more satisfying way than higher homotopy groups do.
   must be the same. So \emph{chain} will mean $n$-chain whenever the dimension
   is either unimportant or understood.
 \end{definition}
-\begin{definition}
+\begin{definition}[$n$-chain group]
   The \emph{$n$-chain group of $K$} (with coefficients in $\zmod{2}$), denoted
   $\mathsf{C}_n(K)$, is the collection of $n$-chains in $K$ under formal
   addition modulo 2. If there are no $n$-simplices in $K$, the $n$-chain group
@@ -41,7 +41,7 @@ more satisfying way than higher homotopy groups do.
   Finally, to see that $\msf C_n(K)$ is abelian, observe that $+$ in $\msf
   C_n(K)$ inherits commutativity from $\cup$.
 \end{solution}
-\begin{definition}
+\begin{definition}[$\zmod{2}$ boundary of a simplex]
   The \emph{$\zmod{2}$-boundary of an $n$-simplex $\sigma = \simp{n}$} is
   defined by
   \[
@@ -52,7 +52,7 @@ more satisfying way than higher homotopy groups do.
   For a 0-simplex, the $\zmod{2}$ boundary is defined to be $0 \in \msf
   C_{-1}(K)$.
 \end{definition}
-\begin{definition}
+\begin{definition}[$\zmod{2}$ boundary of an $n$-chain]
   The \emph{$\zmod{2}$ boundary of an $n$-chain} is the sum of the boundaries of
   the simplices. That is, $\partial_n : \msf C_n(K) \to \msf C_{n-1}(K)$ is
   given by
@@ -82,7 +82,7 @@ more satisfying way than higher homotopy groups do.
   \end{enumerate}
   We have $\partial(\sigma_1 + \sigma_2) = e_1 + e_2 + e_4 + e_5$.
 \end{solution}
-\begin{definition}
+\begin{definition}[$n$-cycle and $n$-boundary]
   An \emph{$n$-cycle} is an $n$-chain of $K$ whose boundary is zero. The set of
   all $n$-cycles on $K$ is denoted $\msf Z_n(K)$. An \emph{$n$-boundary} is an
   $n$-chain that is the boundary of an $(n+1)$-chain of $K$. The set of all
@@ -144,7 +144,7 @@ more satisfying way than higher homotopy groups do.
   B_n(K)] = (\partial_n \circ \partial_{n+1}) (\msf C_{n+1}(K)) = 0$. Thus $\msf
   B_n(K) < \msf Z_n(K)$.
 \end{solution}
-\begin{definition}
+\begin{definition}[Homologous cycles]
   Two $n$-cycles $\alpha$ and $\beta$ in $K$ are \emph{equivalent} or
   \emph{homologous} iff $\alpha-\beta = \partial(\gamma)$ for some $(n+1)$-chain
   $\gamma$. In other words, $\alpha$ and $\beta$ are homologous iff they differ
@@ -157,7 +157,7 @@ more satisfying way than higher homotopy groups do.
   \alpha + \beta$. So we see that two $n$-cycles are equivalent if together they
   bound an $(n+1)$-chain.
 \end{definition}
-\begin{definition}
+\begin{definition}[$n$\textsuperscript{th} Homology group]
   The \emph{$n$\textsuperscript{th}-homology group} (with coefficients in
   $\zmod{2}$) of a finite simplicial complex $K$, denoted $\msf H_n(K)$, is the
   additive group whose elements are equivalence classes of cycles under the
@@ -1292,7 +1292,7 @@ more satisfying way than higher homotopy groups do.
   Proceed as before for $k=0,1$. For $k=2$, note $\msf B_2(K) \cong \mb 0$.
   Hence, $\msf H_2(K) \cong \zmod{2}$.
 \end{solution}
-\begin{definition}
+\begin{definition}[Seeing a simplex]
   Let $K$ be a simplicial complex with $\abs{K} \subset \RR^n$. A point $x
   \not\in K$ can \emph{see} $K$ if any ray from $x$ intersects $\abs{K}$ at most
   once (as seen in the following diagram).
@@ -1387,7 +1387,7 @@ more satisfying way than higher homotopy groups do.
   of the $k$-hyperplane containing $K$. Not sure if this is actually correct
   though?
 \end{remark}
-\begin{definition}
+\begin{definition}[Cone of $x$ over $\sigma$]
   Let $K$ be a finite complex and $x$ a point that sees $K$. If $\sigma =
   \simp{k}$ is a simplex of $K$, define the \emph{cone} of $x$ over $\sigma$ to
   be the simplex
@@ -1456,7 +1456,7 @@ more satisfying way than higher homotopy groups do.
   \caption{Some cones}
   \label{fig:cones}
 \end{figure}
-\begin{definition}
+\begin{definition}[Cone over $K$]
   Define $x*K$, the \emph{cone over} $K$ to be the simplicial complex comprising
   all simplices $\Cone_x(\sigma)$ for $\sigma \in K$, and all faces of such
   simplices.
@@ -1498,7 +1498,7 @@ more satisfying way than higher homotopy groups do.
     inclusion in the complex.}
   \label{fig:cone-over-sigma-2}
 \end{figure}
-\begin{definition}
+\begin{definition}[Simplicial cone operator]
   Define the \emph{simplicial cone operator} $\Cone_x : \msf C_n(K) \to \msf
   C_{n+1}(x*K)$ by extending the definition of $\Cone_x(\sigma)$ linearly to
   chains.

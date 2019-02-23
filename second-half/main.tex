@@ -6,26 +6,16 @@
 % For the tetrahedron thing
 \usetikzlibrary{backgrounds}
 
-% Compile diagrams separately
-\usetikzlibrary{external}
-\tikzexternalize[prefix=figures/]
-
 % For 3d plots
 \usepackage{tikz-3dplot}
 
-\renewpagestyle{main}{
-  \sethead{Forest Kobayashi}{\scshape\chaptertitle}{Topology Through Inquiry}
-  \headrule
-  \setfoot{Last Updated \today}{}{\thepage\ of \pageref{LastPage}}
-} % odd
-
-% For better referencing
-\usepackage{cleveref}
-
+\usepackage{fkthm}
 % For music note in subtitle
+
 \usepackage{wasysym}
-\setlength{\parindent}{1.5em}
+
 \begin{document}
+
 \pagestyle{plain}
 \frontmatter
 
@@ -81,62 +71,16 @@ of some stuff I do.
   \item $[n] = \set{i \MID i = 0,1,\ldots, n}$.
 \end{itemize}
 
-\section*{Updates:}
-\subsection*{(01/29/2019)}
-Summary of previous week:
-\begin{itemize}
-  \item It appears that \emph{Topology Through Inquiry} is much more thorough
-    than Kosniowski's \emph{A First Course in Algebraic Topology} in its
-    treatment of point-set topology. I suppose this should have been inferable
-    from the title of the latter. Anyways, I think it'd be prudent to go back
-    and do a quick survey of some selected topics from the first half of the
-    book before going on to the second half. I've found that so far, even when
-    I know most of the vocabulary involved in a problem statement in the second
-    half, I'm just not quite comfortable with the process of putting all the
-    pieces together. To me, this indicates a problem that could be fixed with
-    maybe a short week of review.
-
-  \item Speaking of the first half: so far, I've found all the exercises and
-    concepts here to be very straightforward so far, partially owing to the fact
-    that I've seen lots of the material already. I did most of chapter 3 between
-    Sunday (1/27/2019) and today (1/29/2019). I found most of the problems
-    fairly straightforward and progress was generally fast. Those solutions I
-    chose to typeset are tabulated in \texttt{first-half/solutions.pdf}. If
-    difficulty is consistent throughout the book, then it would probably be
-    feasible to get all the way through a selected subset of topics prior to
-    next week, at which point I could attack the homology section with
-    confidence.
-
-  \item My current plan: do selected exercises from chapter 4 today and
-    tomorrow. Thursday, do the same for chapter 5 (this chapter looks short).
-    Friday, chapter 6 (also looks short, but might present some new material).
-    Over the weekend, do 7.2, 7.4, 7.5, then all of chapter 8 (this shouldn't
-    take \emph{too} too long seeing as continuous functions were emphasized by
-    Kosniowski, and I've done lots of the proofs of ``is property $X$ preserved
-    by continuous functions'' before), and parts of 9, 10. Start off the new
-    week with a return to chapter 12, adjusting schedule if needed.
-\end{itemize}
-Takeway from meeting:
-\begin{itemize}
-  \item Don't worry about chapter 5, 6, 7.4, 7.5.
-  \item The course will probably do 5.1 and 5.2, maybe 6.1, 6.2, course will do
-    7.1 through 7.3, 8.1 through 8.5, 9.1 and 9.2, 10 mostly skipped
-  \item Start in chapter 16! Then work way onwards
-\end{itemize}
-Hm
-\begin{itemize}
-  \item Try and go through the theorems before the exercises. The theorems are
-    more important. Try and do about 20 things per week, theorems are most
-    important
-
-\end{itemize}
 \mainmatter
+
 \pagestyle{main}
+
 \input{chapter15.tex}
 \input{chapter16.tex}
 
-% \chapter{Appendix}
-% \section{List of Definitions}
+\chapter{Appendix}
+\section{List of Definitions}
+\listofdefinitions
 
 \end{document}
 %%% Local Variables:

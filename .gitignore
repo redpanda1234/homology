@@ -8,5 +8,6 @@
 *.fdb_latexmk
 *.auxlock
 *.dvi
+*.lo*
 main-figure*
 auto/

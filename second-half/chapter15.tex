@@ -2,7 +2,7 @@
 
 \section{Manifolds}
 We define some basic Euclidean sets for use in homeomorphisms.
-\begin{definition}
+\begin{definition}[$n$-cube]
   The \emph{$n$-dimensional cube}, denoted $\DD^n$, is defined as
   \begin{align*}
     \DD^n
@@ -10,14 +10,14 @@ We define some basic Euclidean sets for use in homeomorphisms.
     &= \overbrace{[0,1] \times [0,1] \times \cdots \times [0,1]}_{n \text{ times}} \subset \RR^n.
   \end{align*}
 \end{definition}
-\begin{definition}
+\begin{definition}[$n$-ball]
   The \emph{standard $n$-ball}, denoted $B^n$, is
   \[
     B^n = \set{\pn{x_1, \ldots, x_n} \in \RR^n \MID x_1^2 + \cdots + x^2_n \leq
       1}.
   \]
 \end{definition}
-\begin{definition}
+\begin{definition}[$n$-sphere]
   The \emph{standard $n$-sphere}, denoted $\sS^n$, is
   \[
     \sS^n = \set{(x_0, \ldots, x_n) \in \RR^{n+1} \MID x^2_0 + \cdots + x^2_n =
@@ -25,7 +25,7 @@ We define some basic Euclidean sets for use in homeomorphisms.
   \]
   note that here, our indices start at $0$.
 \end{definition}
-\begin{definition}
+\begin{definition}[$n$-manifold]
   An \emph{$n$-dimensional manifold} or \emph{$n$-manifold} is a separable
   metric space $M$ such that $\forall p \in M$, $\exists U \in \ms T(M) \st p
   \in U$ and $U \cong V \subset \RR^n$.
@@ -56,7 +56,7 @@ We define some basic Euclidean sets for use in homeomorphisms.
   A \emph{convex combination} of $v_0, \ldots, v_k$ is a linear combination
   of these points whose coefficients are nonnegative and sum to 1.
 \end{definition}
-\begin{definition}
+\begin{definition}[$k$-simplex]
   A \emph{$k$-simplex} is the set of all convex combinations of $k+1$ affinely
   independent points in $\RR^n$. For affinely independent points $v_0, \ldots,
   v_k$ in $\RR^n$, $\set{v_0\cdots v_k}$ denotes the $k$-simplex
@@ -71,7 +71,7 @@ We define some basic Euclidean sets for use in homeomorphisms.
     of $x$.} The \emph{barycentric coordinate of $x$ with respect to vertex
     $v_i$} is the coefficient $\lambda_i$.
 \end{definition}
-\begin{definition}
+\begin{definition}[Face and dimension]
   Any simplex $\tau$ whose vertices are a nonempty subset of the vertices of a
   $k$-simplex $\sigma$ is called a \emph{face} of $\sigma$. If the number of
   vertices is $i+1$, then $\tau$ has \emph{dimension} $i$ and is called an
@@ -90,7 +90,7 @@ $\sigma$ is denoted by $\simpdel{i}{k}$.
   Then write $\mb v$ as an element of $\sigma$ by taking $\lambda_i = 0$ for all
   those $v_i \not \in \tau$.
 \end{solution}
-\begin{definition}
+\begin{definition}[Simplicial complex]
   A \emph{simplicial complex} $K$ (in $\RR^n$) is a collection of simplicies in
   $\RR^n$ satisfying the following conditions.
   \begin{enumerate}[label=\arabic*.]
@@ -239,7 +239,7 @@ $\sigma$ is denoted by $\simpdel{i}{k}$.
     \label{fig:completed-resolution}
   \end{figure}
 \end{solution}
-\begin{definition}
+\begin{definition}[Underlying space]
   The \emph{underlying space} $\abs{K}$ of a simplicial complex $K$ is the set
   \[
     \abs{K} = \bigcup_{\sigma \in K} \sigma,
@@ -293,7 +293,7 @@ $\sigma$ is denoted by $\simpdel{i}{k}$.
     \caption{$K$ (left) and its underlying space (right).}
   \end{figure}
 \end{solution}
-\begin{definition}
+\begin{definition}[Triangulable]
   A topological space $X$ is said to be \emph{triangulable} if it is
   homeomorphic to the underlying space of a simplicial complex $K$. In that
   case, we say $K$ is a \emph{triangulation} of $X$.
@@ -348,13 +348,13 @@ $\sigma$ is denoted by $\simpdel{i}{k}$.
 \end{proof}
 \section{Simplicial Maps and PL Homeomorphisms}
 We now define structure-preserving maps bewteen simplicial concepts.
-\begin{definition}
+\begin{definition}[Simplicial map]
   Let $X,Y$ be topological spaces. A function $f : X \to Y$ is called a
   \emph{simplicial map} iff there exist simplicial complexes $K$ and $L$ such
   that $\abs{K} = X$, $\abs{L} = Y$, and $f$ maps each simplex of $K$ linearly
   onto a (possibly lower-dimensional) simplex in $L$.
 \end{definition}
-\begin{definition}
+\begin{definition}[Simplicially homeomorphic]
   A simplicial map $f$ is a simplicial homomorphism iff it's a bijection; in
   that case, the two complexes are \emph{simplicially homeomorphic}
 \end{definition}
@@ -372,12 +372,12 @@ We now define structure-preserving maps bewteen simplicial concepts.
 \begin{solution}
   Simply plug in arbitrary points and verify the properties hold.
 \end{solution}
-\begin{definition}
+\begin{definition}[Subdivision]
   Let $K$ be a simplicial complex. Then a simplicial complex $K'$ is a
   \emph{subdivision} of $K$ iff each simplex of $K'$ is a subset of a simplex of
   $K$ and each simplex of $K$ is the union of finitely many simplices of $K'$.
 \end{definition}
-\begin{definition}
+\begin{definition}[Piecewise linear]
   If $K$ and $L$ are complexes, a continuous map $f : \abs{K} \to \abs{L}$ is
   called \emph{piecewise linear} or \emph{PL} if and only if there are
   subdivisions $K'$ of $K$ and $L'$ of $L$ such that $f$ is a simplicial map

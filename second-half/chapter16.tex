@@ -1543,13 +1543,24 @@ Fix two simplicial complexes $K$ and $L$.
   and show that it is a homomorphism.
 \end{problem}
 \begin{solution}
-  We simply apply linear extension. For all $\sigma = \sum_{i \in I}
+  We define $f_\#$ by its action on basis elements, then apply linear extension.
+  Let $\sigma = \simp{n} \in \msf C_n(K)$ be a basis element. Then define
+  \[
+    f_{\# n}(\sigma) =
+    \begin{cases}
+      0 & \text{if $f(\sigma)$ is not a $n$-simplex, and }\\
+      f(\sigma) & \text{otherwise}
+    \end{cases}
+  \]
+  We now apply linear extension. That is, for all $\tau = \sum_{i \in I}
   \simp[v^{(i)}]{n} \in \msf C_n(K)$, define
   \begin{align*}
-    f_{\# n}(\sigma)
-    &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n} } \\
-    &= \sum_{i \in I} f_{\# n}\pn{\simp[v^{(i)}]{n}} \\
-    &= \sum_{i \in I} \set{f\pn{v_0^{(i)}}\cdots f\pn{v_n^{(i)}}}
+    f_{\# n}(\tau)
+    &= f_{\# n} \pn{\sum_{i\in I} \sigma_i} \\
+    &= \sum_{i\in I} f_{\# n}(\sigma_i)
+    % \\
+    % &= \sum_{i \in I} f_{\# n}\pn{\simp[v^{(i)}]{n}} \\
+    % &= \sum_{i \in I} \set{f\pn{v_0^{(i)}}\cdots f\pn{v_n^{(i)}}}
   \end{align*}
   we want to show this is a homomorphism. Let $\sigma_1, \sigma_2 \in \msf
   C_n(K)$ be arbitrary. Then
@@ -1560,22 +1571,63 @@ Fix two simplicial complexes $K$ and $L$.
     &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n}} + f_{\# n}\pn{\sum_{j \in J} \simp[v^{(j)}]{n}} \\
     &= f_{\# n}(\sigma_1) + f_{\# n}(\sigma_2)
   \end{align*}
-  as desired. Is that\ldots all? I feel like I must be missing something here.
+  as desired.
 \end{solution}
 The map $f_{\# n}$ is called the \emph{induced chain map.} The next exercise
 contains an important technicality about the induced chain map in the case where
 the image of an $n$-simplex is an $(n-1)$-simplex.
 \begin{problem}[16.15]
-  If the simplicial map $f : \abs{K} \to \abs{L}$ maps an $n$-simplex $\sigma$
-  to an $(n-1)$-simplex $\tau$, what is $f_{\# n}(\sigma)$?
+  If the simplicial map $f : K \to L$ maps an $n$-simplex $\sigma$ to an
+  $(n-1)$-simplex $\tau$, what is $f_{\# n}(\sigma)$?
 \end{problem}
 \begin{solution}
-  How is this possible when $\cod{f_{\# n}} = \msf C_n(L)$, and $\tau \in \msf
-  C_{n-1}(L)$? Do we simply take $\tau = \mb 0$?
+  By the definition given above, $f_{\# n}(\sigma) = \mb 0$.
 \end{solution}
 \begin{problem}[16.16]
-  Let $f : K \to L$
+  Let $f : K \to L$ be a simplicial map, and let $f_\#$ be the induced map $f_\#
+  : \msf C_n(K) \to \msf C_n(L)$. Then for any chain $c \in \msf C_n(K)$,
+  \[
+    \partial (f_\# (c)) = f_{\#}(\partial(c))
+  \]
+  In other ``words,'' we have the following commutative diagram
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=.9]
+      \node (00) at (0,0) {$\msf C_n(K)$};
+      \node (10) at (2.5,0) {$\msf C_{n}(K)$};
+      \node (01) at (0,-2) {$\msf C_{n-1}(k)$};
+      \node (11) at (2.5,-2) {$\msf C_{n-1}(k)$};
+      \draw[->] (00) -- node[above] {$f_\#$} (10);
+      \draw[->] (01) -- node[below] {$f_\#$} (11);
+      \draw[->] (00) -- node[left] {$\partial$} (01);
+      \draw[->] (10) -- node[right] {$\partial$} (11);
+      \draw[->] (1.75, -1) arc (0:320:.5cm);
+    \end{tikzpicture}
+    \caption{Commutative diagram}
+  \end{figure}
 \end{problem}
+\begin{solution}
+  Let $c \in \msf C_n(K)$. Express $c$ as a sum of basis elements
+  $\set{\sigma}_{i \in I}$. Let $\set{\sigma_i}_{i \in I'}$ be those $\sigma_i$
+  for which $f_{\#}(\sigma_i) \neq \mb 0$. Then
+  \begin{align*}
+    \partial_{n} (f_{\# n}(c))
+    &= \partial_n \pn{\sum_{i\in I'} f_{\# n}(\sigma_i)} \\
+    &= \partial_n \pn{\sum_{i \in I'} f(\sigma_i)} \\
+    &= \partial_n \pn{\sum_{i\in I'} \set{f\pn{v_0^{(i)}}\cdots f\pn{v_n^{(i)}}}} \\
+    &= \sum_{i\in I'} \sum_{j=1}^n \set{f\pn{v_0^{(i)}}\cdots \widehat{f\pn{v_j^{(i)}}}\cdots f\pn{v_n^{(i)}}} \\
+    &= \sum_{i \in I'} \sum_{j=1}^n f_{\# n-1} \pn{\simpdel[v^{(i)}]{j}{n}} \\
+    &= \sum_{i \in I'} f_{\# n-1}\pn{\partial \pn{\sigma_i}} \\
+    &= f_{\# n-1} \pn{ \partial_n \pn{ \sum_{i \in I'} \sigma_i }} \\
+    &= f_{\# n-1} \pn{ \partial_n \pn c} \\
+  \end{align*}
+  as desired.
+\end{solution}
+\begin{definition}[Induced Homomorphism]
+  Let $f : K \to L$ be a simplicial map. The \emph{induced homomorphism} $f_* :
+  \msf H_n(K) \to \msf H_n(L)$ is defined by $f_*([z]) = [f_\#(z)]$
+\end{definition}
+
 %%% Local Variables:
 %%% TeX-master: "main"
 %%% End:

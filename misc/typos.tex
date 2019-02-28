@@ -148,10 +148,10 @@
     structure. The key here is to notice that boundary relationships between
     $n$-manifolds and $(n+1)$-manifolds in $X$ can carry information about the
     presence of hollowness and/or holes.''
-  \item Not a big problem but the section does get a bit wordy in the motivating
-    example with Figure 16.1. Maybe it'd be easier to follow with more diagrams?
-    That said, the section as is still does a great job of delivering intuition
-    to the reader.
+  \item General comment: Not a big problem but the section does get a bit wordy
+    in the motivating example with Figure 16.1. Maybe it'd be easier to follow
+    with more diagrams? That said, the section as is still does a great job of
+    delivering intuition to the reader.
   \item There's a bit of a throwaway comment (in red) and also a typo (in blue)
     in the same example: ``In fact, these two sets of edges differ ({\color{red}
       where we take the difference mod 2, meaning} we just look at the set of
@@ -167,6 +167,17 @@
     (even though we still refer to $\msf C_n(K)$ as a group)?
   \item Ambiguous diagram. Section 16.2, first example: in figure 16.2, edges
     and vertices are unlabled, but we name them in the following example.
+  \item Typographical error: Section 16.2, definition of the boundary operator:
+    \[
+      \partial(\sigma) = \sum_{i=0}^n \set{v_0 {\color{red}\cdots\hspace{-.16cm}
+          \widehat{\ } v_i} \cdots v_n}
+    \]
+    I believe that it should look like
+    \[
+      \partial(\sigma) = \sum_{i=0}^n \simpdel{i}{n}
+    \]
+    which can be generated with the code \verb|\cdots \widehat{v_i} \cdots|
+
   \item Suggested additional clarification. In section 16.2, when we define
     $n$-cycles and $n$-boundaries, it might be worth explicitly stating that
     \[

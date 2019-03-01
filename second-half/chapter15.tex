@@ -498,10 +498,44 @@ Some diagrams:
       \[
         D = \sup_{\mathclap{\Xx,\, \Yy \in \sigma_n}} \norm{\Xx - \Yy}_2
       \]
+      is given by the maximum distance between vertices in the simplex:
+      \[
+        D = \sup_{\mathclap{\Vv_i, \Vv_j}} \norm{\Vv_i - \Vv_j}_2
+      \]
     \end{lemma}
-    is given by the maximum distance between vertices in the simplex.
-  \end{leftbar}
 
+    \emph{Proof of Lemma:} Let $\Xx, \Yy \in \sigma_n$ be arbitrary. It will
+    suffice to show that $\Yy$ is not a vertex in $\sigma_n$, then there exists
+    a vertex $\Vv \in \sigma_n$ such that $\norm{\Xx - \Yy}_2 < \norm{\Xx -
+      \Vv}_2$.
+
+    Write $\Yy$ as convex combinations by
+    \begin{align*}
+      \Yy &= \sum_{i=0}^n \mu_i \Vv_i.
+    \end{align*}
+    and observe that since $\sum_{i=0}^n \mu_i = 1$, we have
+    \[
+      \Xx = \sum_{i=0}^n \mu_i \Xx = \Xx.
+    \]
+    Then
+    \begin{align*}
+      \norm{\Xx - \Yy}_2
+      &= \norm{\sum_{i=0}^n \Xx - \mu_i\Vv_i}_2 \\
+      &= \norm{\sum_{i=0}^n \mu_i(\Xx - \Vv_i)}_2 \\
+      &\leq \sum_{i=0}^n \mu_i \norm{\Xx - \Vv_i}_2 \\
+      &\leq \sum_{i=0}^n \mu_i \sup_{\Vv_i} \norm{\Xx - \Vv_i}_2 \\
+      &= \sup_{\Vv_i} \norm{\Xx - \Vv_i}_2.
+    \end{align*}
+    Hence, we see for arbitrary $\Yy$, $\norm{\Xx - \Yy}_2 \leq \sup_{\Vv_i}
+    \norm{\Xx - \Vv_i}_2$. Now, apply the same result to $\Xx' = \argmax_{\Vv_i}
+    \norm{\Xx - \Vv_i}_2$ and $\Yy' = \Xx$ to obtain
+    \[
+      \norm{\Xx - \Yy}_2 \leq \sup_{\Vv_i} \norm{\Xx - \Vv_i}_2 \leq
+      \sup_{\Vv_j}\pn{ \sup_{\Vv_i} \norm{\Vv_j - \Vv_i}} = \sup_{\Vv_i, \Vv_j}
+      \norm{\Vv_j - \Vv_i}_2
+    \]
+    as desired.
+  \end{leftbar}
 \end{solution}
 
 %%% Local Variables:

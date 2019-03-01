@@ -1548,7 +1548,7 @@ Fix two simplicial complexes $K$ and $L$.
   \[
     f_{\# n}(\sigma) =
     \begin{cases}
-      0 & \text{if $f(\sigma)$ is not a $n$-simplex, and }\\
+      \mb 0 & \text{if $f(\sigma)$ is not a $n$-simplex, and }\\
       f(\sigma) & \text{otherwise}
     \end{cases}
   \]
@@ -1562,16 +1562,22 @@ Fix two simplicial complexes $K$ and $L$.
     % &= \sum_{i \in I} f_{\# n}\pn{\simp[v^{(i)}]{n}} \\
     % &= \sum_{i \in I} \set{f\pn{v_0^{(i)}}\cdots f\pn{v_n^{(i)}}}
   \end{align*}
-  we want to show this is a homomorphism. Let $\sigma_1, \sigma_2 \in \msf
-  C_n(K)$ be arbitrary. Then
-  \begin{align*}
-    f_{\# n}\pn{\sigma_1 + \sigma_2}
-    &= f_{\# n} \pn{\sum_{k\in I \cup J} \simp[v^{(k)}]{n}} \\
-    &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n} + \sum_{j \in J} \simp[v^{(j)}]{n}} \\
-    &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n}} + f_{\# n}\pn{\sum_{j \in J} \simp[v^{(j)}]{n}} \\
-    &= f_{\# n}(\sigma_1) + f_{\# n}(\sigma_2)
-  \end{align*}
-  as desired.
+  we want to show this is a homomorphism.
+  \begin{enumerate}[label=(\arabic*)]
+    \item Let $\sigma_1, \sigma_2 \in \msf C_n(K)$ be arbitrary. Then
+      \begin{align*}
+        f_{\# n}\pn{\sigma_1 + \sigma_2}
+        &= f_{\# n} \pn{\sum_{k\in I \cup J} \simp[v^{(k)}]{n}} \\
+        &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n} + \sum_{j \in J} \simp[v^{(j)}]{n}} \\
+        &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n}} + f_{\# n}\pn{\sum_{j \in J} \simp[v^{(j)}]{n}} \\
+        &= f_{\# n}(\sigma_1) + f_{\# n}(\sigma_2)
+      \end{align*}
+    \item We want to show $f_{\# n}(\mb 0) = \mb 0$. Note, for any $\sigma \in
+      \msf C_n(K)$, $\mb 0 = \sigma + \sigma$. By linearity, $f_{\# n}(\mb 0) =
+      f_{\# n}(\sigma + \sigma) = f_{\# n}(\sigma) + f_{\# n}(\sigma) = \mb 0$
+      as well, as desired.
+  \end{enumerate}
+  thus $f_{\# n}$ is a homomorphism.
 \end{solution}
 The map $f_{\# n}$ is called the \emph{induced chain map.} The next exercise
 contains an important technicality about the induced chain map in the case where
@@ -1633,16 +1639,43 @@ the image of an $n$-simplex is an $(n-1)$-simplex.
   \msf H_n(K) \to \msf H_n(L)$ is a well-defined homomorphism.
 \end{problem}
 \begin{solution}
-  Let $[\sigma] \in \msf H_n(K)$ and $[\tau] \in \msf H_n(K)$ with $[\sigma] =
-  [\tau]$. Then $\exists \rho \in \msf B_n(K) \st \sigma = \tau + \rho$. Observe
-  that
+  That $f_*$ is a homomorphism follows directly from the definition.
+  \begin{enumerate}[label=(\arabic*)]
+    \item That $f_*([\mb 0]) = [\mb 0]$ follows by the definition of $f_{\#}$.
+    \item Similarly for $f_*(\sigma + \tau) = f_*(\sigma) + f_*(\tau)$.
+  \end{enumerate}
+  We now show that $f_*$ is well-defined. Let $[\sigma] \in \msf H_n(K)$ and
+  $[\tau] \in \msf H_n(K)$ with $[\sigma] = [\tau]$. Then $\exists \rho \in \msf
+  B_n(K) \st \sigma = \tau + \rho$. Observe that
   \begin{align*}
     f_*([\sigma])
     &= [f_{\#}(\sigma)] \\
     &= [f_{\#}(\tau + \rho)] \\
     &= [f_{\#}(\tau) + f_{\#}(\rho)] \\
-    &= [f_{\#}(\tau)] + [f_{\#}(\rho)]
+    &= [f_{\#}(\tau)] + [f_{\#}(\rho)] \\
+    &= [f_{\#}(\tau)] + [\mb 0] \\
+    &= [f_{\#}(\tau)],
   \end{align*}
+  as desired.
+\end{solution}
+\begin{problem}[16.18]
+  Let $K$ be a complex comprising the proper faces of a hexagon: six edges and
+  six vertices $v_0, \ldots, v_5$. Let $L$ be the complex comprising the proper
+  faces of a triangle: three edges and three vertices $w_0, w_1, w_2$. Let $f$
+  be a simplicial map that sends $v_i$ to $w_{i \bmod 3}$. Compute the homology
+  groups of $K$ and $L$ and describe the simplicial map $f$ and the induced
+  homomorphism $f_*$.
+\end{problem}
+\begin{solution}
+  \begin{enumerate}[label=(\arabic*)]
+    \item We compute the homology groups of $K$. Observe, $\msf H_2(K) \cong
+      \set{\mb 0}$ (since $\msf Z_n(K)$ is trivial). $\msf H_1(K) \cong
+      \zmod{2}$ (since $\msf Z_1(K) \cong \zmod{2}$, as we either have the whole
+      hexagon or we don't, and $\msf B_1(K) \cong \set{\mb 0}$). Finally, by
+      theorem 16.8, we have $\msf H_0(K) \cong \zmod{2}$.
+    \item The homology groups of $L$ are the same.
+    \item
+  \end{enumerate}
 \end{solution}
 %%% Local Variables:
 %%% TeX-master: "main"

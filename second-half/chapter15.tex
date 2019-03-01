@@ -61,7 +61,7 @@ We define some basic Euclidean sets for use in homeomorphisms.
   independent points in $\RR^n$. For affinely independent points $v_0, \ldots,
   v_k$ in $\RR^n$, $\set{v_0\cdots v_k}$ denotes the $k$-simplex
   \[
-    \set{\lambda_0 v_0 + \lambda_1v_1 + \cdots + \lambda_kv_k \MID \forall i -
+    \set{\lambda_0 v_0 + \lambda_1v_1 + \cdots + \lambda_kv_k \MID \forall i =0,
       1, \ldots, k;\ 0 \leq \lambda_i \leq 1 \text{ and } \sum_{i=0}^k \lambda_i
     = 1}
   \]
@@ -536,7 +536,17 @@ Some diagrams:
     \]
     as desired.
   \end{leftbar}
+  By the lemma, $a_n$ is given by the maximal side length of a 2-simplex in
+  $\sd^n K$. Hence
+  \[
+    0 \leq a_n \leq \frac{1}{2^n} \frac{2}{\sqrt{3}}
+  \]
+  and so by the squeeze theorem,
+  \[
+    \lim_{n\to\infty} a_n = 0
+  \]
 \end{solution}
+
 
 %%% Local Variables:
 %%% TeX-master: "main"

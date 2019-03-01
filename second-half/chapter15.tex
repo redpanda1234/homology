@@ -382,16 +382,127 @@ We now define structure-preserving maps bewteen simplicial concepts.
   called \emph{piecewise linear} or \emph{PL} if and only if there are
   subdivisions $K'$ of $K$ and $L'$ of $L$ such that $f$ is a simplicial map
   from $K'$ to $L'$. If there exist subdivisions such that $f$ is a simplicial
-  homomorphism, then $f$ is a \emph{PL homomorphism} and the spaces are \emph{PL
-  homeomorphic.}
+  homomorphism, then $f$ is a \emph{PL homeomorphism} and the spaces are
+  \emph{PL homeomorphic.}
 \end{definition}
 \begin{problem}[15.21]
   A composition of PL maps is PL. A PL homeomorphism is an equivalence relation.
 \end{problem}
-\begin{problem}[15.22]
-  PL homeomorphic complexes are homeomorphic as topological spaces.
-\end{problem}
+\begin{solution}
+  Let $K,L,M$ be complexes, and let $g : \abs{K} \to \abs{L}$, $f : \abs{L} \to
+  \abs{M}$ be continuous PL maps. WTS $h = f \circ g$ is a PL map.
 
+  Let $K', L', M'$ be the corresponding subdivisions of $K,L,$ and $M$,
+  respectively. Then $g$ is a simplicial map from $K'$ to $L'$, and $f$ is a
+  simplicial map from $L'$ to $M'$. Then $\forall \sigma \in K'$, $g(\sigma) \in
+  L'$, whence $f(g(\sigma)) \in M'$. It follows that $h = g \circ f$ is a
+  simplicial map from $K'$ to $M'$.
+
+  We give a sketch of the proof that PL homeomorphism is an equivalence
+  relation. To verify reflexivity, take the identity map. Symmetry follows by
+  inverting the simplicial homeomorphism. Transitivity follows by the above.
+  Thus, the claim holds.
+\end{solution}
+% \begin{problem}[15.22]
+%   PL homeomorphic complexes are homeomorphic as topological spaces.
+% \end{problem}
+% \begin{solution}
+% \end{solution}
+\section{Simplicial Approximation}
+\begin{problem}[15.23]
+  Let $K$ be a complex consisting of the boundary of a triangle (three vertices
+  and three edges) and $L$ be an isomorphic complex. Both $\abs{K}$ and
+  $\abs{L}$ are topologically circles. There is a continuous map that takes the
+  circle $\abs{K}$ and winds it twice around the circle $\abs{L}$; however, show
+  that there is no simplicial map from $K$ to $L$ that winds the circle
+  $\abs{K}$ twice around the circle $\abs{L}$.
+\end{problem}
+\begin{solution}
+  We offer a brief sketch. Basically, this would require each 1-simplex to map
+  to two 1-simplices. Contradiction.
+\end{solution}
+\begin{definition}[Barycenter]
+  The \emph{barycenter} of a $k$-simplex $\simp{k}$ in $\RR^n$ is the point
+  $\frac{1}{k+1} \pn{v_0 + \cdots + v_k}$.
+\end{definition}
+\begin{definition}[First barycentric subdivision ($\sd \sigma$)]
+  Let $\sigma$ be an $n$-simplex. The \emph{first barycentric subdivision of
+    $\sigma$}, denoted $\sd \sigma$, is the complex of all simplices of the form
+  $\simp[b]{k}$, where $b_i$ is the barycenter of a face $\sigma^i$ of $\sigma$
+  from a chain of faces of $\sigma$,
+  \[
+    \sigma^0 \subset \sigma^1 \subset \cdots \subset \sigma^k
+  \]
+  of increasing (not necessarily consecutive) dimensions. The maximal simplices,
+  that is, the $n$-simplices of $\sd \sigma$ each arise from a maximal sequence
+  of faces, that is, from faces of consecutive dimensions starting with a vertex
+  of $\sigma$. Thus an $n$-simplex of $\sd \sigma$ corresponds exactly to a
+  permutation of the vertices of $\sigma$.
+\end{definition}
+\begin{definition}[$\sd K$]
+  Let $K$ be a simplicial complex. The \emph{first barycentric subdivision} of
+  $K$, denoted $\sd K$, is the complex consisting of all the simplices in the
+  barycentric subdivision of each simplex of $K$.
+\end{definition}
+\begin{definition}[$m$-th barycentric subdivision]
+  The \emph{second barycentric subdivision}, denoted $\sd^2 K$, is the first
+  barycentric subdivision of $\sd K$. Proceeding in this way, the \emph{$m$-th
+    barycentric subdivision} is denoted $\sd^m K$.
+\end{definition}
+Some diagrams:
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{.45\linewidth}
+    \includegraphics[width=\linewidth]{figures/barycentric-1.pdf}
+  \end{subfigure}
+  \hspace{1cm}
+  \begin{subfigure}{.45\linewidth}
+    \includegraphics[width=\linewidth]{figures/barycentric-2.pdf}
+  \end{subfigure}\\[2cm]
+  \begin{subfigure}{.45\linewidth}
+    \includegraphics[width=\linewidth]{figures/barycentric-3.pdf}
+  \end{subfigure}
+  \hspace{1cm}
+  \begin{subfigure}{.45\linewidth}
+    \includegraphics[width=\linewidth]{figures/barycentric-4.pdf}
+  \end{subfigure}
+  \caption{The first 4 barycentric subdivisions}
+  \label{fig:subdivs}
+\end{figure}
+\begin{problem}[15.24]
+  How many $n$-simplices are there in the first barycentric subdivision of an
+  $n$-simplex?
+\end{problem}
+\begin{solution}
+  A simple induction shows there are $6^n$ $n$-simplices.
+\end{solution}
+\begin{problem}[15.25]
+  Convince yourself that the barycentric subdivision of a complex $K$ is, in
+  fact, a subdivision of $K$.
+\end{problem}
+\begin{solution}
+  I'm convinced.
+\end{solution}
+\begin{problem}[15.26]
+  Let $K$ be a finite simplicial complex and let $a_n$ be the maximum among the
+  diameters of simplices in $\sd^n K$. Then
+  \[
+    \lim_{n\to\infty} a_n = 0.
+  \]
+\end{problem}
+\begin{solution}
+  First, we calculate the diameter of an $n$-simplex.
+  \begin{leftbar}
+    \begin{lemma}
+      Let $\sigma_n$ be an $n$-simplex. Then the diameter of $\sigma_n$
+      \[
+        D = \sup_{\mathclap{\Xx,\, \Yy \in \sigma_n}} \norm{\Xx - \Yy}_2
+      \]
+    \end{lemma}
+    is given by the maximum distance between vertices in the simplex.
+  \end{leftbar}
+
+\end{solution}
 
 %%% Local Variables:
 %%% TeX-master: "main"

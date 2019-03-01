@@ -1629,9 +1629,21 @@ the image of an $n$-simplex is an $(n-1)$-simplex.
   square brackets indicate an equivalence class).
 \end{definition}
 \begin{problem}[16.17]
-  Let $f : K \to L$ be a simplicial map. Then
+  Let $f : K \to L$ be a simplicial map. Then the induced homomorphism $f_* :
+  \msf H_n(K) \to \msf H_n(L)$ is a well-defined homomorphism.
 \end{problem}
-
+\begin{solution}
+  Let $[\sigma] \in \msf H_n(K)$ and $[\tau] \in \msf H_n(K)$ with $[\sigma] =
+  [\tau]$. Then $\exists \rho \in \msf B_n(K) \st \sigma = \tau + \rho$. Observe
+  that
+  \begin{align*}
+    f_*([\sigma])
+    &= [f_{\#}(\sigma)] \\
+    &= [f_{\#}(\tau + \rho)] \\
+    &= [f_{\#}(\tau) + f_{\#}(\rho)] \\
+    &= [f_{\#}(\tau)] + [f_{\#}(\rho)]
+  \end{align*}
+\end{solution}
 %%% Local Variables:
 %%% TeX-master: "main"
 %%% End:

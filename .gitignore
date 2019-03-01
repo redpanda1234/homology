@@ -9,5 +9,6 @@
 *.auxlock
 *.dvi
 *.lo*
-main-figure*
+second-half/figures/
+
 auto/

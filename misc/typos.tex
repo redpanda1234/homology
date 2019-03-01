@@ -9,8 +9,8 @@
 \section*{Large-Scale Comments}
 \begin{enumerate}
   \item Given that many courses using the book might not employ \emph{every}
-    section, it would be extremely helpful to add a glossary of all notation
-    used throughout the book to make it easier to find anything not covered.
+    chapter, it might be helpful to add a glossary of all notation defined
+    throughout the book to make it easier to find anything not covered.
   \item Throughout the first part of the book, lots of definitions are given
     with iffs. E.g., ``Call an object $x$ a \underline{\phantom{thingy}} iff it
     satisfies properties \underline{\phantom{llist of properties}}.'' This isn't
@@ -22,13 +22,13 @@
     set $U_x$ in {\color{red} X} with $x \in U_x$ such that $f(U_x) \subset
     V$.'' Here, the {\color{red} X} should be in math font, i.e.\
     ${\color{green} X}$.
-  \item Possible undesirable formatting. Section 3.1, page 48: in the statement
-    of theorem 3.1 (``Let $\set{U_i}_{i=1}^n$ be a finite collection of open
-    sets''), ``finite'' is not italicized, whereas the surrounding text is. This
-    is likely due to the use of \verb|\emph| inside an italicized environment.
-    {\color{red} While this is indeed the expected behavior, it might be worth
-      considering using boldface together with italics to emphasize finite in
-      this context --- however, it's certainly a matter of personal preference.}
+  % \item Possible undesirable formatting. Section 3.1, page 48: in the statement
+  %   of theorem 3.1 (``Let $\set{U_i}_{i=1}^n$ be a finite collection of open
+  %   sets''), ``finite'' is not italicized, whereas the surrounding text is. This
+  %   is likely due to the use of \verb|\emph| inside an italicized environment.
+  %   {\color{red} While this is indeed the expected behavior, it might be worth
+  %     considering using boldface together with italics to emphasize finite in
+  %     this context --- however, it's certainly a matter of personal preference.}
   \item Possibly undesirable notation. Section 3.2, definition of an open ball:
     ``in $\RR^n$, the open ball of radius $\epsilon > 0$ around a point $p \in
     \RR^n$ is the set''
@@ -44,7 +44,7 @@
 \end{enumerate}
 \section*{Chapter 11}
 \begin{enumerate}
-  \item Possibly ambiguous parse structure. Section 11.4, page 167: ``Another
+  \item Possibly ambiguous parse structure? Section 11.4, page 167: ``Another
     category of theorem we will prove is fixed point theorems.'' While this
     sentence is grammatically correct if parsed as ``Another (category of
     (theorem we will prove)) is (fixed point theorems),'' {\color{red}it is easy
@@ -63,7 +63,7 @@
 \section*{Chapter 12}
 \begin{enumerate}
   \item Notational error. Exercise 12.1, page 170: ``Show that the torus
-    {\color{red}$T^2$} is homeomorphic to $\Ss^1 \times \Ss^1$.'' Torus should
+    {\color{red}$T^2$} is homeomorphic to $\sS^1 \times \sS^1$.'' Torus should
     be denoted $\color{green}\TT^2$.
   \item Possible error. Section 12.1, page 172 --- ``The basis for the topology
     is the collection of {\color{red}open cones} with the cone point at the
@@ -82,13 +82,13 @@
     the definition of the standard $n$-sphere below it, $\ldots$ (\verb|\ldots|)
     is used to indicate continuation of $+$.} This may be a matter of personal
     preference, but I've always assumed standard practice is to use $\ldots$
-    (\verb|\ldots|)for the continuation of enumerations (e.g., sets or lists),
+    (\verb|\ldots|) for the continuation of enumerations (e.g., sets or lists),
     and $\cdots$ (\verb|\cdots|) for the continuation of operations. Either way,
     it probably ought to be consistent between $+$ and $\times$.
   \item Possible clarification suggestion. Section 15.1, definition of the
     standard $n$-sphere. We define
     \[
-      \Ss^n = \set{(x_0, \ldots, x_n) \in \RR^{n+1} \MID x_0^2 + \cdots + x_n^2
+      \sS^n = \set{(x_0, \ldots, x_n) \in \RR^{n+1} \MID x_0^2 + \cdots + x_n^2
         = 1}.
     \]
     {\color{red}Since we're reindexing from $0$ here (instead of adding an
@@ -117,17 +117,20 @@
     combination of those points whose coefficients sum to 1.'' {\color{red} I
       believe it should also be mentioned that we require said coefficients to
       be non-negative.}
-  \item Unclear definition. Section 15.2, definition of the underlying space of
-    a simplicial complex. ``[\ldots] with a topology of sets whose intersection
-    with each simpliex $\sigma$ in $K$ is {\color{red} open in $\sigma$}.'' From
-    it's unclear from this which topology we're supposed to use to determine if
-    the intersection is open in $\sigma$ --- I'm assuming the standard topology
-    on $\RR^n$?
+  % \item Possibly unclear definition. Section 15.2, definition of the underlying
+  %   space of a simplicial complex. ``[\ldots] with a topology of sets whose
+  %   intersection with each simpliex $\sigma$ in $K$ is {\color{red} open in
+  %     $\sigma$}.'' From this it's unclear from this which topology we're
+  %   supposed to use to determine if the intersection is open in $\sigma$ --- I'm
+  %   assuming the standard topology on $\RR^n$?
   \item Simple typo. Section 15.3, definition of PL. ``A continuous map $f :
     \abs{K} \to \abs{L}$ is called \emph{piecewise linear} if and only
     {\color{red} it}'' --- should be ``if.''
   \item Simple typo. Section 15.4, exercise 15.23: ``{\color{red} Let $K$ is a
       complex} [\ldots]'' --- should be ``Let $K$ be a complex.''
+  \item Inconsistent use of notation. Section 15.4, exercise 15.28: ``If the
+    simplex $\color{red} \sigma= \set{v_0,\ldots,v_n}$ is the minimal face of
+    [\ldots]'' --- should be $\simp{k}$ (no commas)
 \end{enumerate}
 \section*{Chapter 16}
 \begin{enumerate}
@@ -150,25 +153,25 @@
     structure. The key here is to notice that boundary relationships between
     $n$-manifolds and $(n+1)$-manifolds in $X$ can carry information about the
     presence of hollowness and/or holes.''
-  \item General comment: Not a big problem but the section does get a bit wordy
-    in the motivating example with Figure 16.1. Maybe it'd be easier to follow
-    with more diagrams? That said, the section as is still does a great job of
-    delivering intuition to the reader.
+  % \item General comment: Not a big problem but the section does get a bit wordy
+  %   in the motivating example with Figure 16.1. Maybe it'd be easier to follow
+  %   with more diagrams? That said, the section as is still does a great job of
+  %   delivering intuition to the reader.
   \item There's a bit of a throwaway comment (in red) and also a typo (in blue)
-    in the same example: ``In fact, these two sets of edges differ ({\color{red}
-      where we take the difference mod 2, meaning} we just look at the set of
-    all the edges that are in one set, but not {\color{blue}\bfseries it} in the
-    other) [\ldots]'' For a reader, it's a bit strange seeing the mention of
-    $\zmod{2}$ sort of shoehorned in like this. It's great intuition, but it
-    might be easier to digest if given in its own sentence instead of a
+    in the motivating example: ``In fact, these two sets of edges differ
+    ({\color{red} where we take the difference mod 2, meaning} we just look at
+    the set of all the edges that are in one set, but not {\color{blue}\bfseries
+      it} in the other) [\ldots]'' For a reader, it's a bit strange seeing the
+    mention of $\zmod{2}$ sort of shoehorned in like this. It's great intuition,
+    but it might be easier to digest if given in its own sentence instead of a
     parenthetical?
   \item Suggested additional definition. Section 16.2: before defining an
     $n$-chain in $K$, it might be worth defining what a formal operation is?
-  \item Suggested clarification: in the definition of an $n$-chain group, it
-    seems we're actually defining is a module with formal linear combination
-    (even though we still refer to $\msf C_n(K)$ as a group)?
-  \item Ambiguous diagram. Section 16.2, first example: in figure 16.2, edges
-    and vertices are unlabled, but we name them in the following example.
+  % \item Suggested clarification: in the definition of an $n$-chain group, it
+  %   seems we're actually defining is a module with formal linear combination
+  %   (even though we still refer to $\msf C_n(K)$ as a group)?
+  % \item Ambiguous diagram. Section 16.2, first example: in figure 16.2, edges
+  %   and vertices are unlabled, but we name them in the following example.
   \item Typographical error: Section 16.2, definition of the boundary operator:
     \[
       \partial(\sigma) = \sum_{i=0}^n \set{v_0 {\color{red}\cdots\hspace{-.16cm}
@@ -190,8 +193,7 @@
     \cong 0$ for $\color{red} n \geq 0$ and $\color{blue}H_0(K) \cong \ZZ$.'' I
     believe the part in red should be $n > 0$, and the part in blue should be
     $\ZZ_2$ (especially since the next theorem asserts that if $K$ is connected,
-    then $\msf H_0(K) \cong \ZZ_2$. A one-point simplicial complex should
-    certainly be connected!)
+    then $\msf H_0(K) \cong \ZZ_2$).
   \item Suggested terminology clarification. Theorem 16.8: ``If $K$ is
     {\color{red} connected} [\ldots]'' --- it might be worth drawing a
     distinction between ``simplicially connected'' and ``connected'' (in the

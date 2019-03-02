@@ -565,8 +565,19 @@ Some diagrams:
   collection of all vertex stars covers $\abs{K}$.
 \end{problem}
 \begin{solution}
-  Let $v \in K$ be a vertex. Let $x \in \St(v)$ be arbitrary. Hmmm. Let's ask
-  Prof.\ Su
+  Let $v \in K$ be a vertex. Let $x \in \St(v)$ be arbitrary. WTS $\exists
+  \varepsilon > 0 \st B_{\epsilon}(x) \subset \St(v)$. We have the following
+  cases:
+  \begin{enumerate}[label=(\arabic*)]
+    \item Suppose $x = v$. Then taking $\epsilon = \frac{1}{2} \inf_{\Vv_i}
+      \abs{v - \Vv_i}_2$ we get the desired result.
+    \item Suppose $x \neq v$. Then taking $v = v_0$, write $x$ in the
+      barycentric coordinates
+      \[
+        x = \lambda_0 v + \lambda_1 v_1 + \cdots + \lambda_n v_n.
+      \]
+      Since $x \in \St(v)$, $\lambda_0 \neq 0$.
+  \end{enumerate}
 \end{solution}
 \begin{problem}[15.28]
   If the simplex $\sigma = \simp{k}$ in $K$ is the minimal face of a point $x

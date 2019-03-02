@@ -31,9 +31,7 @@ class Simplex:
             # Define 0 coordinate to be the barycenter
             self.barycenter = np.array([0.0,0.0])
         else:
-            # print("\n\n")
             self.barycenter = np.mean(self.verts,axis=0)
-            # print("barycenter is ", self.barycenter, "for verts", self.verts)
         if m:
             self.subdivide(m)
 
@@ -69,16 +67,10 @@ class Simplex:
                 out_str += f"\\node ({i}) at " + str(tuple(vert)) + "{};\n"
 
             out_str += "\\draw[very thin] (0) -- (1) -- (2) -- (0) -- cycle;\n"
-            # if self.simplices[0].simplices is None:
-            #     for i, vert in enumerate(self.verts):
-            #         out_str += f"\\node ({i}) at " + str(tuple(vert)) + "{};\n"
-
-            #     out_str += "\\draw[very thin] (0) -- (1) -- (2) -- cycle;\n"
             for simplex in self.simplices:
                 out_str += simplex.get_TikZ()
 
         else:
-            # print(self.verts)
             for i, vert in enumerate(self.verts):
                 out_str += f"\\node ({i}) at " + str(tuple(vert)) + "{};\n"
             out_str += f"\\draw[densely dotted] (1) -- (2) (0) -- (2);\n"

@@ -1607,7 +1607,7 @@ the image of an $n$-simplex is an $(n-1)$-simplex.
       \draw[->] (01) -- node[below] {$f_\#$} (11);
       \draw[->] (00) -- node[left] {$\partial$} (01);
       \draw[->] (10) -- node[right] {$\partial$} (11);
-      \draw[->] (1.75, -1) arc (0:320:.5cm);
+      \draw[->] (1.5, -1) arc (0:320:.25cm);
     \end{tikzpicture}
     \caption{Commutative diagram}
   \end{figure}
@@ -1674,9 +1674,15 @@ the image of an $n$-simplex is an $(n-1)$-simplex.
       hexagon or we don't, and $\msf B_1(K) \cong \set{\mb 0}$). Finally, by
       theorem 16.8, we have $\msf H_0(K) \cong \zmod{2}$.
     \item The homology groups of $L$ are the same.
-    \item
+    \item The map $f$ folds the circle $\abs{K}$ onto itself
+    \item $f_*$ is an isomorphism.
   \end{enumerate}
 \end{solution}
+\begin{note}
+  Let $K$ be a simplicial complex. Let $\lambda : \sd K \to K$ be defined as
+  follows: for any vertex $v \in \sd K$, there exists $\sigma \in K$ such that
+  $v$ is the barycenter of $\sigma$.
+\end{note}
 %%% Local Variables:
 %%% TeX-master: "main"
 %%% End:

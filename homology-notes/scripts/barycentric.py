@@ -79,7 +79,7 @@ class Simplex:
 
 def draw(simplex):
     m = simplex.m
-    filename = f"./figures/barycentric-{m}.tex"
+    filename = f"../figures/barycentric-{m}.tex"
     preamble = "\\documentclass{standalone}\n\\usepackage{tikz}\n\\begin{document}\\begin{tikzpicture}[scale=" + str(m+1) + ",every node/.style={circle, draw=black, fill=white, inner sep=0pt, minimum size=3pt}]\n"
     draw_code = simplex.get_TikZ()
     postamble = "\\end{tikzpicture}\n\\end{document}"

@@ -210,7 +210,7 @@ class Simplex:
 
 def draw(simplex):
     m = simplex.m
-    filename = f"./figures/3d-barycentric-{m}.tex"
+    filename = f"../figures/3d-barycentric-{m}.tex"
     preamble = "\\documentclass{standalone}\n\\usepackage{tikz}\n\\usepackage{tikz-3dplot}\n\\begin{document}\n\\tdplotsetmaincoords{70}{80}\n\\begin{tikzpicture}[tdplot_main_coords,scale=" + str(m+1) + ",every node/.style={circle, draw=black, fill=white, inner sep=0pt, minimum size=3pt}]\n"
     draw_code = simplex.get_TikZ()
 

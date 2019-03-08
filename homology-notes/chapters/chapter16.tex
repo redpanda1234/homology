@@ -1678,11 +1678,82 @@ the image of an $n$-simplex is an $(n-1)$-simplex.
     \item $f_*$ is an isomorphism.
   \end{enumerate}
 \end{solution}
-\begin{note}
+\begin{definition}[$\lambda$-map]
   Let $K$ be a simplicial complex. Let $\lambda : \sd K \to K$ be defined as
   follows: for any vertex $v \in \sd K$, there exists $\sigma \in K$ such that
-  $v$ is the barycenter of $\sigma$.
+  $v$ is the barycenter of $\sigma$. Then let
+  \[
+    \lambda(v) = v_\sigma
+  \]
+  where $v_\sigma$ is a vertex in $\sigma$.
+\end{definition}
+\begin{definition}[$\lambda_*$]
+  Let $\lambda_* : \msf H_n(\sd K) \to \msf H_n(K)$ be defined by linear
+  extension of $\lambda$ to simplices. Since $\lambda$ is a well-defined
+  simplicial map, $\lambda_*$ is a well-defined homomorphism (theorem 16.17).
+\end{definition}
+\begin{problem}[16.19]
+  Suggest a homomorphism from $\msf C_n(K) \to \msf C_n(\sd K)$ that commutes
+  with $\partial$. Could its induced homomorphism on homology be an inverse for
+  $\lambda_*$?
+\end{problem}
+\begin{solution}
+  Consdier $f : \msf C_n(K) \to \msf C_n(\sd K)$ defined by
+  \[
+    f(\sigma) = \text{sum of maximal $n$-simplices in $\sd \sigma$}
+  \]
+\end{solution}
+We give this a name.
+\begin{definition}[Subdivision operator]
+  Define the \emph{subdivision operator} $\SD : \msf C_n(K) \to \msf C_n(\sd K)$
+  by first defining $\SD$ on a simplex:
+  \[
+    \SD(\simp{n}) = \sum_{\mathclap{\pi \in \mc S_{n+1}}} \simp[b^{\pi}]{n}
+  \]
+  where $\mc S_{n+1}$ is the symmetric group, and $b_k^\pi$ is the barycenter of
+  the face $\set{v_{\pi(0)}\cdots v_{\pi(k)}}$.
+\end{definition}
+\begin{note}
+  I'm pretty sure this gets us all the maximal simplices, as we want. To verify
+  it, I think we proceed as follows: let $\sigma \in \sd K$ be an arbitrary
+  $n$-simplex. Then one of the vertices in $\sigma$ is a vertex in $K$ (def.\ of
+  maximal simplex). Take $\pi$ such that $v_{\pi(0)}$ is this maximal vertex.
+  Also restrict $\pi$ such that $v_{\pi(1)}$ is the vertex such that the
+  barycenter of $\set{v_{\pi(0)}v_{\pi(1)}}$ is in $\sigma$ (again, since
+  $\sigma$ is maximal, I think this works). Continue this.
+
+  I think also that one can show this necessitates the resulting simplices be
+  disjoint?
 \end{note}
+\begin{problem}[16.20]
+  The subdivision operator commutes with the boundary operator, that is, if $c $
+  is a chain in $K$, then $\SD(\partial c) = \partial \SD(c)$.
+\end{problem}
+\begin{solution}
+  We show the result for a simplex. For intuition, observe the following
+  diagram in the case $c$ is a $2$-simplex:
+  \begin{figure}[H]
+    \centering
+    \includegraphics{figures/offset-barycentric-1.pdf}
+    \caption{$\SD(c)$}
+  \end{figure}
+  under $\partial$, only the solid lines are not annihilated. In generality,
+  \begin{align*}
+    \partial \SD(c)
+    &= \partial\sum_{\mathclap{\pi \in \mc S_{n+1}}} \simp[b^\pi]{n} \\
+    &= \sum_{\pi \in \mc S_{n+1}} \sum_{j=1}^n \simpdel[b^\pi]{j}{n}
+  \end{align*}
+  Hmm\ldots confusion.
+\end{solution}
+\begin{problem}[16.21]
+  Show that $\lambda_\# \circ \SD = \msf{id}$, the identity map on $\msf
+  C_n(K)$, and therefore $\lambda_* \circ \SD_* = \msf{id}_*$, the identity map
+  on $\msf H_n(K)$.
+\end{problem}
+\begin{solution}
+  Recall the definition of
+\end{solution}
+
 %%% Local Variables:
-%%% TeX-master: "main"
+%%% TeX-master: "../main"
 %%% End:

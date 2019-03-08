@@ -7,7 +7,7 @@ class Simplex:
     efficient or elegant, basically this just exists so that I don't
     have to use foreach and stuff in TikZ.
     """
-    def __init__(self, verts=None, r=1, m=2):
+    def __init__(self, verts=None, r=1, m=2, offset_percent=None):
         """
         verts is a list of numpy arrays representing positions of
         vertices
@@ -15,10 +15,13 @@ class Simplex:
         n is the number of vertices
 
         r is the distance from each vertex to the barycenter
+
+        offset_percent helps fragment the barycentric subdivision
         """
         self.verts = verts
         self.simplices = None
         self.m = m
+        self.offset_percent = offset_percent
 
         if self.verts is None:
             # Initialize vertices. Multiply by r to scale.
@@ -29,7 +32,7 @@ class Simplex:
             self.verts = verts
 
             # Define 0 coordinate to be the barycenter
-            self.barycenter = np.array([0.0,0.0])
+            self.barycenter = np.mean(verts, axis=0)
         else:
             self.barycenter = np.mean(self.verts,axis=0)
         if m:
@@ -43,26 +46,75 @@ class Simplex:
             return
         else:
             b = self.barycenter
-            # print(b)
-            v0, v1, v2 = self.verts[0], self.verts[1], self.verts[2]
+
+            v0, v1, v2 = self.verts
+
+            b0_dict = {
+                "0" : tuple(v0),
+                "1" : tuple(v1),
+                "2" : tuple(v2)
+            }
+
             v01, v02, v12 = .5*(v0 + v1), .5*(v0 + v2), .5*(v1 + v2)
 
-            s0_01 = Simplex(verts=np.array([v0, v01, b]),m=m-1)
-            s0_02 = Simplex(verts=np.array([v0, v02, b]),m=m-1)
+            # Get all 1-simplex barycenters
+            b1_dict = {
+                "01" : tuple(v01),
+                "02" : tuple(v02),
+                "12" : tuple(v12),
+            }
 
-            s1_01 = Simplex(verts=np.array([v1, v01, b]),m=m-1)
-            s1_12 = Simplex(verts=np.array([v1, v12, b]),m=m-1)
+            simplex_list = []
 
-            s2_02 = Simplex(verts=np.array([v2, v02, b]),m=m-1)
-            s2_12 = Simplex(verts=np.array([v2, v12, b]),m=m-1)
+            # Just get all the indices as strings
 
-            self.simplices = [s0_01, s0_02, s1_01, s1_12, s2_02, s2_12]
+            for i in range(3):
+                bi = b0_dict[str(i)]
+
+                for j in range(3):
+                    if i == j:
+                        continue
+
+                    # Eek don't judge me
+                    ip, jp = sorted([i,j])
+                    bj = b1_dict[str(ip) + str(jp)]
+
+                    newverts = np.array([bi, bj, b])
+
+                    # new barycenter
+                    newb = np.mean(newverts, axis=0)
+
+
+                    if self.offset_percent is not None:
+                        offset = self.offset_percent * (newb - b)
+                        for vert in newverts:
+                            vert += offset
+
+                    simplex_list += [Simplex(
+                        verts=newverts,
+                        m=m-1,
+                        offset_percent = self.offset_percent
+                    )]
+            # print(len(simplex_list))
+            self.simplices = simplex_list
+
             for simplex in self.simplices:
                 simplex.subdivide(m-1)
 
+
     def get_TikZ(self):
         out_str = ""
-        if self.simplices:
+        if self.offset_percent:
+            if self.simplices:
+                for simplex in self.simplices:
+                    out_str += simplex.get_TikZ()
+            else:
+                for i, vert in enumerate(self.verts):
+                    out_str += f"\\node ({i}) at " + str(tuple(vert)) + "{};\n"
+                out_str += f"\\draw[very thin] (0) -- (1);\n"
+                out_str += f"\\draw[densely dotted] (1) -- (2) (0) -- (2);\n"
+
+        elif self.simplices:
             for i, vert in enumerate(self.verts):
                 out_str += f"\\node ({i}) at " + str(tuple(vert)) + "{};\n"
 
@@ -79,7 +131,10 @@ class Simplex:
 
 def draw(simplex):
     m = simplex.m
-    filename = f"../figures/barycentric-{m}.tex"
+    if simplex.offset_percent is not None:
+        filename = f"../figures/offset-barycentric-{m}.tex"
+    else:
+        filename = f"../figures/barycentric-{m}.tex"
     preamble = "\\documentclass{standalone}\n\\usepackage{tikz}\n\\begin{document}\\begin{tikzpicture}[scale=" + str(m+1) + ",every node/.style={circle, draw=black, fill=white, inner sep=0pt, minimum size=3pt}]\n"
     draw_code = simplex.get_TikZ()
     postamble = "\\end{tikzpicture}\n\\end{document}"
@@ -91,6 +146,6 @@ def draw(simplex):
 
     return
 
-for m in range(1,6):
-    triangle = Simplex(r=1.5, m=m)
+for m in range(1,4):
+    triangle = Simplex(r=1.5, m=m, offset_percent=.5)
     draw(triangle)

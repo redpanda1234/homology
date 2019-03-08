@@ -9,6 +9,6 @@
 *.auxlock
 *.dvi
 *.lo*
-figures/
+homology-notes/figures/
 
-auto/
+**/auto/

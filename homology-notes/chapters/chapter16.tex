@@ -1813,21 +1813,21 @@ cycles in $A,B, A\cap B$, and $K$.
 
     % Parameters for drawing top half of left hole arc
     \pgfmathsetmacro{\lholetx}{.6};
-    \pgfmathsetmacro{\lholety}{.03};
+    \pgfmathsetmacro{\lholety}{.02};
 
     % Bottom half of left hole arc
     \pgfmathsetmacro{\lholebx}{.75};
-    \pgfmathsetmacro{\lholeby}{.09};
+    \pgfmathsetmacro{\lholeby}{.12};
 
     % Parameters for drawing top half of right hole arc
-    \pgfmathsetmacro{\rholetxl}{-.6+\rtorusx};
-    \pgfmathsetmacro{\rholetxr}{.6+\rtorusx};
-    \pgfmathsetmacro{\rholety}{.03+\rtorusy};
+    \pgfmathsetmacro{\rholetxl}{-\lholetx+\rtorusx};
+    \pgfmathsetmacro{\rholetxr}{\lholetx+\rtorusx};
+    \pgfmathsetmacro{\rholety}{\lholety+\rtorusy};
 
     % Bottom half of right hole arc
-    \pgfmathsetmacro{\rholebxl}{-.75+\rtorusx};
-    \pgfmathsetmacro{\rholebxr}{.75+\rtorusx};
-    \pgfmathsetmacro{\rholeby}{.09+\rtorusy};
+    \pgfmathsetmacro{\rholebxl}{-\lholebx+\rtorusx};
+    \pgfmathsetmacro{\rholebxr}{\lholebx+\rtorusx};
+    \pgfmathsetmacro{\rholeby}{\lholeby+\rtorusy};
 
     % Radius values for ellipse used to draw torus
     \pgfmathsetmacro{\rx}{1.7};
@@ -1856,13 +1856,15 @@ cycles in $A,B, A\cap B$, and $K$.
     \pgfmathsetmacro{\connout}{26};
     \pgfmathsetmacro{\connin}{180-\connout};
 
+    \pgfmathsetmacro{\bendamount}{40};
+
     % Left Hole
-    \draw[\ltoruscolor] (-\lholetx, \lholety) to [bend left] (\lholetx, \lholety);
-    \draw[\ltoruscolor] (-\lholebx, \lholeby)  to [bend right] (\lholebx, \lholeby);
+    \draw[\ltoruscolor] (-\lholetx, \lholety) to [bend left=\bendamount] (\lholetx, \lholety);
+    \draw[\ltoruscolor] (-\lholebx, \lholeby)  to [bend right=\bendamount] (\lholebx, \lholeby);
 
     % Right Hole
-    \draw[\rtoruscolor] (\rholetxl, \rholety) to [bend left] (\rholetxr, \rholety);
-    \draw[\rtoruscolor] (\rholebxl, \rholeby)  to [bend right] (\rholebxr, \rholeby);
+    \draw[\rtoruscolor] (\rholetxl, \rholety) to [bend left=\bendamount] (\rholetxr, \rholety);
+    \draw[\rtoruscolor] (\rholebxl, \rholeby)  to [bend right=\bendamount] (\rholebxr, \rholeby);
 
     % Coordinate grid to make adjustments easier to eyeball
     % \draw[help lines, color=gray!30, dashed] (-1.9,-1.9) grid (6,2);
@@ -1936,6 +1938,12 @@ cycles in $A,B, A\cap B$, and $K$.
   \caption{An example of such $A,B$.}
 \end{figure}
 
+
+
+
+
+
+
 \begin{problem}[16.32]
   Note that a cycle in $A \cap B$ is still a cycle in $A$, $B$, and
   $K$. Then answer:
@@ -1962,23 +1970,34 @@ cycles in $A,B, A\cap B$, and $K$.
   $k$-cycles in $A$ and $B$ respectively, and if $\alpha
   \sim_{\zmod{2}} \beta$ in $K$, then there is a $k$-cycle $c$ in
   $A\cap B$ such that $\alpha \sim_{\zmod{2}} c$ in $A$ and $\beta
-  \sim_{\zmod{2}} c$ in $B$.\\
-
-  Equivalently put: let $\alpha \in \msf Z_k(A)$, and $\beta \in \msf
-  Z_k(B)$. Suppose that
-  \[
-    [\alpha]_K = [\beta]_K.
-  \]
-  Then there exists $c \in \msf Z_k(A \cap B)$ such that
-  \[
-    [\alpha]_A = [c]_A \qquad\qquad [\beta]_B = [c]_B
-  \]
-
-  Or, show that if $\alpha - \beta = 0 \in \msf H_k(K)$, then $\exists
-  c \in \msf Z_k(A \cap B)$ such that $(\alpha, \beta) = (c,c) \in
-  \msf H_k(A) \oplus \msf H_k(B)$.
+  \sim_{\zmod{2}} c$ in $B$.
 \end{problem}
 \begin{solution}
+  The question can be rephrased as
+  \begin{leftbar}
+    Let $\alpha \in \msf Z_k(A)$, and $\beta \in \msf Z_k(B)$. Suppose
+    that
+    \[
+      [\alpha]_K = [\beta]_K.
+    \]
+    Then there exists $c \in \msf Z_k(A \cap B)$ such that
+    \[
+      [\alpha]_A = [c]_A \qquad\qquad [\beta]_B = [c]_B
+    \]
+
+    Or, show that if $\alpha - \beta = 0 \in \msf H_k(K)$, then
+    $\exists c \in \msf Z_k(A \cap B)$ such that $(\alpha, \beta) =
+    (c,c) \in \msf H_k(A) \oplus \msf H_k(B)$. This gives us maps
+    \[
+      \msf H_n(K) \xrightarrow{\delta^{k}} \msf H_k(A \cap B)
+      \xrightarrow{\phi^{k}}  \msf H_k(A) \oplus \msf H_k(B)
+    \]
+    by
+    \[
+      [\alpha] = [\beta] \xmapsto{\delta^k} [c] \xmapsto{\phi^k}
+      [(c,c)]
+    \]
+  \end{leftbar}
   Define the homomorphisms $\pi_A : \msf Z_k(K) \to \msf Z_k(A)$,
   $\pi_B : \msf Z_k(K) \to \msf Z_k(B)$ as follows:
   \[
@@ -2083,15 +2102,10 @@ cycles in $A,B, A\cap B$, and $K$.
         &= \partial(z) - \partial(\alpha) \\
         &= \mb 0 -\partial(\alpha) = \partial(\alpha),
       \end{align*}
-      which are $n-1$ boundaries (and hence $n$-cycles).
-    \item Suppose $z = \alpha' + \beta'$ is a sum of the form given.
-      % Then
-      % \begin{align*}
-      %   c' + c
-      %   &= \partial(\alpha') + \partial(\alpha) \\
-      %   &= \partial(\alpha' + \alpha) \in \msf B_{n-1}(A \cap B)
-      % \end{align*}
-
+      which are $(n-1)$-boundaries (and hence $(n-1)$-cycles).
+      Projection onto $A \cap B$ yields the desired result.
+    \item In $A \cap B$, $c$ and $c'$ are both $(n-1)$ boundaries.
+      Hence, they are trivially homologous.
   \end{enumerate}
 \end{solution}
 

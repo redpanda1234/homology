@@ -1854,12 +1854,12 @@ We give this a name.
     \pgfmathsetmacro{\connin}{180-\connout};
 
     % Left Hole
-    \draw (-\lholetx, \lholety) to [bend left] (\lholetx, \lholety);
-    \draw (-\lholebx, \lholeby)  to [bend right] (\lholebx, \lholeby);
+    \draw[\ltoruscolor] (-\lholetx, \lholety) to [bend left] (\lholetx, \lholety);
+    \draw[\ltoruscolor] (-\lholebx, \lholeby)  to [bend right] (\lholebx, \lholeby);
 
     % Right Hole
-    \draw (\rholetxl, \rholety) to [bend left] (\rholetxr, \rholety);
-    \draw (\rholebxl, \rholeby)  to [bend right] (\rholebxr, \rholeby);
+    \draw[\rtoruscolor] (\rholetxl, \rholety) to [bend left] (\rholetxr, \rholety);
+    \draw[\rtoruscolor] (\rholebxl, \rholeby)  to [bend right] (\rholebxr, \rholeby);
 
     % Coordinate grid to make adjustments easier to eyeball
     % \draw[help lines, color=gray!30, dashed] (-1.9,-1.9) grid (6,2);
@@ -1868,40 +1868,72 @@ We give this a name.
 
     \centerarc[\ltoruscolor](0,0)(\lts:\ltf:\rx)(\ry);
     \centerarc[\rtoruscolor](\rtorusx, \rtorusy)(\rts:\rtf:\rx)(\ry);
-    % \draw (\rtorusx, \rtorusy) arc (\rts:\rtf:\rx);
 
-
-% \draw[blue,dash pattern= on 3pt off 5pt] (0,0) |- (1,1) to[out=0,in=90] (2,0);
-% \draw[red,dash pattern= on 3pt off 5pt,dash phase=4pt] (0,0) |- (1,1) to[out=0,in=90] (2,0);
-
-    % Get paths for top and bottom connector segments
-    \def\ptconn\path[name path=tconn] (\lconnx, \lconny) to[out=-\connout, in=\connin] (\rconnx, \rconny);
-    \def\pbconn\path[name path=bconn] (\lconnx, -\lconny) to[out=-\connout, in=\connin] (\rconnx, -\rconny);
-
-    % \draw[red,dash pattern=on 3pt off 5pt] (\lconnx,\lconny) to[out=-\connout,in=-\connin] (\rconnx,\rconny);
-    % \draw[blue,dash pattern=on 3pt off 5pt, dash phase=4pt] (\lconnx,\lconny) to[out=-\connout,in=-\connin] (\rconnx,\rconny);
-
-    % Bottom part of connecting segment
-    \draw \ptconn;
-
-    % I can't believe how un-robust the calc library is
+    % Define parameters for cut circles
     \pgfmathsetmacro{\cutoffset}{.5};
-    \pgfmathsetmacro{\rcutoffset}{2+\cutoffset};
-    \pgfmathsetmacro{\lcutoffset}{2-\cutoffset};
     \pgfmathsetmacro{\cutheight}{.682};
 
-    % Right cut. use calc coordinate addition to avoid yet more
-    % pgfmathmacro definitions
-    \draw[dashed] ($(l\cutoffset, 0) - (0, \cutheight)$) arc (270:90:.2 and \cutheight);
-    % \draw[dashed] ($(2,0)+(\cutoffset, -\cutheight)$) arc (270:90:.2 and \cutheight);
-    \draw[] ($(2,0)+(\cutoffset, -\cutheight)$) arc (-90:90:.2 and \cutheight);
+    % Solid right-hand cut
+    \newcommand{\rcuts}{($(2,0)+(\cutoffset, -\cutheight)$) arc (-90:90:.2 and \cutheight)}
+    \newcommand{\rcutd}{($(2,0)+(\cutoffset, -\cutheight)$) arc (270:90:.2 and \cutheight)}
+
+    \newcommand{\lcuts}{($(2,0)+(-\cutoffset,-\cutheight)$) arc (-90:90:.2 and \cutheight)}
+    \newcommand{\lcutd}{($(2,0)+(-\cutoffset,-\cutheight)$) arc (270:90:.2 and \cutheight)}
+
+    % Right cut
+    % dash this one
+    \path[name path=rcut] \rcutd;
+    \path \rcuts;
 
     % Left cut
-    \draw[dashed] ($(2,0)+(-\cutoffset,-\cutheight)$) arc (270:90:.2 and \cutheight);
-    \draw[] ($(2,0)+(-\cutoffset,-\cutheight)$) arc (-90:90:.2 and \cutheight);
+    % dash this one
+    \path \lcutd;
+    \path[name path=lcut] \lcuts;
 
-    \path[name intersections={of=ltorus and tconn,by=E}];
-    \node[dot=E]  at (E) {};
+    \draw[\rtoruscolor] \lcuts;
+    \draw[\rtoruscolor, dashed] \lcutd;
+    \draw[\ltoruscolor] \rcuts;
+    \draw[\ltoruscolor, dashed] \rcutd;
+
+    % Store path info for top/bottom connectors
+    \newcommand{\tconn}{(\lconnx, \lconny) to[out=-\connout, in=-\connin] (\rconnx, \rconny)}
+    \newcommand{\bconn}{(\lconnx, -\lconny) to[out=\connout, in=\connin] (\rconnx, -\rconny)}
+
+    % Get paths for top and bottom
+    \path[name path=ptconn] \tconn;
+    \path[name path=btconn] \bconn;
+
+    % Find points of intersection between connector from right torus and
+    % slicing circle (rct = right connector top)
+    \path[name intersections={of=lcut and ptconn, by=lctp}];
+    \path[name intersections={of=lcut and btconn, by=lcbp}];
+    \path[name intersections={of=rcut and ptconn, by=rctp}];
+    \path[name intersections={of=rcut and btconn, by=rcbp}];
+
+    % \node[circle, fill, inner sep=1pt] (a) at (rctp) {};
+    \begin{scope}
+      \clip (lctp) -- ($(lctp) + (0,1)$) -- (0,\ry) -- (0,-\ry) -- ($(lcbp) - (0,1)$) -- cycle;
+      \draw[\ltoruscolor] \tconn \bconn;
+    \end{scope}
+
+    \begin{scope}
+      \clip (rctp) -- ($(rctp) + (0,1)$) -- (\rtorusx,\ry) -- (\rtorusx,-\ry) -- ($(rcbp) - (0,1)$) -- cycle;
+      \draw[\rtoruscolor] \tconn \bconn;
+    \end{scope}
+
+    \begin{scope}
+      \clip (rctp) -- (lctp) -- (lcbp) -- (rcbp) -- cycle;
+      \draw[red,dash pattern=on 3pt off 5pt] \tconn \bconn;
+      \draw[blue,dash pattern=on 3pt off 5pt, dash phase=4pt] \tconn \bconn;
+    \end{scope}
+
+
+    % Bottom part of connecting segment
+    % \draw \ptconn;
+
+
+
+
   \end{tikzpicture}
   \caption{torus}
 \end{figure}

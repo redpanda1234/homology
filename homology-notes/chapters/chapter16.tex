@@ -1564,18 +1564,18 @@ Fix two simplicial complexes $K$ and $L$.
   \end{align*}
   we want to show this is a homomorphism.
   \begin{enumerate}[label=(\arabic*)]
-    \item Let $\sigma_1, \sigma_2 \in \msf C_n(K)$ be arbitrary. Then
-      \begin{align*}
-        f_{\# n}\pn{\sigma_1 + \sigma_2}
-        &= f_{\# n} \pn{\sum_{k\in I \cup J} \simp[v^{(k)}]{n}} \\
-        &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n} + \sum_{j \in J} \simp[v^{(j)}]{n}} \\
-        &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n}} + f_{\# n}\pn{\sum_{j \in J} \simp[v^{(j)}]{n}} \\
-        &= f_{\# n}(\sigma_1) + f_{\# n}(\sigma_2)
-      \end{align*}
-    \item We want to show $f_{\# n}(\mb 0) = \mb 0$. Note, for any $\sigma \in
-      \msf C_n(K)$, $\mb 0 = \sigma + \sigma$. By linearity, $f_{\# n}(\mb 0) =
-      f_{\# n}(\sigma + \sigma) = f_{\# n}(\sigma) + f_{\# n}(\sigma) = \mb 0$
-      as well, as desired.
+  \item Let $\sigma_1, \sigma_2 \in \msf C_n(K)$ be arbitrary. Then
+    \begin{align*}
+      f_{\# n}\pn{\sigma_1 + \sigma_2}
+      &= f_{\# n} \pn{\sum_{k\in I \cup J} \simp[v^{(k)}]{n}} \\
+      &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n} + \sum_{j \in J} \simp[v^{(j)}]{n}} \\
+      &= f_{\# n} \pn{\sum_{i\in I} \simp[v^{(i)}]{n}} + f_{\# n}\pn{\sum_{j \in J} \simp[v^{(j)}]{n}} \\
+      &= f_{\# n}(\sigma_1) + f_{\# n}(\sigma_2)
+    \end{align*}
+  \item We want to show $f_{\# n}(\mb 0) = \mb 0$. Note, for any $\sigma \in
+    \msf C_n(K)$, $\mb 0 = \sigma + \sigma$. By linearity, $f_{\# n}(\mb 0) =
+    f_{\# n}(\sigma + \sigma) = f_{\# n}(\sigma) + f_{\# n}(\sigma) = \mb 0$
+    as well, as desired.
   \end{enumerate}
   thus $f_{\# n}$ is a homomorphism.
 \end{solution}
@@ -1641,8 +1641,8 @@ the image of an $n$-simplex is an $(n-1)$-simplex.
 \begin{solution}
   That $f_*$ is a homomorphism follows directly from the definition.
   \begin{enumerate}[label=(\arabic*)]
-    \item That $f_*([\mb 0]) = [\mb 0]$ follows by the definition of $f_{\#}$.
-    \item Similarly for $f_*(\sigma + \tau) = f_*(\sigma) + f_*(\tau)$.
+  \item That $f_*([\mb 0]) = [\mb 0]$ follows by the definition of $f_{\#}$.
+  \item Similarly for $f_*(\sigma + \tau) = f_*(\sigma) + f_*(\tau)$.
   \end{enumerate}
   We now show that $f_*$ is well-defined. Let $[\sigma] \in \msf H_n(K)$ and
   $[\tau] \in \msf H_n(K)$ with $[\sigma] = [\tau]$. Then $\exists \rho \in \msf
@@ -1668,14 +1668,14 @@ the image of an $n$-simplex is an $(n-1)$-simplex.
 \end{problem}
 \begin{solution}
   \begin{enumerate}[label=(\arabic*)]
-    \item We compute the homology groups of $K$. Observe, $\msf H_2(K) \cong
-      \set{\mb 0}$ (since $\msf Z_n(K)$ is trivial). $\msf H_1(K) \cong
-      \zmod{2}$ (since $\msf Z_1(K) \cong \zmod{2}$, as we either have the whole
-      hexagon or we don't, and $\msf B_1(K) \cong \set{\mb 0}$). Finally, by
-      theorem 16.8, we have $\msf H_0(K) \cong \zmod{2}$.
-    \item The homology groups of $L$ are the same.
-    \item The map $f$ folds the circle $\abs{K}$ onto itself
-    \item $f_*$ is an isomorphism.
+  \item We compute the homology groups of $K$. Observe, $\msf H_2(K) \cong
+    \set{\mb 0}$ (since $\msf Z_n(K)$ is trivial). $\msf H_1(K) \cong
+    \zmod{2}$ (since $\msf Z_1(K) \cong \zmod{2}$, as we either have the whole
+    hexagon or we don't, and $\msf B_1(K) \cong \set{\mb 0}$). Finally, by
+    theorem 16.8, we have $\msf H_0(K) \cong \zmod{2}$.
+  \item The homology groups of $L$ are the same.
+  \item The map $f$ folds the circle $\abs{K}$ onto itself
+  \item $f_*$ is an isomorphism.
   \end{enumerate}
 \end{solution}
 \begin{definition}[$\lambda$-map]
@@ -1794,6 +1794,9 @@ We give this a name.
   The disjointness condition follows similarly.
 \end{solution}
 
+We'll now examine cases where we have two subcomplexes $A,B$ of a
+simplicial complex $K$. We want to look at relationships between
+cycles in $A,B, A\cap B$, and $K$.
 \begin{figure}[h]
   \centering
   \begin{tikzpicture}[scale=2] % Syntax: [#1] optional arguments, (#2) center point, (#3:#4:#5) start angle, stop angle, radius; #6 secondary radius
@@ -1927,16 +1930,88 @@ We give this a name.
       \draw[blue,dash pattern=on 3pt off 5pt, dash phase=4pt] \tconn \bconn;
     \end{scope}
 
-
-    % Bottom part of connecting segment
-    % \draw \ptconn;
-
-
-
+    % \draw[densely dotted] (2,.3) .. controls (1.3,.5) .. (1.15,.2) .. controls (1.1,-.1) .. (1.5,-.1) .. controls (2.2,-.4) .. (2,.3);
 
   \end{tikzpicture}
-  \caption{torus}
+  \caption{An example of such $A,B$.}
 \end{figure}
+
+\begin{problem}[16.32]
+  Note that a cycle in $A \cap B$ is still a cycle in $A$, $B$, and
+  $K$. Then answer:
+  \begin{enumerate}
+  \item Can a trivial cycle in $A \cap B$ be non-trivial in $A$?
+  \item Can a non-trivial cycle in $A \cap B$ be trivial in $A$?
+  \item Can a non-trivial cycle in $A \cap B$ that's also
+    non-trivial in $A$ and in $B$ be trivial in $K$?
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  Let $\sigma \in A \cap B$. I'll assume this is asking us to just
+  consider just the inclusion map applied to $\sigma$
+  \begin{enumerate}
+  \item Nope. Including into $A$ won't change $\sigma$ at all.
+  \item No.
+  \item No.
+  \end{enumerate}
+\end{solution}
+
+\begin{problem}[16.33]
+  Let $K$ be a finite simplicial complex and $A$ and $B$ be
+  subcomplexes such that $K=A\cup B$. If $\alpha$, $\beta$ are
+  $k$-cycles in $A$ and $B$ respectively, and if $\alpha
+  \sim_{\zmod{2}} \beta$ in $K$, then there is a $k$-cycle $c$ in
+  $A\cap B$ such that $\alpha \sim_{\zmod{2}} c$ in $A$ and $\beta
+  \sim_{\zmod{2}} c$ in $B$.
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\begin{problem}[16.34]
+  Let $K$ be a finite simplicial complex and $A$ and $B$ be
+  subcomplexes such that  $K=A\cup B$. Let $z$ be a $k$-cycle in $K$.
+  Then there exist $k$-chains $\alpha$ and $\beta$ in $A$ and $B$
+  respectively such that:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $z=\alpha+\beta$ and
+    \item $\partial \alpha=\partial \beta$ is a $(n-1)$-cycle $c$ in
+      $A\cap B$.
+  \end{enumerate}
+  Furthermore, if $z= \alpha'+\beta'$, a sum of $n$-chains in $A$ and
+  $B$ respectively, and $c'= \partial \alpha' = \partial \beta'$ is a
+  $(n-1)$-cycle, then $c'$ is homologous to $c$ in $A \cap B$.
+\end{problem}
+
+\begin{solution}
+
+\end{solution}
+
+\begin{definition}[Exact sequence]
+  Given a (finite or infinite) sequence of groups and homomorphisms:
+  \[
+    \cdots \to
+    G_{i-1}\stackrel{\phi_{i-1}}{\longrightarrow}G_{i}\stackrel{\phi_i}{\longrightarrow}G_{i+1}
+    \to \dots
+  \]
+  the sequence is \textbf{exact at $G_i$} if and only if $\image
+  \phi_{i-1}=\kernel \phi_{i}$. The sequence is called an
+  \textbf{exact sequence} if and only if it is exact at each group
+  (except at the first and last groups if they exist).
+\end{definition}
+
+
+\begin{problem}[$\zmod{2}$ Mayer-Vietoris]
+  Let $K$ be a finite simplicial complex and $A$ and $B$ be
+  subcomplexes such that $K=A\cup B$. The sequence
+  \[
+    \dots \to \HH_n(A\cap B) \to \HH_n(A)\oplus \HH_n(B) \to \HH_n(K)
+    \to \HH_{n-1}(A\cap B) \to \dots
+  \]
+  using the homomorphisms $\phi,\psi,\delta$ above, is exact.
+\end{problem}
+
+
 
 %%% Local Variables:
 %%% TeX-master: "../main"

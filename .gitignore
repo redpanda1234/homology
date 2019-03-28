@@ -12,6 +12,8 @@
 *.auxlock
 *.dvi
 *.lo*
-homology-notes/figures/
-
+*.dpth
+homology-notes/figures/*
+!homology-notes/figures/*.tex
+homology-notes/figures/*barycentric*
 **/auto/

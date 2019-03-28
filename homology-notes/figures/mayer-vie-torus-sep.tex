@@ -1,0 +1,197 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{calc, intersections}
+\begin{document}
+\begin{tikzpicture}[scale=2] % Syntax: [#1] optional arguments, (#2) center point, (#3:#4:#5) start angle, stop angle, radius; #6 secondary radius
+  \def\centerarc[#1](#2)(#3:#4:#5)(#6){
+    \draw[#1] ($(#2)+({#5*cos(#3)},{#6*sin(#3)})$) arc (#3:#4:#5 and #6);
+  }
+
+  \def\ltoruscolor{red}
+  \def\rtoruscolor{blue}
+
+  % Where to center the right torus
+  \pgfmathsetmacro{\rtorusx}{4};
+  \pgfmathsetmacro{\rtorusy}{-2};
+
+  % Parameters for drawing top half of left hole arc
+  \pgfmathsetmacro{\lholetx}{.6};
+  \pgfmathsetmacro{\lholety}{.02};
+
+  % Bottom half of left hole arc
+  \pgfmathsetmacro{\lholebx}{.75};
+  \pgfmathsetmacro{\lholeby}{.12};
+
+  % Parameters for drawing top half of right hole arc
+  \pgfmathsetmacro{\rholetxl}{-\lholetx+\rtorusx};
+  \pgfmathsetmacro{\rholetxr}{\lholetx+\rtorusx};
+  \pgfmathsetmacro{\rholety}{\lholety+\rtorusy};
+
+  % Bottom half of right hole arc
+  \pgfmathsetmacro{\rholebxl}{-\lholebx+\rtorusx};
+  \pgfmathsetmacro{\rholebxr}{\lholebx+\rtorusx};
+  \pgfmathsetmacro{\rholeby}{\lholeby+\rtorusy};
+
+  % Radius values for ellipse used to draw torus
+  \pgfmathsetmacro{\rx}{1.7};
+  \pgfmathsetmacro{\ry}{1.1};
+
+  % Angles used for left torus --- left theta start, left theta finish
+  \pgfmathsetmacro{\lts}{50};
+  \pgfmathsetmacro{\ltf}{310};
+
+  % Angles used for left torus --- left theta start, left theta finish
+  \pgfmathsetmacro{\rts}{180+\lts};
+  \pgfmathsetmacro{\rtf}{180+\ltf};
+
+  % left X value for the connector
+  \pgfmathsetmacro{\lconnx}{\rx * cos(\lts)};
+  % left Y value for the connector
+  \pgfmathsetmacro{\lconny}{\ry * sin(\lts)};
+
+  % right X value for the connector
+  \pgfmathsetmacro{\rconnx}{\rx * cos(\rts) + \rtorusx};
+
+  % right Y value for the connector
+  \pgfmathsetmacro{\rconny}{-\ry * sin(\rts)};
+  \pgfmathsetmacro{\rightrconny}{-\ry * sin(\rts) + \rtorusy};
+
+  % Set the incoming / outgoing angles of elevation for the
+  % connectors
+  \pgfmathsetmacro{\connout}{26};
+  \pgfmathsetmacro{\connin}{180-\connout};
+
+  \pgfmathsetmacro{\bendamount}{40};
+
+  % Left Hole
+  \draw[\ltoruscolor] (-\lholetx, \lholety) to [bend left=\bendamount] (\lholetx, \lholety);
+  \draw[\ltoruscolor] (-\lholebx, \lholeby)  to [bend right=\bendamount] (\lholebx, \lholeby);
+
+  % Right Hole
+  \draw[\rtoruscolor] (\rholetxl, \rholety) to [bend left=\bendamount] (\rholetxr, \rholety);
+  \draw[\rtoruscolor] (\rholebxl, \rholeby)  to [bend right=\bendamount] (\rholebxr, \rholeby);
+
+  \centerarc[\ltoruscolor](0,0)(\lts:\ltf:\rx)(\ry);
+  \centerarc[\rtoruscolor](\rtorusx, \rtorusy)(\rts:\rtf:\rx)(\ry);
+
+  % Define parameters for cut circles
+  \pgfmathsetmacro{\cutoffset}{.5};
+  \pgfmathsetmacro{\cutheight}{.682};
+
+  % Solid right-hand cut
+  \newcommand{\rcuts}{($(2,0)+(\cutoffset, -\cutheight)$) arc (-90:90:.2 and \cutheight)}
+  \newcommand{\rcutd}{($(2,0)+(\cutoffset, -\cutheight)$) arc (270:90:.2 and \cutheight)}
+
+  \newcommand{\lcuts}{($(2,0)+(-\cutoffset,-\cutheight)+(0,\rtorusy)$) arc (-90:90:.2 and \cutheight)}
+  \newcommand{\lcutd}{($(2,0)+(-\cutoffset,-\cutheight)+(0,\rtorusy)$) arc (270:90:.2 and \cutheight)}
+
+  % Right cut
+  % dash this one
+  \path[name path=rcut] \rcutd;
+  \path \rcuts;
+
+  % Left cut
+  % dash this one
+  \path \lcutd;
+  \path[name path=lcut] \lcuts;
+
+  \draw[\rtoruscolor] \lcuts;
+  \draw[\rtoruscolor, dashed] \lcutd;
+  \draw[\ltoruscolor] \rcuts;
+  \draw[\ltoruscolor, dashed] \rcutd;
+
+  % Store path info for top/bottom connectors
+  \newcommand{\lefttconn}{(\lconnx, \lconny) to[out=-\connout, in=-\connin] (\rconnx, \rconny)}
+  \newcommand{\leftbconn}{(\lconnx, -\lconny) to[out=\connout, in=\connin] (\rconnx, -\rconny)}
+
+  \newcommand{\righttconn}{(\lconnx, \rightrconny) to[out=-\connout, in=-\connin] (\rconnx, \rightrconny)}
+  \newcommand{\rightbconn}{($(\lconnx, 0)+(0,\rtorusy) - (0,\lconny)$) to[out=\connout, in=\connin] ($(\rconnx, 0) + (0,\rtorusy) - (0,\rconny)$)}
+
+  % Get paths for top and bottom
+  \path[name path=leftptconn] \lefttconn;
+  \path[name path=leftbtconn] \leftbconn;
+
+  \path[name path=rightptconn] \righttconn;
+  \path[name path=rightbtconn] \rightbconn;
+
+  % Find points of intersection between connector from right torus and
+  % slicing circle (rct = right connector top)
+  % \path[name intersections={of=lcut and leftptconn, by=leftlctp}];
+  % \path[name intersections={of=lcut and leftbtconn, by=leftlcbp}];
+  \path[name intersections={of=rcut and leftptconn, by=lefttp}];
+  \path[name intersections={of=rcut and leftbtconn, by=leftbp}];
+
+  \path[name intersections={of=lcut and rightptconn, by=righttp}];
+  \path[name intersections={of=lcut and rightbtconn, by=rightbp}];
+  % \path[name intersections={of=rcut and rightptconn, by=rightrctp}];
+  % \path[name intersections={of=rcut and rightbtconn, by=rightrcbp}];
+
+  % \node[circle, fill, inner sep=1pt] (a) at (rctp) {};
+  \begin{scope}
+    \clip ($(righttp) - (0,\rtorusy) + (0,1)$) -- (0,\ry) -- (0,-\ry) -- ($(rightbp) + (0,\rtorusy)$) -- cycle;
+    \draw[\ltoruscolor] \lefttconn \leftbconn;
+  \end{scope}
+
+  \begin{scope}
+    \clip ($(lefttp) + (0,\rtorusy) + (0,1)$) -- ($(\rtorusx,\ry) + (0,\rtorusy)$) -- ($(\rtorusx,-\ry) + (0,\rtorusy)$) -- ($(leftbp) + (0,\rtorusy)-(0,.5)$) -- cycle;
+    \draw[\rtoruscolor] \righttconn \rightbconn;
+  \end{scope}
+
+  \begin{scope}
+    \clip (lefttp) rectangle (rightbp);
+    \draw[\ltoruscolor,dash pattern=on 3pt off 5pt] \lefttconn \leftbconn;
+  \end{scope}
+
+  \begin{scope}
+    \clip (righttp) -- ++(2,0) -- ++(0,-1.5) -- (rightbp) -- cycle;
+    \draw[blue,dash pattern=on 3pt off 5pt, dash phase=4pt] \righttconn \rightbconn;
+  \end{scope}
+
+  % Coordinate grid to make adjustments easier to eyeball
+  % \draw[help lines, color=gray!30, dashed] (-1.9,-1.9) grid (6,2);
+  % \draw[->] (-2,0)--(6,0) node[right]{$x$};
+  % \draw[->] (0,-2)--(0,2) node[above]{$y$};
+
+  % \node[fill, circle, inner sep=.5pt] (t1) at (2,.4) {};
+  % \node[fill, circle, inner sep=.5pt] (a2) at (2,.25) {};
+  % \node[fill, circle, inner sep=.5pt] (b2) at (2,-.25) {};
+  % \node[fill, circle, inner sep=.5pt] (b1) at (2,-.4) {};
+
+  % \pgfmathsetmacro{\ascaledrx}{.85*\rx};
+  % \pgfmathsetmacro{\ascaledry}{.8*\ry};
+  % \pgfmathsetmacro{\ascaledlconnx}{\ascaledrx * cos(\lts)};
+  % \pgfmathsetmacro{\ascaledlconny}{\ascaledry * sin(\lts)};
+  % \pgfmathsetmacro{\ascaledrconnx}{\ascaledrx * cos(\rts) + \rtorusx};
+  % \pgfmathsetmacro{\ascaledrconny}{-\ascaledry * sin(\rts) + \rtorusy};
+  % \pgfmathsetmacro{\ascaledout}{26};
+  % \pgfmathsetmacro{\ascaledin}{180-\ascaledout};
+  % \newcommand{\ascaledtconn}{(\ascaledlconnx, \ascaledlconny) to[out=-\ascaledout, in=-\ascaledin] (\ascaledrconnx, \ascaledrconny)}
+  % \newcommand{\ascaledbconn}{(\ascaledlconnx, -\ascaledlconny) to[out=\ascaledout, in=\ascaledin] (\ascaledrconnx, -\ascaledrconny)}
+
+  % \draw[densely dotted] \ascaledtconn \ascaledbconn;
+  % \centerarc[densely dotted](0,0)(\lts:\ltf:\ascaledrx)(\ascaledry);
+  % \centerarc[densely dotted](\rtorusx,\rtorusy)(\rts:\rtf:\ascaledrx)(\ascaledry);
+
+  % \pgfmathsetmacro{\bscaledrx}{.7*\rx};
+  % \pgfmathsetmacro{\bscaledry}{.6*\ry};
+  % \pgfmathsetmacro{\bscaledlconnx}{\bscaledrx * cos(\lts)};
+  % \pgfmathsetmacro{\bscaledlconny}{\bscaledry * sin(\lts)};
+  % \pgfmathsetmacro{\bscaledrconnx}{\bscaledrx * cos(\rts) + \rtorusx};
+  % \pgfmathsetmacro{\bscaledrconny}{-\bscaledry * sin(\rts) + \rtorusy};
+  % \pgfmathsetmacro{\bscaledout}{20.8};
+  % \pgfmathsetmacro{\bscaledin}{180-\bscaledout};
+  % \newcommand{\bscaledtconn}{(\bscaledlconnx, \bscaledlconny) to[out=-\bscaledout, in=-\bscaledin] (\bscaledrconnx, \bscaledrconny)}
+  % \newcommand{\bscaledbconn}{(\bscaledlconnx, -\bscaledlconny) to[out=\bscaledout, in=\bscaledin] (\bscaledrconnx, -\bscaledrconny)}
+
+  % \draw[densely dotted] \bscaledtconn \bscaledbconn;
+  % \centerarc[densely dotted](0,0)(\lts:\ltf:\bscaledrx)(\bscaledry);
+  % \centerarc[densely dotted](\rtorusx,\rtorusy)(\rts:\rtf:\bscaledrx)(\bscaledry);
+
+
+
+  % \draw[densely dashed, very thin] (t1) -- (.7,)
+
+  % \draw[densely dotted] (2,.3) .. controls (1.3,.5) .. (1.15,.2) .. controls (1.1,-.1) .. (1.5,-.1) .. controls (2.2,-.4) .. (2,.3);
+
+\end{tikzpicture}
+\end{document}

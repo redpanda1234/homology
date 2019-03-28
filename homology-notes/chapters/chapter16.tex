@@ -1951,8 +1951,8 @@ cycles in $A,B, A\cap B$, and $K$.
   consider just the inclusion map applied to $\sigma$
   \begin{enumerate}
   \item Nope. Including into $A$ won't change $\sigma$ at all.
-  \item No.
-  \item No.
+  \item No?
+  \item No?
   \end{enumerate}
 \end{solution}
 
@@ -1962,10 +1962,89 @@ cycles in $A,B, A\cap B$, and $K$.
   $k$-cycles in $A$ and $B$ respectively, and if $\alpha
   \sim_{\zmod{2}} \beta$ in $K$, then there is a $k$-cycle $c$ in
   $A\cap B$ such that $\alpha \sim_{\zmod{2}} c$ in $A$ and $\beta
-  \sim_{\zmod{2}} c$ in $B$.
+  \sim_{\zmod{2}} c$ in $B$.\\
+
+  Equivalently put: let $\alpha \in \msf Z_k(A)$, and $\beta \in \msf
+  Z_k(B)$. Suppose that
+  \[
+    [\alpha]_K = [\beta]_K.
+  \]
+  Then there exists $c \in \msf Z_k(A \cap B)$ such that
+  \[
+    [\alpha]_A = [c]_A \qquad\qquad [\beta]_B = [c]_B
+  \]
+
+  Or, show that if $\alpha - \beta = 0 \in \msf H_k(K)$, then $\exists
+  c \in \msf Z_k(A \cap B)$ such that $(\alpha, \beta) = (c,c) \in
+  \msf H_k(A) \oplus \msf H_k(B)$.
 \end{problem}
 \begin{solution}
+  Define the homomorphisms $\pi_A : \msf Z_k(K) \to \msf Z_k(A)$,
+  $\pi_B : \msf Z_k(K) \to \msf Z_k(B)$ as follows:
+  \[
+    \pi_A(\sigma) =
+    \begin{cases}
+      \sigma & \text{if } \sigma \in \msf Z_k(A) \\
+      \mb 0 & \text{otherwise}
+    \end{cases}
+    \qquad\qquad
+    \pi_B(\sigma) =
+    \begin{cases}
+      \sigma & \text{if } \sigma \in \msf Z_k(B) \\
+      \mb 0 & \text{otherwise}
+    \end{cases}
+  \]
+  Observe that the following diagram commutes:\footnote{Ok,
+    technically $\dom \pi_A = \msf Z_k(K) \neq \msf Z_k(B)$, but you
+    could throw an inclusion map in there if you so pleased.}
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \node (K) at (-1.25,1) {$\msf Z_k(K)$};
+      \node (A) at (1.25,1) {$\msf Z_k(A)$};
+      \node (B) at (-1.25,-1) {$\msf Z_k(B)$};
+      \node (AcB) at (1.25,-1) {$\msf Z_k(A\cap B)$};
 
+      \draw[->] (K) -- (A) node[midway, above] {$\pi_A$};
+      \draw[->] (A) -- (AcB) node[midway, right] {$\pi_B$};
+      \draw[->] (K) -- (B) node[midway, left] {$\pi_B$};
+      \draw[->] (B) -- (AcB) node[midway, below] {$\pi_A$};
+
+      \pgfmathsetmacro{\r}{.25}
+      \draw[->] (\r,0) arc(0:300:\r);
+    \end{tikzpicture}
+    \caption{$\pi_A \circ \pi_B = \pi_B \circ \pi_A$}
+  \end{figure}
+  And also note that $\pi_A$, $\pi_B$ are idempotent. Now, since
+  $[\alpha]_K = [\beta]_K$, there exists $c \in \msf B_k(K)$ such
+  that $\alpha + \beta = c$. Note that
+  \begin{align*}
+    \partial \pn{(\pi_A \circ \pi_B)(c)}
+    &= \pn{\pi_A \circ \pi_B}(\partial c) \\
+    &= (\pi_A \circ \pi_B)(\partial (\alpha + \beta)) \\
+    &= (\pi_A \circ \pi_B)
+% \partial c
+%     &=
+%     &= (\pi_A \circ \pi_B)(\partial c') \\
+%     &= (\pi_A \circ \pi_B)(\partial (\alpha + \beta)) \\
+%     &= (\pi_A \circ \pi_B)(\mb 0) \\
+%     &= \mb 0
+  \end{align*}
+  Hence $c \in \msf Z_{k}(A \cap B)$. Now,
+  \begin{align*}
+    \pi_A(\alpha - c)
+    &= \pi_A(\pi_A(\alpha + \beta) - \pi_A(\beta) - c)
+    % \pi_A(\alpha + \beta)
+    % &= \pi_A(\alpha + (\pi_A(\beta) + \pi_B(\beta) - c)) \\
+    % &= \alpha + \pi_A(\beta) + \pi_A(\pi_B(\beta)) - c \\
+    % &= \alpha - c
+  \end{align*}
+  Hence, there exists $c_A \in \msf B_k(A)$, $c_B \in \msf B_k(B)$
+  such that
+  \begin{align*}
+    \alpha
+    &=
+  \end{align*}
 \end{solution}
 
 \begin{problem}[16.34]
@@ -1977,36 +2056,110 @@ cycles in $A,B, A\cap B$, and $K$.
     \item $z=\alpha+\beta$ and
     \item $\partial \alpha=\partial \beta$ is a $(n-1)$-cycle $c$ in
       $A\cap B$.
+    \item If $z= \alpha'+\beta'$, a sum of $n$-chains in $A$ and $B$
+      respectively, and $c'= \partial \alpha' = \partial \beta'$ is a
+      $(n-1)$-cycle, then $c'$ is homologous to $c$ in $A \cap B$.
   \end{enumerate}
-  Furthermore, if $z= \alpha'+\beta'$, a sum of $n$-chains in $A$ and
-  $B$ respectively, and $c'= \partial \alpha' = \partial \beta'$ is a
-  $(n-1)$-cycle, then $c'$ is homologous to $c$ in $A \cap B$.
 \end{problem}
 
 \begin{solution}
+  \begin{enumerate}[label=(\arabic*)]
+    \item Let $\alpha = \pi_A(z)$. Then $\alpha \in \msf C_k(A)$. Now,
+      taking $\beta = z - \alpha$, we see
+      \begin{align*}
+        \pi_A(\beta)
+        &= \pi_A(z - \alpha) \\
+        &= \pi_A(z - \pi_A(\alpha)) \\
+        &= \pi_A(z) - \pi_A(\pi_A(z)) \\
+        &= \pi_A(z) - \pi_A(z) \\
+        &= \mb 0
+      \end{align*}
+      hence $\beta \in \msf C_k(B)$.
+    \item WTS $\partial \alpha = \partial \beta \in \msf Z_{n-1}(A
+      \cap B)$. Note,
+      \begin{align*}
+        \partial(\beta)
+        &= \partial(z - \alpha) \\
+        &= \partial(z) - \partial(\alpha) \\
+        &= \mb 0 -\partial(\alpha) = \partial(\alpha),
+      \end{align*}
+      which are $n-1$ boundaries (and hence $n$-cycles).
+    \item Suppose $z = \alpha' + \beta'$ is a sum of the form given.
+      % Then
+      % \begin{align*}
+      %   c' + c
+      %   &= \partial(\alpha') + \partial(\alpha) \\
+      %   &= \partial(\alpha' + \alpha) \in \msf B_{n-1}(A \cap B)
+      % \end{align*}
 
+  \end{enumerate}
 \end{solution}
+
+\begin{problem}[16.36]
+  Let $K$ be a simplicial complex and $A$ and $B$ be subcomplexes such
+  that $K=A\cup B$. Construct natural homomorphisms $\phi,\psi,\delta$
+  among the groups below and show that $\psi \circ \phi =0$ and
+  $\delta \circ \psi = 0$.
+  \begin{enumerate}
+    \item $\phi: \msf H_n(A\cap B)\to \msf H_n(A)\oplus \msf H_n(B)$.
+    \item $\psi: \msf H_n(A)\oplus \msf H_n(B)\to \msf H_n(K)$.
+    \item $\delta: \msf H_n(K)\to \msf H_{n-1}(A\cap B)$.
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  Let
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\phi : \msf H_n(A \cap B) \to \msf H_n(A) \oplus \msf
+      H_n(B)$ be given by
+      \[
+        \phi(\rho) = (\rho, \rho).
+      \]
+      That this is a well-defined homomorphism follows immediately.
+    \item Let $\psi(\sigma, \tau)$ be given by
+      \[
+        \psi(\sigma,\tau) = \sigma - \tau.
+      \]
+      It is straightforward to verify this is a well-defined
+      homomorphism.
+    \item Let $\delta(\sigma)$ be given by
+      \[
+        \delta(\upsilon) = \partial(\pi_A \circ \pi_B(\upsilon)).
+      \]
+      All the maps in this definition are linear on simplices.
+      Homomorphism follows.
+  \end{enumerate}
+  Now, we show the composition things.
+  \begin{enumerate}
+    \item $\psi \circ \phi = 0$ is trivial
+    \item Note
+      \begin{align*}
+        \delta(\psi(\alpha, \beta))
+        &= \partial (\pi_A \circ \pi_B (\alpha - \beta)) \\
+        &=
+      \end{align*}
+  \end{enumerate}
+\end{solution}
+
 
 \begin{definition}[Exact sequence]
   Given a (finite or infinite) sequence of groups and homomorphisms:
   \[
-    \cdots \to
-    G_{i-1}\stackrel{\phi_{i-1}}{\longrightarrow}G_{i}\stackrel{\phi_i}{\longrightarrow}G_{i+1}
-    \to \dots
+    \cdots \to G_{i-1}\stackrel{\phi_{i-1}}{\longrightarrow} G_{i}
+    \stackrel{\phi_i}{\longrightarrow}G_{i+1} \to \cdots
   \]
-  the sequence is \textbf{exact at $G_i$} if and only if $\image
-  \phi_{i-1}=\kernel \phi_{i}$. The sequence is called an
-  \textbf{exact sequence} if and only if it is exact at each group
-  (except at the first and last groups if they exist).
+  the sequence is \textbf{exact at $G_i$} if and only if $\im
+  \phi_{i-1}=\ker \phi_{i}$. The sequence is called an \textbf{exact
+    sequence} if and only if it is exact at each group (except at the
+  first and last groups if they exist).
 \end{definition}
 
 
-\begin{problem}[$\zmod{2}$ Mayer-Vietoris]
+\begin{problem}[16.37]
   Let $K$ be a finite simplicial complex and $A$ and $B$ be
   subcomplexes such that $K=A\cup B$. The sequence
   \[
-    \dots \to \HH_n(A\cap B) \to \HH_n(A)\oplus \HH_n(B) \to \HH_n(K)
-    \to \HH_{n-1}(A\cap B) \to \dots
+    \dots \to \msf H_n(A\cap B) \to \msf H_n(A)\oplus \msf H_n(B) \to
+    \msf H_n(K) \to \msf H_{n-1}(A\cap B) \to \dots
   \]
   using the homomorphisms $\phi,\psi,\delta$ above, is exact.
 \end{problem}

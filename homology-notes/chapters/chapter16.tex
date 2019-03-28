@@ -168,7 +168,7 @@ more satisfying way than higher homotopy groups do.
   \]
 \end{definition}
 \begin{problem}[F1]
-  Consider the simplicial complex given below in Figure \cref{fig:F1}. Then for
+  Consider the simplicial complex given below in Figure \cref{fig:FK1}. Then for
   $n = 0, 1, 2$,
   \begin{enumerate}
   \item describe elements of $\msf C_n(K)$,
@@ -1741,18 +1741,30 @@ We give this a name.
   \begin{align*}
     \partial \SD(c)
     &= \partial\sum_{\mathclap{\pi \in \mc S_{n+1}}} \simp[b^\pi]{n} \\
-    &= \sum_{\pi \in \mc S_{n+1}} \sum_{j=1}^n \simpdel[b^\pi]{j}{n}
+    &= \sum_{\pi \in \mc S_{n+1}} \sum_{j=0}^n \simpdel[b^\pi]{j}{n} \\
+    &= \sum_{j=0}^n \sum_{\pi \in \mc S_{n+1}} \simpdel[b^\pi]{j}{n} \\
+    &= \sum_{j=0}^{n-1} \sum_{\pi' \in \mc S_{n}} \simp[b^{\pi'}]{n-1} \\
+    &= \SD(\partial c)
   \end{align*}
-  Hmm\ldots confusion.
+  as desired.\footnote{$\pi'$ is the permutation given by $\pi^{-1}(j_0) =
+    \pi(j_0)$, where $j_0$ is the deleted vertex.}
 \end{solution}
-\begin{problem}[16.21]
-  Show that $\lambda_\# \circ \SD = \msf{id}$, the identity map on $\msf
-  C_n(K)$, and therefore $\lambda_* \circ \SD_* = \msf{id}_*$, the identity map
-  on $\msf H_n(K)$.
-\end{problem}
-\begin{solution}
-  Recall the definition {\color{red} hmm\ldots is this worth it for now?}
-\end{solution}
+% \begin{problem}[16.21]
+%   Show that $\lambda_\# \circ \SD = \msf{id}$, the identity map on $\msf
+%   C_n(K)$, and therefore $\lambda_* \circ \SD_* = \msf{id}_*$, the identity map
+%   on $\msf H_n(K)$.
+% \end{problem}
+% \begin{solution}
+%   Recall the definition:
+%   \[
+%     \lambda_\# \sigma_i
+%     =
+%     \begin{cases}
+%       \mb 0 & \text{if } f(\sigma_i) \text{ is not an $n$-simplex}, \\
+%       \lambda(\sigma) & \text{otherwise.}
+%     \end{cases}
+%   \]
+% \end{solution}
 
 \begin{note}
   \color{green} I think that it's getting a little tricky here to see which
@@ -1774,9 +1786,128 @@ We give this a name.
   subcomplexes of $K$ is a subcomplex.
 \end{problem}
 \begin{solution}
-  Let $L, M$ be subcomplexes of $K$.
+  Let $L, M$ be subcomplexes of $K$. Then for all $\sigma \in L \cap
+  M$, $\sigma \in L,\ \sigma \in M$, hence for all faces $\sigma'
+  \subset \sigma$, we have $\sigma' \in L,\ \sigma' \in M$, and thus
+  $\sigma'\in L \cap M$. Hence $L \cap M$ is a simplicial complex.
+
+  The disjointness condition follows similarly.
 \end{solution}
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[scale=2] % Syntax: [#1] optional arguments, (#2) center point, (#3:#4:#5) start angle, stop angle, radius; #6 secondary radius
+    \def\centerarc[#1](#2)(#3:#4:#5)(#6){
+      \draw[#1] ($(#2)+({#5*cos(#3)},{#6*sin(#3)})$) arc (#3:#4:#5 and #6);
+    }
+
+    \def\ltoruscolor{red}
+    \def\rtoruscolor{blue}
+
+    % Where to center the right torus
+    \pgfmathsetmacro{\rtorusx}{4};
+    \pgfmathsetmacro{\rtorusy}{0};
+
+    % Parameters for drawing top half of left hole arc
+    \pgfmathsetmacro{\lholetx}{.6};
+    \pgfmathsetmacro{\lholety}{.03};
+
+    % Bottom half of left hole arc
+    \pgfmathsetmacro{\lholebx}{.75};
+    \pgfmathsetmacro{\lholeby}{.09};
+
+    % Parameters for drawing top half of right hole arc
+    \pgfmathsetmacro{\rholetxl}{-.6+\rtorusx};
+    \pgfmathsetmacro{\rholetxr}{.6+\rtorusx};
+    \pgfmathsetmacro{\rholety}{.03+\rtorusy};
+
+    % Bottom half of right hole arc
+    \pgfmathsetmacro{\rholebxl}{-.75+\rtorusx};
+    \pgfmathsetmacro{\rholebxr}{.75+\rtorusx};
+    \pgfmathsetmacro{\rholeby}{.09+\rtorusy};
+
+    % Radius values for ellipse used to draw torus
+    \pgfmathsetmacro{\rx}{1.7};
+    \pgfmathsetmacro{\ry}{1.1};
+
+    % Angles used for left torus --- left theta start, left theta finish
+    \pgfmathsetmacro{\lts}{50};
+    \pgfmathsetmacro{\ltf}{310};
+
+    % Angles used for left torus --- left theta start, left theta finish
+    \pgfmathsetmacro{\rts}{180+\lts};
+    \pgfmathsetmacro{\rtf}{180+\ltf};
+
+    % left X value for the connector
+    \pgfmathsetmacro{\lconnx}{\rx * cos(\lts)};
+    % left Y value for the connector
+    \pgfmathsetmacro{\lconny}{\ry * sin(\lts)};
+
+    % right X value for the connector
+    \pgfmathsetmacro{\rconnx}{\rx * cos(\rts) + \rtorusx};
+    % right Y value for the connector
+    \pgfmathsetmacro{\rconny}{-\ry * sin(\rts) + \rtorusy};
+
+    % Set the incoming / outgoing angles of elevation for the
+    % connectors
+    \pgfmathsetmacro{\connout}{26};
+    \pgfmathsetmacro{\connin}{180-\connout};
+
+    % Left Hole
+    \draw (-\lholetx, \lholety) to [bend left] (\lholetx, \lholety);
+    \draw (-\lholebx, \lholeby)  to [bend right] (\lholebx, \lholeby);
+
+    % Right Hole
+    \draw (\rholetxl, \rholety) to [bend left] (\rholetxr, \rholety);
+    \draw (\rholebxl, \rholeby)  to [bend right] (\rholebxr, \rholeby);
+
+    % Coordinate grid to make adjustments easier to eyeball
+    % \draw[help lines, color=gray!30, dashed] (-1.9,-1.9) grid (6,2);
+    % \draw[->] (-2,0)--(6,0) node[right]{$x$};
+    % \draw[->] (0,-2)--(0,2) node[above]{$y$};
+
+    \centerarc[\ltoruscolor](0,0)(\lts:\ltf:\rx)(\ry);
+    \centerarc[\rtoruscolor](\rtorusx, \rtorusy)(\rts:\rtf:\rx)(\ry);
+    % \draw (\rtorusx, \rtorusy) arc (\rts:\rtf:\rx);
+
+
+% \draw[blue,dash pattern= on 3pt off 5pt] (0,0) |- (1,1) to[out=0,in=90] (2,0);
+% \draw[red,dash pattern= on 3pt off 5pt,dash phase=4pt] (0,0) |- (1,1) to[out=0,in=90] (2,0);
+
+    % Get paths for top and bottom connector segments
+    \def\ptconn\path[name path=tconn] (\lconnx, \lconny) to[out=-\connout, in=\connin] (\rconnx, \rconny);
+    \def\pbconn\path[name path=bconn] (\lconnx, -\lconny) to[out=-\connout, in=\connin] (\rconnx, -\rconny);
+
+    % \draw[red,dash pattern=on 3pt off 5pt] (\lconnx,\lconny) to[out=-\connout,in=-\connin] (\rconnx,\rconny);
+    % \draw[blue,dash pattern=on 3pt off 5pt, dash phase=4pt] (\lconnx,\lconny) to[out=-\connout,in=-\connin] (\rconnx,\rconny);
+
+    % Bottom part of connecting segment
+    \draw \ptconn;
+
+    % I can't believe how un-robust the calc library is
+    \pgfmathsetmacro{\cutoffset}{.5};
+    \pgfmathsetmacro{\rcutoffset}{2+\cutoffset};
+    \pgfmathsetmacro{\lcutoffset}{2-\cutoffset};
+    \pgfmathsetmacro{\cutheight}{.682};
+
+    % Right cut. use calc coordinate addition to avoid yet more
+    % pgfmathmacro definitions
+    \draw[dashed] ($(l\cutoffset, 0) - (0, \cutheight)$) arc (270:90:.2 and \cutheight);
+    % \draw[dashed] ($(2,0)+(\cutoffset, -\cutheight)$) arc (270:90:.2 and \cutheight);
+    \draw[] ($(2,0)+(\cutoffset, -\cutheight)$) arc (-90:90:.2 and \cutheight);
+
+    % Left cut
+    \draw[dashed] ($(2,0)+(-\cutoffset,-\cutheight)$) arc (270:90:.2 and \cutheight);
+    \draw[] ($(2,0)+(-\cutoffset,-\cutheight)$) arc (-90:90:.2 and \cutheight);
+
+    \path[name intersections={of=ltorus and tconn,by=E}];
+    \node[dot=E]  at (E) {};
+  \end{tikzpicture}
+  \caption{torus}
+\end{figure}
 
 %%% Local Variables:
 %%% TeX-master: "../main"
+%%% TeX-engine: default-shell-escape
+%%% TeX-command-extra-option: -pdf
 %%% End:

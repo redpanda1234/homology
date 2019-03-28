@@ -1,3 +1,6 @@
+**/main.*
+!**/main.pdf
+!**/main.tex
 *.aux
 *.log
 *.toc

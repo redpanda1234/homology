@@ -2107,13 +2107,16 @@ cycles in $A,B, A\cap B$, and $K$.
         \msf H_1(K) = (\zmod{2})^k \qquad\qquad \msf H_0(K) =
         (\zmod{2})^k
       \]
-    \item $K$ is given by the boundary of a $3$-simplex, sharing one
-      vertex with the boundary of a $2$-simplex. Note that there are
-      two elements of $\msf H_2(K)$: namely, $\mb 0$ and $A_1 + A_2 +
-      A_3 + A_4$. Hence, $\msf H_2(K) \cong \zmod{2}$. Now, we know
-      that $\msf H_1(\partial^2 \Delta^3)$ is trivial. Observe that
-      $\msf H_1(\partial \Delta^2) = \zmod{2}$. Since $\partial^2
-      \Delta^3 = 0$
+    \item Observe that $K = \partial \Delta^3 \cup \partial \Delta^2 /
+      v_1 \sim v_2$ (where $v_1$, $v_2$ are arbitrarily chosen
+      vertices from $\partial \Delta^3$, $\partial \Delta^2$
+      respectively). There are just two elements of $\msf H_2(K)$:
+      namely, $\mb 0$ and $A_1 + A_2 + A_3 + A_4$. Hence, $\msf H_2(K)
+      \cong \zmod{2}$.
+
+      Now, since $\partial^2 \Delta^3 = 0$, $\msf H_1(\partial^2
+      \Delta^3)$ is trivial. Observe that $\msf H_1(\partial \Delta^2)
+      = \zmod{2}$. Now,
     \item
     \item
   \end{enumerate}
@@ -2125,6 +2128,177 @@ cycles in $A,B, A\cap B$, and $K$.
   Mayer-Vietoris in two different ways (with two different
   decompositions).
 \end{problem}
+\begin{solution}
+  By Mayer-Vietoris, independent of our particular decomposition, we
+  will have the following exact sequence:
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \pgfmathsetmacro{\xmin}{-6};
+      \pgfmathsetmacro{\xmax}{6};
+      \pgfmathsetmacro{\ymin}{-3};
+      \pgfmathsetmacro{\ymax}{3};
+      % \draw[help lines, color=gray!30, dashed] (\xmin,\ymin) grid (\xmax,\ymax);
+      % \draw[->] (\xmin,0)--(\xmax,0) node[right]{$x$};
+      % \draw[->] (0,\ymin)--(0,\ymax) node[above]{$y$};
+
+      \node (cdots) at (-4,5) {$\cdots$};
+
+      \node (3acb) at (-4, 4) {$\msf H_3(A \cap B)$};
+      \node (3apb) at (0,4) {$\msf H_3(A) \oplus \msf H_3(B)$};
+      \node (3k) at (4,4) {$\msf H_3(K)$};
+
+
+      \node (2acb) at (-4,2) {$\msf H_2(A \cap B)$};
+      \node (2apb) at (0,2) {$\msf H_2(A) \oplus \msf H_2(B)$};
+      \node (2k) at (4,2) {$\msf H_2(K)$};
+
+      \node (1acb) at (-4,0) {$\msf H_1(A \cap B)$};
+      \node (1apb) at (0,0) {$\msf H_1(A) \oplus \msf H_1(B)$};
+      \node (1k) at (4,0) {$\msf H_1(K)$};
+
+      \node (0acb) at (-4,-2) {$\msf H_0(A \cap B)$};
+      \node (0apb) at (0,-2) {$\msf H_0(A) \oplus \msf H_0(B)$};
+      \node (0k) at (4,-2) {$\msf H_0(K)$};
+
+      \draw[->, rounded corners=10pt] (cdots) -- ($(3acb) + (-2,1)$) -- ++(0,-1) -- (3acb);
+
+      \draw[->] (3acb) -- (3apb) node[midway, above] {$\phi_3$};
+      \draw[->] (3apb) -- (3k) node[midway, above] {$\psi_3$};
+      \draw[->, rounded corners=10pt] (3k) -- ++(2,0) node[midway, above] {$\delta_3$} -- ++(0,-1) -- ($(2acb) + (-2,1)$) -- ++(0,-1) -- (2acb);
+
+      \draw[->] (2acb) -- (2apb) node[midway, above] {$\phi_2$};
+      \draw[->] (2apb) -- (2k) node[midway, above] {$\psi_2$};
+      \draw[->, rounded corners=10pt] (2k) -- ++(2,0) node[midway, above] {$\delta_2$} -- ++(0,-1) -- ($(1acb) + (-2,1)$) -- ++(0,-1) -- (1acb);
+
+      \draw[->] (1acb) -- (1apb) node[midway, above] {$\phi_1$};
+      \draw[->] (1apb) -- (1k) node[midway, above] {$\psi_1$};
+      \draw[->, rounded corners=10pt] (1k) -- ++(2,0) node[midway, above] {$\delta_1$} -- ++(0,-1) -- ($(0acb) + (-2,1)$) -- ++(0,-1) -- (0acb);
+      \draw[->] (0acb) -- (0apb) node[midway, above] {$\phi_0$};
+      \draw[->] (0apb) -- (0k) node[midway, above] {$\psi_0$};
+    \end{tikzpicture}
+    \caption{Mayer Vie-torus (heh)}
+  \end{figure}
+  Let $A,B$ be two macaroni elbow shapes, overlapping on two
+  cylindrical segments:
+  \begin{figure}[h]
+    \centering
+    \includegraphics[keepaspectratio,width=.5\linewidth,angle=270]{figures/mathematica-torus-decomp}
+    \caption{Decomposition 1: $\color{green} A$ below, $\color{orange}
+      B$ above}
+  \end{figure}
+  Note that for $k > 2$, $\TT^2$ has no $k$-cycles, and hence
+  \[
+    \msf H_k(A\cap B)  \cong \msf H_k(A) \oplus \msf H_k(B) \cong \msf
+    H_k(\TT^2) = \set{\mb 0}.
+  \]
+  by exactness of the Mayer-Vietoris sequence, $\im \delta_3 = \ker
+  \phi_2 = \set{\mb 0}$. Hence, $\phi_2$ is one-to-one (and in fact,
+  similarly for all of the $\phi_n$). We will use this later.
+
+  Calculating the $n=1,0$ homology groups is easy. By Theorem 16.8,
+  $\msf H_0(A \cap B) \cong \zmod{2} \times \zmod{2}$, $\msf H_0(A)
+  \oplus \msf H_0(B) \cong \zmod{2}\times \zmod{2}$, and $\msf
+  H_0(\TT^2) \cong \zmod{2}$. In fact, the same results hold for
+  $k=1$. We summarize these results in the diagram below:
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \pgfmathsetmacro{\xmin}{-6};
+      \pgfmathsetmacro{\xmax}{6};
+      \pgfmathsetmacro{\ymin}{-3};
+      \pgfmathsetmacro{\ymax}{3};
+
+      \node (cdots) at (-4,5) {$\cdots$};
+
+      \node (3acb) at (-4, 4) {$\set{\mb 0}$};
+      \node (3apb) at (0,4) {$\set{\mb 0}$};
+      \node (3k) at (4,4) {$\set{\mb 0}$};
+
+
+      \node (2acb) at (-4,2) {$\msf H_2(A \cap B)$};
+      \node (2apb) at (0,2) {$\msf H_2(A) \oplus \msf H_2(B)$};
+      \node (2k) at (4,2) {$\msf H_2(K)$};
+
+      \node (1acb) at (-4,0) {$\msf H_1(A \cap B)$};
+      \node (1apb) at (0,0) {$\msf H_1(A) \oplus \msf H_1(B)$};
+      \node (1k) at (4,0) {$\msf H_1(K)$};
+
+      \node (0acb) at (-4,-2) {$\zmod{2} \times \zmod{2}$};
+      \node (0apb) at (0,-2) {$\zmod{2} \times \zmod{2}$};
+      \node (0k) at (4,-2) {$\zmod 2$};
+
+      \draw[->, rounded corners=10pt] (cdots) -- ($(3acb) + (-2,1)$) -- ++(0,-1) -- (3acb);
+
+      \draw[->] (3acb) -- (3apb) node[midway, above] {$\phi_3$};
+      \draw[->] (3apb) -- (3k) node[midway, above] {$\psi_3$};
+      \draw[->, rounded corners=10pt] (3k) -- ++(2,0) node[midway, above] {$\delta_3$} -- ++(0,-1) -- ($(2acb) + (-2,1)$) -- ++(0,-1) -- (2acb);
+
+      \draw[->] (2acb) -- (2apb) node[midway, above] {$\phi_2$};
+      \draw[->] (2apb) -- (2k) node[midway, above] {$\psi_2$};
+      \draw[->, rounded corners=10pt] (2k) -- ++(2,0) node[midway, above] {$\delta_2$} -- ++(0,-1) -- ($(1acb) + (-2,1)$) -- ++(0,-1) -- (1acb);
+
+      \draw[->] (1acb) -- (1apb) node[midway, above] {$\phi_1$};
+      \draw[->] (1apb) -- (1k) node[midway, above] {$\psi_1$};
+      \draw[->, rounded corners=10pt] (1k) -- ++(2,0) node[midway, above] {$\delta_1$} -- ++(0,-1) -- ($(0acb) + (-2,1)$) -- ++(0,-1) -- (0acb);
+      \draw[->] (0acb) -- (0apb) node[midway, above] {$\phi_0$};
+      \draw[->] (0apb) -- (0k) node[midway, above] {$\psi_0$};
+    \end{tikzpicture}
+    \caption{Summary of results so far}
+  \end{figure}
+
+  % Now, note that
+  % $\msf H_2(A) \cong \zmod{2} \cong \msf H_2(B)$. Hence $\msf H_2(A)
+  % \oplus \msf H_2(B) \cong \zmod{2}\times \zmod{2}$. It follows that
+  % $\ker \psi_2 = \set{(0,0), (1,1)}$. Since $\ker \psi_2 = \im
+  % \phi_2$, this implies $\msf H_2(A \cap B) \cong \zmod{2}$.
+
+  Since
+
+  % then $\msf H_1(A \cap B) \cong \zmod{2} \times \zmod{2}$
+  % (in each component, we either have a trivial cycle or a loop), and
+  % $\msf H_0(A \cap B) \cong \zmod{2} \times \zmod{2}$ (Theorem 16.8).
+  % This gives us
+  % \begin{figure}[H]
+  %   \centering
+  %   \begin{tikzpicture}
+  %     \pgfmathsetmacro{\xmin}{-6};
+  %     \pgfmathsetmacro{\xmax}{6};
+  %     \pgfmathsetmacro{\ymin}{-3};
+  %     \pgfmathsetmacro{\ymax}{3};
+  %     % \draw[help lines, color=gray!30, dashed] (\xmin,\ymin) grid (\xmax,\ymax);
+  %     % \draw[->] (\xmin,0)--(\xmax,0) node[right]{$x$};
+  %     % \draw[->] (0,\ymin)--(0,\ymax) node[above]{$y$};
+
+  %     \node (2acb) at (-4,2) {$\msf H_2(A \cap B)$};
+  %     \node (2apb) at (0,2) {$\zmod{2}\times \zmod{2}$};
+  %     \node (2k) at (4,2) {$\msf H_2(K)$};
+
+  %     \node (1acb) at (-4,0) {$\zmod{2}\times \zmod{2}$};
+  %     \node (1apb) at (0,0) {$\zmod{2}\times \zmod{2}$};
+  %     \node (1k) at (4,0) {$\msf H_1(K)$};
+
+  %     \node (0acb) at (-4,-2) {$\zmod{2}\times \zmod{2}$};
+  %     \node (0apb) at (0,-2) {$\zmod{2}\times \zmod{2}$};
+  %     \node (0k) at (4,-2) {$\msf H_0(K)$};
+
+  %     \draw[->] (2acb) -- (2apb) node[midway, above] {$\phi_2$};
+  %     \draw[->] (2apb) -- (2k) node[midway, above] {$\psi_2$};
+  %     \draw[->, rounded corners=10pt] (2k) -- ++(2,0) node[midway, above] {$\delta_2$} -- ++(0,-1) -- ($(1acb) + (-2,1)$) -- ++(0,-1) -- (1acb);
+
+  %     \draw[->] (1acb) -- (1apb) node[midway, above] {$\phi_1$};
+  %     \draw[->] (1apb) -- (1k) node[midway, above] {$\psi_1$};
+  %     \draw[->, rounded corners=10pt] (1k) -- ++(2,0) node[midway, above] {$\delta_1$} -- ++(0,-1) -- ($(0acb) + (-2,1)$) -- ++(0,-1) -- (0acb);
+  %     \draw[->] (0acb) -- (0apb) node[midway, above] {$\phi_0$};
+  %     \draw[->] (0apb) -- (0k) node[midway, above] {$\psi_0$};
+  %   \end{tikzpicture}
+  %   \caption{Mayer Vie-torus}
+  % \end{figure}
+
+  % since we know what $\phi_2$ , $\psi_2$ are, we can calculate $\msf
+  % H_2(A \cap B)$, $\msf H_2(K)$ now. Observe that $\ker \psi_2 =
+  % \set{(0,0), (1,1)} = \im \phi_2$. Thus, $\msf H_2(A \cap B)= $
+\end{solution}
 
 
 \begin{problem}[16.41]
@@ -2145,4 +2319,6 @@ cycles in $A,B, A\cap B$, and $K$.
 
 %%% Local Variables:
 %%% TeX-master: "../main"
+%%% TeX-engine: default-shell-escape
+%%% TeX-command-extra-option: -pdf
 %%% End:

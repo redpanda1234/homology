@@ -2193,14 +2193,20 @@ cycles in $A,B, A\cap B$, and $K$.
     H_k(\TT^2) = \set{\mb 0}.
   \]
   by exactness of the Mayer-Vietoris sequence, $\im \delta_3 = \ker
-  \phi_2 = \set{\mb 0}$. Hence, $\phi_2$ is one-to-one (and in fact,
-  similarly for all of the $\phi_n$). We will use this later.
+  \phi_2 = \set{\mb 0}$. Hence, $\phi_2$ is one-to-one. We will use
+  this later.
 
   Calculating the $n=1,0$ homology groups is easy. By Theorem 16.8,
   $\msf H_0(A \cap B) \cong \zmod{2} \times \zmod{2}$, $\msf H_0(A)
   \oplus \msf H_0(B) \cong \zmod{2}\times \zmod{2}$, and $\msf
-  H_0(\TT^2) \cong \zmod{2}$. In fact, the same results hold for
-  $k=1$. We summarize these results in the diagram below:
+  H_0(\TT^2) \cong \zmod{2}$.
+
+  Now, observe that each of $\msf H_2(A \cap B)$, $\msf H_2(A)$, and
+  $\msf H_2(B)$ are trivial ($A$ and $B$ bound no volume). Hence
+  $\delta_2$ is injective. Furthermore, since $A \cap B$ is a disjoint
+  union of two cylinders, $\msf H_1(A \cap B) \cong \zmod{2} \times
+  \zmod{2}$, and $\msf H_1(A) \cong \msf H_1(B) \cong \zmod{2}$. This
+  gives
   \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -2216,17 +2222,17 @@ cycles in $A,B, A\cap B$, and $K$.
       \node (3k) at (4,4) {$\set{\mb 0}$};
 
 
-      \node (2acb) at (-4,2) {$\msf H_2(A \cap B)$};
-      \node (2apb) at (0,2) {$\msf H_2(A) \oplus \msf H_2(B)$};
+      \node (2acb) at (-4,2) {$\set{\mb 0}$};
+      \node (2apb) at (0,2) {$\set{\mb 0}$};
       \node (2k) at (4,2) {$\msf H_2(K)$};
 
-      \node (1acb) at (-4,0) {$\msf H_1(A \cap B)$};
-      \node (1apb) at (0,0) {$\msf H_1(A) \oplus \msf H_1(B)$};
+      \node (1acb) at (-4,0) {$\zmod{2} \times \zmod{2}$};
+      \node (1apb) at (0,0) {$\zmod{2} \times \zmod{2}$};
       \node (1k) at (4,0) {$\msf H_1(K)$};
 
       \node (0acb) at (-4,-2) {$\zmod{2} \times \zmod{2}$};
       \node (0apb) at (0,-2) {$\zmod{2} \times \zmod{2}$};
-      \node (0k) at (4,-2) {$\zmod 2$};
+      \node (0k) at (4,-2) {$\zmod{2}$};
 
       \draw[->, rounded corners=10pt] (cdots) -- ($(3acb) + (-2,1)$) -- ++(0,-1) -- (3acb);
 
@@ -2246,58 +2252,59 @@ cycles in $A,B, A\cap B$, and $K$.
     \end{tikzpicture}
     \caption{Summary of results so far}
   \end{figure}
+  Finally, we apply exactness. Since $\dom{\psi_2} = \set{\mb 0}$,
+  $\im \psi_2 = \ker \delta_2 = \set{\mb 0}$, hence $\delta_2$ is 1-1.
+  Now, note that $\ker \psi_1 = \set{(0,0), (1,1)} = \im \phi_1$.
+  Hence, $\ker \phi_1 \cong \zmod{2} \cong \im \delta_2$. It follows
+  that $\msf H_2(K) \cong \zmod{2}$.
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \pgfmathsetmacro{\xmin}{-6};
+      \pgfmathsetmacro{\xmax}{6};
+      \pgfmathsetmacro{\ymin}{-3};
+      \pgfmathsetmacro{\ymax}{3};
 
-  % Now, note that
-  % $\msf H_2(A) \cong \zmod{2} \cong \msf H_2(B)$. Hence $\msf H_2(A)
-  % \oplus \msf H_2(B) \cong \zmod{2}\times \zmod{2}$. It follows that
-  % $\ker \psi_2 = \set{(0,0), (1,1)}$. Since $\ker \psi_2 = \im
-  % \phi_2$, this implies $\msf H_2(A \cap B) \cong \zmod{2}$.
+      \node (cdots) at (-4,3) {$\cdots$};
 
-  Since
+      \node (2acb) at (-4,2) {$\set{\mb 0}$};
+      \node (2apb) at (0,2) {$\set{\mb 0}$};
+      \node (2k) at (4,2) {$\zmod{2}$};
 
-  % then $\msf H_1(A \cap B) \cong \zmod{2} \times \zmod{2}$
-  % (in each component, we either have a trivial cycle or a loop), and
-  % $\msf H_0(A \cap B) \cong \zmod{2} \times \zmod{2}$ (Theorem 16.8).
-  % This gives us
-  % \begin{figure}[H]
-  %   \centering
-  %   \begin{tikzpicture}
-  %     \pgfmathsetmacro{\xmin}{-6};
-  %     \pgfmathsetmacro{\xmax}{6};
-  %     \pgfmathsetmacro{\ymin}{-3};
-  %     \pgfmathsetmacro{\ymax}{3};
-  %     % \draw[help lines, color=gray!30, dashed] (\xmin,\ymin) grid (\xmax,\ymax);
-  %     % \draw[->] (\xmin,0)--(\xmax,0) node[right]{$x$};
-  %     % \draw[->] (0,\ymin)--(0,\ymax) node[above]{$y$};
+      \node (1acb) at (-4,0) {$\zmod{2} \times \zmod{2}$};
+      \node (1apb) at (0,0) {$\zmod{2} \times \zmod{2}$};
+      \node (1k) at (4,0) {$\zmod{2}$};
 
-  %     \node (2acb) at (-4,2) {$\msf H_2(A \cap B)$};
-  %     \node (2apb) at (0,2) {$\zmod{2}\times \zmod{2}$};
-  %     \node (2k) at (4,2) {$\msf H_2(K)$};
+      \node (0acb) at (-4,-2) {$\zmod{2} \times \zmod{2}$};
+      \node (0apb) at (0,-2) {$\zmod{2} \times \zmod{2}$};
+      \node (0k) at (4,-2) {$\zmod{2}$};
 
-  %     \node (1acb) at (-4,0) {$\zmod{2}\times \zmod{2}$};
-  %     \node (1apb) at (0,0) {$\zmod{2}\times \zmod{2}$};
-  %     \node (1k) at (4,0) {$\msf H_1(K)$};
+      \draw[->, rounded corners=10pt] (cdots) -- ($(2acb) + (-2,1)$) -- ++(0,-1) -- (2acb);
 
-  %     \node (0acb) at (-4,-2) {$\zmod{2}\times \zmod{2}$};
-  %     \node (0apb) at (0,-2) {$\zmod{2}\times \zmod{2}$};
-  %     \node (0k) at (4,-2) {$\msf H_0(K)$};
+      \draw[->] (2acb) -- (2apb) node[midway, above] {$\phi_2$};
+      \draw[->] (2apb) -- (2k) node[midway, above] {$\psi_2$};
+      \draw[->, rounded corners=10pt] (2k) -- ++(2,0) node[midway, above] {$\delta_2$} -- ++(0,-1) -- ($(1acb) + (-2,1)$) -- ++(0,-1) -- (1acb);
 
-  %     \draw[->] (2acb) -- (2apb) node[midway, above] {$\phi_2$};
-  %     \draw[->] (2apb) -- (2k) node[midway, above] {$\psi_2$};
-  %     \draw[->, rounded corners=10pt] (2k) -- ++(2,0) node[midway, above] {$\delta_2$} -- ++(0,-1) -- ($(1acb) + (-2,1)$) -- ++(0,-1) -- (1acb);
-
-  %     \draw[->] (1acb) -- (1apb) node[midway, above] {$\phi_1$};
-  %     \draw[->] (1apb) -- (1k) node[midway, above] {$\psi_1$};
-  %     \draw[->, rounded corners=10pt] (1k) -- ++(2,0) node[midway, above] {$\delta_1$} -- ++(0,-1) -- ($(0acb) + (-2,1)$) -- ++(0,-1) -- (0acb);
-  %     \draw[->] (0acb) -- (0apb) node[midway, above] {$\phi_0$};
-  %     \draw[->] (0apb) -- (0k) node[midway, above] {$\psi_0$};
-  %   \end{tikzpicture}
-  %   \caption{Mayer Vie-torus}
-  % \end{figure}
-
-  % since we know what $\phi_2$ , $\psi_2$ are, we can calculate $\msf
-  % H_2(A \cap B)$, $\msf H_2(K)$ now. Observe that $\ker \psi_2 =
-  % \set{(0,0), (1,1)} = \im \phi_2$. Thus, $\msf H_2(A \cap B)= $
+      \draw[->] (1acb) -- (1apb) node[midway, above] {$\phi_1$};
+      \draw[->] (1apb) -- (1k) node[midway, above] {$\psi_1$};
+      \draw[->, rounded corners=10pt] (1k) -- ++(2,0) node[midway, above] {$\delta_1$} -- ++(0,-1) -- ($(0acb) + (-2,1)$) -- ++(0,-1) -- (0acb);
+      \draw[->] (0acb) -- (0apb) node[midway, above] {$\phi_0$};
+      \draw[->] (0apb) -- (0k) node[midway, above] {$\psi_0$};
+    \end{tikzpicture}
+    \caption{Final diagram}
+  \end{figure}
+  we now take the second decomposition.
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=.5\linewidth, keepaspectratio]{figures/mathematica-torus-decomp-2}
+    \caption{Second Decomposition}
+  \end{figure}
+  For $k > 2$, all the results remain the same. Now, note that $A \cap
+  B$ is given by two concentric cylinders. Since this is still the
+  disjoint union of two cylinders, for $k = 0,1,2$ the homology groups
+  $H_k(A \cap B)$ and $H_k(A) \oplus H_k(B)$ remain the same. Thus, an
+  identical argument to that above shows that $\msf H_2(\TT^2)$, $\msf
+  H_1(\TT^2)$ are likewise identical.
 \end{solution}
 
 
@@ -2307,7 +2314,13 @@ cycles in $A,B, A\cap B$, and $K$.
   $2$-manifolds are not distinguished from one another by
   $\zmod{2}$-homology? What does $\msf H_2(M)$ tell you?
 \end{problem}
-
+\begin{solution}
+  Let $M$ be a compact triangulated 2-manifold, and call the
+  triangulation $K$. Let $A,B$ be subcomplexes of $K$ such that $A
+  \cup B = K$. Then for all $k > 2$, each of $\msf H_k(M)$, $\msf
+  H_k(A)$, $\msf H_k(B)$, and $\msf H_k(A) \oplus \msf H_k(B)$ are
+  isomorphic to $\set{\mb 0}$.
+\end{solution}
 
 
 \begin{problem}[16.42]

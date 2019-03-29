@@ -1836,6 +1836,47 @@ cycles in $A,B, A\cap B$, and $K$.
   \end{enumerate}
 \end{solution}
 
+\begin{definition}[``Intersection'' map]
+  Let $A,B$ be subcomplexes of a simplicial complex $K$. Define the
+  homomorphisms $\pi_A : \msf Z_k(K) \to \msf Z_k(A)$, $\pi_B : \msf
+  Z_k(K) \to \msf Z_k(B)$ as follows:
+  \[
+    \pi_A(\sigma) =
+    \begin{cases}
+      \sigma & \text{if } \sigma \in \msf Z_k(A) \\
+      \mb 0 & \text{otherwise}
+    \end{cases}
+    \qquad\qquad
+    \pi_B(\sigma) =
+    \begin{cases}
+      \sigma & \text{if } \sigma \in \msf Z_k(B) \\
+      \mb 0 & \text{otherwise}
+    \end{cases}
+  \]
+  Observe that the following diagram commutes, and that $\pi_A$,
+  $\pi_B$ are idempotent:\footnote{Ok, technically $\dom \pi_A = \msf
+    Z_k(K) \neq \msf Z_k(B)$, but you could throw an inclusion map in
+    there if you so pleased.}
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \node (K) at (-1.25,1) {$\msf Z_k(K)$};
+      \node (A) at (1.25,1) {$\msf Z_k(A)$};
+      \node (B) at (-1.25,-1) {$\msf Z_k(B)$};
+      \node (AcB) at (1.25,-1) {$\msf Z_k(A\cap B)$};
+
+      \draw[->] (K) -- (A) node[midway, above] {$\pi_A$};
+      \draw[->] (A) -- (AcB) node[midway, right] {$\pi_B$};
+      \draw[->] (K) -- (B) node[midway, left] {$\pi_B$};
+      \draw[->] (B) -- (AcB) node[midway, below] {$\pi_A$};
+
+      \pgfmathsetmacro{\r}{.25}
+      \draw[->] (\r,0) arc(0:300:\r);
+    \end{tikzpicture}
+    \caption{$\pi_A \circ \pi_B = \pi_B \circ \pi_A$}
+  \end{figure}
+\end{definition}
+
 \begin{problem}[16.33]
   Let $K$ be a finite simplicial complex and $A$ and $B$ be
   subcomplexes such that $K=A\cup B$. If $\alpha$, $\beta$ are
@@ -1870,72 +1911,37 @@ cycles in $A,B, A\cap B$, and $K$.
       [(c,c)]
     \]
   \end{leftbar}
-  Define the homomorphisms $\pi_A : \msf Z_k(K) \to \msf Z_k(A)$,
-  $\pi_B : \msf Z_k(K) \to \msf Z_k(B)$ as follows:
-  \[
-    \pi_A(\sigma) =
-    \begin{cases}
-      \sigma & \text{if } \sigma \in \msf Z_k(A) \\
-      \mb 0 & \text{otherwise}
-    \end{cases}
-    \qquad\qquad
-    \pi_B(\sigma) =
-    \begin{cases}
-      \sigma & \text{if } \sigma \in \msf Z_k(B) \\
-      \mb 0 & \text{otherwise}
-    \end{cases}
-  \]
-  Observe that the following diagram commutes:\footnote{Ok,
-    technically $\dom \pi_A = \msf Z_k(K) \neq \msf Z_k(B)$, but you
-    could throw an inclusion map in there if you so pleased.}
-  \begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-      \node (K) at (-1.25,1) {$\msf Z_k(K)$};
-      \node (A) at (1.25,1) {$\msf Z_k(A)$};
-      \node (B) at (-1.25,-1) {$\msf Z_k(B)$};
-      \node (AcB) at (1.25,-1) {$\msf Z_k(A\cap B)$};
+  Since $[\alpha]_K = [\beta]_K$, there exists $c_0 \in \msf B_k(K)$
+  such that $\alpha - \beta = c_0$. By definition of $\msf B_n(K)$,
+  this implies that there exists $\gamma \in \msf C_{k+1}(K)$ with
+  $c_0 = \partial \gamma$.
 
-      \draw[->] (K) -- (A) node[midway, above] {$\pi_A$};
-      \draw[->] (A) -- (AcB) node[midway, right] {$\pi_B$};
-      \draw[->] (K) -- (B) node[midway, left] {$\pi_B$};
-      \draw[->] (B) -- (AcB) node[midway, below] {$\pi_A$};
+  \textbf{Claim:} $c = \alpha + \partial \pi_A(\gamma)$ works.
 
-      \pgfmathsetmacro{\r}{.25}
-      \draw[->] (\r,0) arc(0:300:\r);
-    \end{tikzpicture}
-    \caption{$\pi_A \circ \pi_B = \pi_B \circ \pi_A$}
-  \end{figure}
-  And also note that $\pi_A$, $\pi_B$ are idempotent. Now, since
-  $[\alpha]_K = [\beta]_K$, there exists $c \in \msf B_k(K)$ such
-  that $\alpha + \beta = c$. Note that
-  \begin{align*}
-    \partial \pn{(\pi_A \circ \pi_B)(c)}
-    &= \pn{\pi_A \circ \pi_B}(\partial c) \\
-    &= (\pi_A \circ \pi_B)(\partial (\alpha + \beta)) \\
-    &= (\pi_A \circ \pi_B)
-% \partial c
-%     &=
-%     &= (\pi_A \circ \pi_B)(\partial c') \\
-%     &= (\pi_A \circ \pi_B)(\partial (\alpha + \beta)) \\
-%     &= (\pi_A \circ \pi_B)(\mb 0) \\
-%     &= \mb 0
-  \end{align*}
-  Hence $c \in \msf Z_{k}(A \cap B)$. Now,
-  \begin{align*}
-    \pi_A(\alpha - c)
-    &= \pi_A(\pi_A(\alpha + \beta) - \pi_A(\beta) - c)
-    % \pi_A(\alpha + \beta)
-    % &= \pi_A(\alpha + (\pi_A(\beta) + \pi_B(\beta) - c)) \\
-    % &= \alpha + \pi_A(\beta) + \pi_A(\pi_B(\beta)) - c \\
-    % &= \alpha - c
-  \end{align*}
-  Hence, there exists $c_A \in \msf B_k(A)$, $c_B \in \msf B_k(B)$
-  such that
-  \begin{align*}
-    \alpha
-    &=
-  \end{align*}
+  \textbf{Proof of Claim:}
+  \begin{enumerate}
+    \item First, we show $c$ is a $k$-cycle. Note
+      \begin{align*}
+        \partial c
+        &= \partial \alpha + \partial^2 \pi_A(\gamma) \\
+        &= \partial \alpha = \mb 0
+      \end{align*}
+      as desired.
+    \item Now, we verify that equivalences. First, note that $c-\alpha
+      = \partial \pi_A(\gamma)$, hence $[\alpha]_A = [c]_A$ trivially.
+      Now,
+      \begin{align*}
+        c-\beta
+        &= c - \alpha + \alpha - \beta & (0=\alpha - \alpha)\\
+        &= (c-\alpha) + \alpha - \beta & (\text{grouping})\\
+        &= \partial \pi_A(\gamma) + \alpha - \beta & (c-\alpha=\partial \pi_A(\gamma))\\
+        &= \partial \pi_A(\gamma) + c_0 & (c_0 = \alpha - \beta)\\
+        &= \partial \pi_A(\gamma) + \partial \gamma & (\partial \gamma = c_0)\\
+        &= \partial (\pi_A\gamma + \gamma) & (\partial \text{ commutes})
+      \end{align*}
+      hence $c - \beta \in \msf B_k(K)$. So $[c]_B = [\beta]_B$, as
+      desired.
+  \end{enumerate}
 \end{solution}
 
 \begin{problem}[16.34]
@@ -1998,30 +2004,53 @@ cycles in $A,B, A\cap B$, and $K$.
     \item $\phi : \msf H_n(A \cap B) \to \msf H_n(A) \oplus \msf
       H_n(B)$ be given by
       \[
-        \phi(\rho) = (\rho, \rho).
+        \phi(\sigma) = (\sigma, \sigma).
       \]
       That this is a well-defined homomorphism follows immediately.
     \item Let $\psi(\sigma, \tau)$ be given by
       \[
-        \psi(\sigma,\tau) = \sigma - \tau.
+        \psi(\alpha,\beta) = \alpha - \beta.
       \]
       It is straightforward to verify this is a well-defined
       homomorphism.
-    \item Let $\delta(\sigma)$ be given by
+    \item Let $\sigma \in \msf H_n(K)$, and take $\tau \in \msf
+      Z_n(K)$ a representative of $\sigma$. Then $\exists c \in \msf
+      B_n(K)$ such that
       \[
-        \delta(\upsilon) = \partial(\pi_A \circ \pi_B(\upsilon)).
+        \sigma + \tau = c.
       \]
-      All the maps in this definition are linear on simplices.
-      Homomorphism follows.
+      Then by the theorem above, there exists $\alpha \in \msf C_n(A),
+      \beta \in \msf C_n(B)$
+      such that
+      \[
+        \alpha + \beta = c.
+      \]
+      Further, $\partial \alpha$, $\partial \beta$ is an $(n-1)$-cycle
+      $c'$ in $A \cap B$.
+
+      Let $\delta(\sigma)$ be given by
+      \[
+        \delta(\sigma) = \partial(\pi_A \sigma).
+      \]
+      That this is a well-defined homomorphism follows, since all the
+      maps included are linear.
   \end{enumerate}
   Now, we show the composition things.
   \begin{enumerate}
-    \item $\psi \circ \phi = 0$ is trivial
-    \item Note
+    \item
+      \begin{align*}
+        \psi \circ \phi(\alpha)
+        &= \psi(\alpha, \alpha) \\
+        &= \alpha - \alpha \\
+        &= \mb 0
+      \end{align*}
+      as desired.
+    \item Let $\alpha \in \msf H_n(A)$, $\beta \in \msf H_n(B)$. Then
+      by the theorem above, there exists
       \begin{align*}
         \delta(\psi(\alpha, \beta))
-        &= \partial (\pi_A \circ \pi_B (\alpha - \beta)) \\
-        &=
+        &= \partial (\pi_A (\alpha - \beta)) \\
+        &= \partial(\alpha - \pi_A(\beta))
       \end{align*}
       \begin{figure}[H]
         \centering
@@ -2055,10 +2084,65 @@ cycles in $A,B, A\cap B$, and $K$.
   using the homomorphisms $\phi,\psi,\delta$ above, is exact.
 \end{problem}
 
+\begin{enumerate}
+  \item
+\end{enumerate}
+
+\begin{problem}[16.39]
+  Compute the $\zmod 2$-homology groups for each complex $K$ below.
+  \begin{enumerate}
+    \item The bouquet of $k$ circles (the union of $k$ circles
+      identified at a point).
+    \item A wedge of a $2$-sphere and a circle (the two spaces are
+      glued at one point).
+    \item A $2$-sphere union its equatorial disk.
+    \item A double solid torus.
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  \begin{enumerate}
+    \item $K$ is given by $k$ triangles (together with their faces),
+      with one common vertex. Hence
+      \[
+        \msf H_1(K) = (\zmod{2})^k \qquad\qquad \msf H_0(K) =
+        (\zmod{2})^k
+      \]
+    \item $K$ is given by the boundary of a $3$-simplex, sharing one
+      vertex with the boundary of a $2$-simplex. Note that there are
+      two elements of $\msf H_2(K)$: namely, $\mb 0$ and $A_1 + A_2 +
+      A_3 + A_4$. Hence, $\msf H_2(K) \cong \zmod{2}$. Now, we know
+      that $\msf H_1(\partial^2 \Delta^3)$ is trivial. Observe that
+      $\msf H_1(\partial \Delta^2) = \zmod{2}$. Since $\partial^2
+      \Delta^3 = 0$
+    \item
+    \item
+  \end{enumerate}
+\end{solution}
+
+
+\begin{problem}[16.40]
+  Compute the $\zmod{2}$-homology groups of a torus using
+  Mayer-Vietoris in two different ways (with two different
+  decompositions).
+\end{problem}
+
+
+\begin{problem}[16.41]
+  Use the Mayer-Vietoris Theorem to compute $\msf H_n(M)$ for every
+  compact, triangulated $2$-manifold $M$. What compact, triangulated
+  $2$-manifolds are not distinguished from one another by
+  $\zmod{2}$-homology? What does $\msf H_2(M)$ tell you?
+\end{problem}
+
+
+
+\begin{problem}[16.42]
+  Let $p,q\in\ZZ$ be relatively prime. Calculate $\msf H_n(L(p,q))$,
+  the homology of the lens space $L(p,q)$.
+\end{problem}
+
 
 
 %%% Local Variables:
 %%% TeX-master: "../main"
-%%% TeX-engine: default-shell-escape
-%%% TeX-command-extra-option: -pdf
 %%% End:

@@ -249,6 +249,53 @@
     a cycle in $A$, {\color{red} and asks if,} in $K$, that cycle in $A$ is
     homologous to a cycle in $B$, {\color{red} and, if so, is there} a cycle in
     their intersection that is homologous to both?''
+\end{enumerate}
+\section{Chapter 18}
+\begin{enumerate}
+  \item Minor inconsistency. Section 18.1, definition of boundary of an oriented
+    $n$-simplex.
+    \begin{leftbar}
+      For $n \geq 1$, the \emph{boundary of an oriented $n$-simplex} $\sigma =
+      \osimp{n}$ is
+      \[
+        \partial(\sigma) = \sum_{{\color{red} i}=0}^n (-1)^{\color{red}
+          i}\osimpdel{\color{red}i}{n}.
+      \]
+      Recall that $\osimpdel{\color{red}k}{n}$ represents the simplex with
+      vertex $v_{\color{red} k}$ removed [\ldots].
+    \end{leftbar}
+    usage of $i$ and $k$ should probably remain consistent. {\color{blue} Fixed
+      on the Dropbox}
+  \item Inconsistent notation. Section 18.1, definition of boundary operator.
+    \[
+      \partial_n : {\color{red} C}_n(K) \to {\color{red} C}_{n-1}(K)
+    \]
+    these should be sans-serif $\msf C$'s. {\color{blue} Corrected on the
+      Dropbox.}
+  \item Ibid. Actually, this persists throughout quite a lot of chapter 18.
+    {\color{blue} I've corrected (I think) all occurrences of these errors on
+      the Dropbox version}
+  \item Minor typo. Section 18.1, Theorem 18.9: ``If $K$ is a one-point space,
+    $\msf H_n(K) \cong 0$ for $n {\color{red} \geq} 0$ and $\msf H_0(K) \cong
+    \ZZ$.'' I believe the inequality should be strict. {\color{blue} Corrected
+      in the Dropbox.}
+  \item Typo. Section 18.1, definition of simplicial cone operator: ``$\Cone_x :
+    \msf C_n(K) \to \msf C_{n+1}({\color{red}w} * K)$.'' I believe the $w$
+    should be an $x$. {\color{blue} I've corrected this in the dropbox folder.}
+  \item Misc.\ typos. Section 18.1, definition of relative chain group:
+    ``[\ldots] Then the chain group ${\color{red}C}_n(K)$ can be vieweed
+    {\color{red} a} subgroup of the chain group $C_n(K)$ consisting of all
+    chains that are zero on any simplex outside ${\color{red}\mathbb{K}}'$.''
 
-  \end{enumerate}
+    Should be sans-serif $C$; should be ``as a'' (not ``a''); should probably be
+    just $K'$? Also, instead of \verb|\emph{}|, I believe \verb|\textbf{}| was
+    used in this definition.
+
+    Lastly, there's an errant ``.'' that should be included in the displaymath
+    line.
+
+    {\color{blue} All but the \verb|\textbf{}| have been corrected on the
+      dropbox (wasn't sure if this was intentional, but I think it was
+      inconsistent throughout the rest)}
+\end{enumerate}
 \end{document}

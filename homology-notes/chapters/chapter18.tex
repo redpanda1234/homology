@@ -189,9 +189,203 @@
     C_n(K, K') = C_n(K)/C_n(K')
   \]
 \end{definition}
-\begin{problem}[18.15]
-  Check that $\msf C_n(K,K')$ is a free abelian group.
+
+% \begin{problem}[18.15]
+%   Check that $\msf C_n(K,K')$ is a free abelian group.
+% \end{problem}
+% \begin{solution}
+
+% \end{solution}
+\begin{problem}[18.16]
+  There is a boundary map
+  \[
+    \partial_n : \msf C_n(K, K') \to \msf C_{n-1}(K, K')
+  \]
+  such that $\partial_n \circ \partial_{n+1} = 0$ for all $n \geq 0$.
 \end{problem}
+\begin{solution}
+  Let $\partial^{K}_n$ be the boundary map on $\msf C_n(K)$. Then
+  define
+  \[
+    \partial_{n}(c_n)
+    =
+    \begin{cases}
+      0 & \text{if } \partial^K(c_n) \in \msf C_{n-1}(K') \\
+      \partial^K_n(c_n) & \text{otherwise }
+    \end{cases}
+  \]
+  with linear extension.
+\end{solution}
+
+\begin{definition}[Relative Homology Group]
+  As one might expect, we define
+  \[
+    \msf H_n(K, K')
+    = \msf B_n(K, K') / \msf Z_n(K, K')
+  \]
+\end{definition}
+
+\begin{problem}[18.25]
+  The boundary map $\partial : \msf C_n(K) \to \msf C_{n-1}(K')$
+  induces a well-defined map
+  \[
+    \partial : \msf H_n(K,K') \to \msf H_{n-1}(K').
+  \]
+\end{problem}
+\begin{solution}
+  Consider the following diagram:
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      % \draw[help lines, color=gray!30, dashed] (-1.9,-1.9) grid (6,2);
+      % \draw[->] (-2,0)--(6,0) node[right]{$x$};
+      % \draw[->] (0,-2)--(0,2) node[above]{$y$};
+
+      \foreach \n/\y/\h in {n+1/2.85/t, n/0/m, n-1/-2.85/b}{
+        \node (0l\h) at (-5.5, \y) {$0$};
+        \node (kp\h) at (-3, \y) {$\msf C_{\n}(K')$};
+        \node (k\h) at (0, \y) {$\msf C_{\n}(K)$};
+        \node (kkp\h) at (3, \y) {$\msf C_{\n}(K,K')$};
+        \node (0r\h) at (5.5, \y) {$0$};
+        \draw[->] (0l\h) -- (kp\h);
+        \draw[->] (kp\h) -- (k\h) node[midway, above] {$i_{\n}$};
+        \draw[->] (k\h) -- (kkp\h) node[midway, above] {$\pi_{\n}$};
+        \draw[->] (kkp\h) -- (0r\h);
+      }
+
+      \foreach \ka/\kb/\n in {kpt/kpm/n+1, kpm/kpb/n, kt/km/n+1, km/kb/n, kkpt/kkpm/n+1, kkpm/kkpb/n}{
+        \draw[->] (\ka) -- (\kb) node[midway, left] {$\partial_{\n}$};
+      }
+
+      \foreach \x in {-3,0,3}{
+        \draw[->] (\x, 4.5) -- (\x, 3.2) node[midway, left] {$\partial_{n+2}$};
+        \draw[->] (\x, -3.2) -- (\x, -4.5) node[midway, left] {$\partial_{n-1}$};
+        \node (a) at (\x, 5) {$\vdots$};
+        \node (a) at (\x, -5) {$\vdots$};
+      }
+    \end{tikzpicture}
+    \caption{Diagram}
+  \end{figure}
+  we perform a diagram chase. Let ${\color{red} z_n} \in \msf
+  Z_n(K,K') \subset \msf C_n(K,K')$. Then ${\color{red}\partial_n z_n}
+  = 0\in \msf C_{n-1}(K,K')$. Further, since $\pi_n$ is surjective (by
+  exactness), there exists $\color{green} c_n \in \msf C_n(K)$ such
+  that $z_n = \pi_n(c_n)$.
+
+  By the commutativity, of the diagram, $\partial_n \circ \pi_n (c_n)
+  = \pi_{n-1} \circ \partial_n(c_n) = 0$. Thus, $\partial_n c_n \in
+  \ker \pi_{n-1}$, so by exactness, $\partial_n c_n \in \im i_{n-1}$.
+  Hence, there exists $c'_{n-1} \in \msf C_{n-1}(K')$ such that
+  \[
+    i_{n-1}(c'_{n-1}) = \partial_n c_n.
+  \]
+  We summarize the results so far in the following diagram:
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+      % \draw[help lines, color=gray!30, dashed] (-1.9,-1.9) grid (6,2);
+      % \draw[->] (-2,0)--(6,0) node[right]{$x$};
+      % \draw[->] (0,-2)--(0,2) node[above]{$y$};
+
+      \foreach \n/\y/\h in {n+1/2.85/t, n/0/m, n-1/-2.85/b}{
+        \node (0l\h) at (-5.5, \y) {$0$};
+        \node (kp\h) at (-3, \y) {$\msf C_{\n}(K')$};
+        \node (k\h) at (0, \y) {$\msf C_{\n}(K)$};
+        \node (kkp\h) at (3, \y) {$\msf C_{\n}(K,K')$};
+        \node (0r\h) at (5.5, \y) {$0$};
+        \draw[->] (0l\h) -- (kp\h);
+        \draw[->] (kp\h) -- (k\h) node[midway, above] {$i_{\n}$};
+        \draw[->] (k\h) -- (kkp\h) node[midway, above] {$\pi_{\n}$};
+        \draw[->] (kkp\h) -- (0r\h);
+      }
+
+      \foreach \ka/\kb/\n/\side in {kpt/kpm/n+1/left, kpm/kpb/n/left, kt/km/n+1/left, km/kb/n/left, kkpt/kkpm/n+1/right, kkpm/kkpb/n/right}{
+        \draw[->] (\ka) -- (\kb) node[midway, \side] {$\partial_{\n}$};
+      }
+
+      \foreach \x in {-3,0,3}{
+        \draw[->] (\x, 4.5) -- (\x, 3.2) node[midway, left] {$\partial_{n+2}$};
+        \draw[->] (\x, -3.2) -- (\x, -4.5) node[midway, left] {$\partial_{n-1}$};
+        \node (a) at (\x, 5) {$\vdots$};
+        \node (a) at (\x, -5) {$\vdots$};
+      }
+      \node (zn) at (2.5, 2.4) {$\color{red} z_{n+1}$};
+      \node (bzn) at (2.5, .6) {$0$};
+      \draw[|->, red] (zn) -- (bzn) node[midway, left] {$\partial_{n+1}$};
+
+      \node (cn) at (.5, 2.4) {$c_n$};
+      \node[blue] (bcn) at (.5, .6) {$\partial_{n+1} c_n$};
+      \draw[|->, red] (cn) -- (zn) node[midway, below] {$\pi_{n+1}$};
+      \draw[|->, blue] (cn) -- (bcn) node[midway, right] {$\partial_{n+1}$};
+      \draw[|->, blue] (bcn) -- (bzn) node[midway, above] {$\pi_{n}$};
+
+      \node[black!30!green] (cn-1) at (-2.5, .6) {$c_{n}$};
+      \filldraw[white] (-.2,.4) rectangle (.05,.8);
+      \draw[black!30!green, |->] (cn-1) -- (bcn);
+    \end{tikzpicture}
+    \caption{Diagram}
+  \end{figure}
+  we now verify that $c_{n-1}$ is a cycle. Note that $\partial_n \circ
+  \partial_{n+1}(c_n) = 0$. Since $i_{n-1}$ is injective, $\partial_n
+  \circ \partial_{n+1}(c_n) = i_{n-1}(0)$. So by commutativity,
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+      % \draw[help lines, color=gray!30, dashed] (-1.9,-1.9) grid (6,2);
+      % \draw[->] (-2,0)--(6,0) node[right]{$x$};
+      % \draw[->] (0,-2)--(0,2) node[above]{$y$};
+
+      \foreach \n/\y/\h in {n+1/2.85/t, n/0/m, n-1/-2.85/b}{
+        \node (0l\h) at (-5.5, \y) {$0$};
+        \node (kp\h) at (-3, \y) {$\msf C_{\n}(K')$};
+        \node (k\h) at (0, \y) {$\msf C_{\n}(K)$};
+        \node (kkp\h) at (3, \y) {$\msf C_{\n}(K,K')$};
+        \node (0r\h) at (5.5, \y) {$0$};
+        \draw[->] (0l\h) -- (kp\h);
+        \draw[->] (kp\h) -- (k\h) node[midway, above] {$i_{\n}$};
+        \draw[->] (k\h) -- (kkp\h) node[midway, above] {$\pi_{\n}$};
+        \draw[->] (kkp\h) -- (0r\h);
+      }
+
+      \foreach \ka/\kb/\n/\side in {kpt/kpm/n+1/left, kpm/kpb/n/left, kt/km/n+1/left, km/kb/n/left, kkpt/kkpm/n+1/right, kkpm/kkpb/n/right}{
+        \draw[->] (\ka) -- (\kb) node[midway, \side] {$\partial_{\n}$};
+      }
+
+      \foreach \x in {-3,0,3}{
+        \draw[->] (\x, 4.5) -- (\x, 3.2) node[midway, left] {$\partial_{n+2}$};
+        \draw[->] (\x, -3.2) -- (\x, -4.5) node[midway, left] {$\partial_{n-1}$};
+        \node (a) at (\x, 5) {$\vdots$};
+        \node (a) at (\x, -5) {$\vdots$};
+      }
+      \node (zn) at (2.5, 2.4) {$\color{red} z_{n+1}$};
+      \node (bzn) at (2.5, .6) {$0$};
+      \draw[|->, red] (zn) -- (bzn) node[midway, left] {$\partial_{n+1}$};
+
+      \node (cn) at (.5, 2.4) {$c_{n+1}$};
+      \node[blue] (bcn) at (.5, .6) {$\partial_{n+1} c_n$};
+      \draw[|->, red] (cn) -- (zn) node[midway, below] {$\pi_{n+1}$};
+      \draw[|->, blue] (cn) -- (bcn) node[midway, right] {$\partial_{n+1}$};
+      \draw[|->, blue] (bcn) -- (bzn) node[midway, above] {$\pi_{n}$};
+
+      \node[black!30!green] (cn-1) at (-2.5, .6) {$c_{n}$};
+      \filldraw[white] (-.2,.4) rectangle (.05,.8);
+      \draw[black!30!green, |->] (cn-1) -- (bcn);
+
+      \filldraw[white] (-2.5, .05) rectangle (-2.4, -.05);
+      \filldraw[white] (.5, .05) rectangle (.6, -.05);
+      \filldraw[white] (-.05, -2.1) rectangle (.05, -2.3);
+
+      \node[orange] (0b) at (.5, -2.2) {$0$};
+      \node[orange] (0lb) at (-2.5, -2.2) {$0$};
+      \draw[|->, black!30!green] (bcn) -- (0b);
+      \draw[|->, orange] (cn-1) -- (0lb);
+      \draw[|->, orange] (0lb) -- (0b);
+
+    \end{tikzpicture}
+    \caption{Diagram}
+  \end{figure}
+\end{solution}
+
 
 %%% Local Variables:
 %%% TeX-master: "../main"

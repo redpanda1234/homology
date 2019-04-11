@@ -236,7 +236,7 @@
   Consider the following diagram:
   \begin{figure}[H]
     \centering
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=1.2]
       % \draw[help lines, color=gray!30, dashed] (-1.9,-1.9) grid (6,2);
       % \draw[->] (-2,0)--(6,0) node[right]{$x$};
       % \draw[->] (0,-2)--(0,2) node[above]{$y$};
@@ -321,7 +321,7 @@
 
       \node[black!30!green] (cn-1) at (-2.5, .6) {$c_{n}$};
       \filldraw[white] (-.2,.4) rectangle (.05,.8);
-      \draw[black!30!green, |->] (cn-1) -- (bcn);
+      \draw[black!30!green, |->] (cn-1) -- (bcn) node[midway, above] {$i_n$};
     \end{tikzpicture}
     \caption{Diagram}
   \end{figure}
@@ -369,7 +369,7 @@
 
       \node[black!30!green] (cn-1) at (-2.5, .6) {$c_{n}$};
       \filldraw[white] (-.2,.4) rectangle (.05,.8);
-      \draw[black!30!green, |->] (cn-1) -- (bcn);
+      \draw[black!30!green, |->] (cn-1) -- (bcn) node[midway, above] {$i_n$};
 
       \filldraw[white] (-2.5, .05) rectangle (-2.4, -.05);
       \filldraw[white] (.5, .05) rectangle (.6, -.05);
@@ -377,10 +377,9 @@
 
       \node[orange] (0b) at (.5, -2.2) {$0$};
       \node[orange] (0lb) at (-2.5, -2.2) {$0$};
-      \draw[|->, black!30!green] (bcn) -- (0b);
-      \draw[|->, orange] (cn-1) -- (0lb);
-      \draw[|->, orange] (0lb) -- (0b);
-
+      \draw[|->, black!30!green] (bcn) -- (0b) node[midway, right] {$\partial_n$};
+      \draw[|->, orange] (cn-1) -- (0lb) node[midway, right] {$\partial_n$};
+      \draw[|->, orange] (0lb) -- (0b) node[midway, above] {$i_{n-1}$};
     \end{tikzpicture}
     \caption{Diagram}
   \end{figure}

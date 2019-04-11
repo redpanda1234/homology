@@ -385,6 +385,265 @@
   \end{figure}
 \end{solution}
 
+\begin{problem}[The Five Lemma]
+  Consider the following commutative diagram of groups and
+  homomorphisms, where the rows are exact.
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \pgfmathsetmacro{\y}{.9};
+      \foreach \letter/\x in {A/-4, B/-2, C/0, D/2, E/4}{
+        \node (\letter) at (\x, \y) {$\letter$};
+        \node (\letter p) at (\x, -\y) {$\letter '$};
+      }
+
+      \foreach \dom/\cod/\morphism in {A/B/q, B/C/r, C/D/s, D/E/t}{
+        \draw[->] (\dom) -- (\cod) node[midway, above] {\footnotesize $\morphism$};
+        \draw[->] (\dom p) -- (\cod p) node[midway, above] {\footnotesize $\morphism '$};
+      }
+
+      \foreach \letter/\letterp/\morphism in {A/Ap/\alpha, B/Bp/\beta, C/Cp/\gamma, D/Dp/\delta, E/Ep/\epsilon}{
+        \draw[->] (\letter) -- (\letterp) node[midway, left] {\footnotesize $\morphism$};
+      }
+    \end{tikzpicture}
+  \end{figure}
+  If the rows are exact and $\alpha, \beta, \delta, \epsilon$ are
+  isomorphisms, then $\gamma$ is also an isomorphism.
+\end{problem}
+
+\begin{solution}
+  We proceed by diagram chase. We'll proceed by filling in the
+  following diagram:
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+      \pgfmathsetmacro{\ybox}{1};
+      \pgfmathsetmacro{\ylabel}{1.4};
+      \pgfmathsetmacro{\midbox}{.825};
+      \pgfmathsetmacro{\boxscale}{2.5};
+      \foreach \letter/\x in {A/-4, B/-2, C/0, D/2, E/4}{
+        \node[draw, scale=\boxscale] (\letter 1) at ($(\x, \ybox) + (-.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 2) at ($(\x, \ybox) + (.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 1p) at ($(\x, -\ybox) + (-.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 2p) at ($(\x, -\ybox) + (.25,0)$) {};
+        \node (\letter) at (\x, \ylabel) {$\letter$};
+        \node (\letter p) at (\x, -\ylabel) {$\letter '$};
+      }
+
+      \foreach \dom/\cod/\morphism in {A2/B1/q, B2/C1/r, C2/D1/s, D2/E1/t}{
+        \draw[->] (\dom) -- (\cod) node[midway, above] {$\morphism$};
+        \draw[->] (\dom p) -- (\cod p) node[midway, above] {$\morphism'$};
+      }
+
+      \foreach \letter/\letterp/\morphism in {A/\alpha, B/\beta, C/\gamma, D/\delta, E/\epsilon}{
+        \draw[->] (\letter 1) -- (\letter 1p);
+        \draw[->] (\letter 2) -- (\letter 2p);
+        \draw[white, ->] ($.5*(\letter 1) + .5*(\letter 2)$) -- ($.5*(\letter 1p) + .5*(\letter 2p)$) node[midway] {$\color{black} \morphism$};
+        % \draw[->] (\letter 1) -- (\letter 1p) node[midway, left] {$\morphism$};
+        % \draw[->] (\letter 2) -- (\letter 2p) node[midway, right] {$\morphism$};
+      }
+    \end{tikzpicture}
+  \end{figure}
+  First, we show $\gamma$ is injective. To that end, we want to show
+  $\ker \gamma = \set{0}$.
+
+  Let $c \in C$, and suppose $c \in \ker \gamma$. Then $\gamma(c) =
+  0$, hence $\gamma(c) \in \ker r'$. Thus by exactness, there exists
+  $a' \in A'$, $b' \in B'$ such that $q'(a') = b'$, and $r'(b') =
+  \gamma(c) = 0$:
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+      \pgfmathsetmacro{\ybox}{1};
+      \pgfmathsetmacro{\ylabel}{1.4};
+      \pgfmathsetmacro{\midbox}{.825};
+      \pgfmathsetmacro{\boxscale}{2.5};
+      \foreach \letter/\x in {A/-4, B/-2, C/0, D/2, E/4}{
+        \node[draw, scale=\boxscale] (\letter 1) at ($(\x, \ybox) + (-.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 2) at ($(\x, \ybox) + (.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 1p) at ($(\x, -\ybox) + (-.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 2p) at ($(\x, -\ybox) + (.25,0)$) {};
+        \node (\letter) at (\x, \ylabel) {$\letter$};
+        \node (\letter p) at (\x, -\ylabel) {$\letter '$};
+      }
+
+      \foreach \dom/\cod/\morphism in {A2/B1/q, B2/C1/r, C2/D1/s, D2/E1/t}{
+        \draw[->] (\dom) -- (\cod) node[midway, above] {$\morphism$};
+        \draw[->] (\dom p) -- (\cod p) node[midway, above] {$\morphism'$};
+      }
+
+      \foreach \letter/\letterp/\morphism in {A/\alpha, B/\beta, C/\gamma, D/\delta, E/\epsilon}{
+        \draw[->] (\letter 1) -- (\letter 1p);
+        \draw[->] (\letter 2) -- (\letter 2p);
+        \draw[white, ->] ($.5*(\letter 1) + .5*(\letter 2)$) -- ($.5*(\letter 1p) + .5*(\letter 2p)$) node[midway] {$\color{black} \morphism$};
+        % \draw[->] (\letter 1) -- (\letter 1p) node[midway, left] {$\morphism$};
+        % \draw[->] (\letter 2) -- (\letter 2p) node[midway, right] {$\morphism$};
+      }
+      \node[red] at (C1) {\footnotesize $c$};
+      \node[red] at (A1p) {\footnotesize $a'$};
+      \node[red] at (B1p) {\footnotesize $b'$};
+      \node[red] at (C1p) {\footnotesize $0$};
+    \end{tikzpicture}
+  \end{figure}
+  Now, since $\alpha, \beta$ are surjective, there exists $a \in A$,
+  $b \in B$ such that $\alpha(a) = a'$, $\beta(b) = b'$:
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+      \pgfmathsetmacro{\ybox}{1};
+      \pgfmathsetmacro{\ylabel}{1.4};
+      \pgfmathsetmacro{\midbox}{.825};
+      \pgfmathsetmacro{\boxscale}{2.5};
+      \foreach \letter/\x in {A/-4, B/-2, C/0, D/2, E/4}{
+        \node[draw, scale=\boxscale] (\letter 1) at ($(\x, \ybox) + (-.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 2) at ($(\x, \ybox) + (.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 1p) at ($(\x, -\ybox) + (-.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 2p) at ($(\x, -\ybox) + (.25,0)$) {};
+        \node (\letter) at (\x, \ylabel) {$\letter$};
+        \node (\letter p) at (\x, -\ylabel) {$\letter '$};
+      }
+
+      \foreach \dom/\cod/\morphism in {A2/B1/q, B2/C1/r, C2/D1/s, D2/E1/t}{
+        \draw[->] (\dom) -- (\cod) node[midway, above] {$\morphism$};
+        \draw[->] (\dom p) -- (\cod p) node[midway, above] {$\morphism'$};
+      }
+
+      \foreach \letter/\letterp/\morphism in {A/\alpha, B/\beta, C/\gamma, D/\delta, E/\epsilon}{
+        \draw[->] (\letter 1) -- (\letter 1p);
+        \draw[->] (\letter 2) -- (\letter 2p);
+        \draw[white, ->] ($.5*(\letter 1) + .5*(\letter 2)$) -- ($.5*(\letter 1p) + .5*(\letter 2p)$) node[midway] {$\color{black} \morphism$};
+        % \draw[->] (\letter 1) -- (\letter 1p) node[midway, left] {$\morphism$};
+        % \draw[->] (\letter 2) -- (\letter 2p) node[midway, right] {$\morphism$};
+      }
+
+      \node[red] at (A1) {\footnotesize $a$};
+      \draw[white, ->] (A1) -- (A1p);
+      \draw[red, thick, ->>] (A1) -- (A1p);
+      \node[red] at (B1) {\footnotesize $b$};
+      \draw[white, ->] (B1) -- (B1p);
+      \draw[red, thick, ->>] (B1) -- (B1p);
+
+      \node at (C1) {\footnotesize $c$};
+      \node at (A1p) {\footnotesize $a'$};
+      \node at (B1p) {\footnotesize $b'$};
+      \node at (C1p) {\footnotesize $0$};
+    \end{tikzpicture}
+    \caption{Surjectivity, indicated by the double arrowhead.}
+  \end{figure}
+  Now, note that $s'(\gamma(c)) = s'(0) = 0$. Since $\delta$ is
+  an isomorphism (and thus injective), it follows that
+  $\delta^{-1}(\gamma(c)) = \delta^{-1}(0) = 0$. Finally, by
+  commutativity of the square, we have $s(c) = 0$, so we can place
+  them in corresponding boxes:
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+      \pgfmathsetmacro{\ybox}{1};
+      \pgfmathsetmacro{\ylabel}{1.4};
+      \pgfmathsetmacro{\midbox}{.825};
+      \pgfmathsetmacro{\boxscale}{2.5};
+      \foreach \letter/\x in {A/-4, B/-2, C/0, D/2, E/4}{
+        \node[draw, scale=\boxscale] (\letter 1) at ($(\x, \ybox) + (-.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 2) at ($(\x, \ybox) + (.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 1p) at ($(\x, -\ybox) + (-.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 2p) at ($(\x, -\ybox) + (.25,0)$) {};
+        \node (\letter) at (\x, \ylabel) {$\letter$};
+        \node (\letter p) at (\x, -\ylabel) {$\letter '$};
+      }
+
+      \foreach \dom/\cod/\morphism in {A2/B1/q, B2/C1/r, C2/D1/s, D2/E1/t}{
+        \draw[->] (\dom) -- (\cod) node[midway, above] {$\morphism$};
+        \draw[->] (\dom p) -- (\cod p) node[midway, above] {$\morphism'$};
+      }
+
+      \foreach \letter/\letterp/\morphism in {A/\alpha, B/\beta, C/\gamma, D/\delta, E/\epsilon}{
+        \draw[->] (\letter 1) -- (\letter 1p);
+        \draw[->] (\letter 2) -- (\letter 2p);
+        \draw[white, ->] ($.5*(\letter 1) + .5*(\letter 2)$) -- ($.5*(\letter 1p) + .5*(\letter 2p)$) node[midway] {$\color{black} \morphism$};
+        % \draw[->] (\letter 1) -- (\letter 1p) node[midway, left] {$\morphism$};
+        % \draw[->] (\letter 2) -- (\letter 2p) node[midway, right] {$\morphism$};
+      }
+
+      \draw[white, ->] (A1) -- (A1p);
+      \draw[thick, ->>] (A1) -- (A1p);
+      \node at (B1) {\footnotesize $b$};
+      \draw[white, ->] (B1) -- (B1p);
+      \draw[thick, ->>] (B1) -- (B1p);
+
+      \node at (C1) {\footnotesize $c$};
+      \node at (A1p) {\footnotesize $a'$};
+      \node at (B1p) {\footnotesize $b'$};
+      \node at (C1p) {\footnotesize $0$};
+
+      \node[red] at (D1p) {\footnotesize $0$};
+      \node[red] at (D1) {\footnotesize $0$};
+      \draw[white, ->] (D1) -- (D1p);
+      \draw[white, thick] (D1) -- (D1p);
+      \draw[red, thick, arrows={Hooks[right, length=1mm]->}] (D1) -- (D1p);
+      \draw[red, thick, ->] (1.375,0) arc (0:330:.375);
+    \end{tikzpicture}
+    \caption{Injectivity, indicated by the hooked arrow, and
+      commutativity.}
+  \end{figure}
+  Now, $c \in \ker s$ implies $c \in \im r$, thus there exists $\ol b
+  \in B$ such that $r(\ol b) = c$. Since $\beta$ is injective,
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+      \pgfmathsetmacro{\ybox}{1};
+      \pgfmathsetmacro{\ylabel}{1.4};
+      \pgfmathsetmacro{\midbox}{.825};
+      \pgfmathsetmacro{\boxscale}{2.5};
+      \foreach \letter/\x in {A/-4, B/-2, C/0, D/2, E/4}{
+        \node[draw, scale=\boxscale] (\letter 1) at ($(\x, \ybox) + (-.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 2) at ($(\x, \ybox) + (.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 1p) at ($(\x, -\ybox) + (-.25,0)$) {};
+        \node[draw, scale=\boxscale] (\letter 2p) at ($(\x, -\ybox) + (.25,0)$) {};
+        \node (\letter) at (\x, \ylabel) {$\letter$};
+        \node (\letter p) at (\x, -\ylabel) {$\letter '$};
+      }
+
+      \foreach \dom/\cod/\morphism in {A2/B1/q, B2/C1/r, C2/D1/s, D2/E1/t}{
+        \draw[->] (\dom) -- (\cod) node[midway, above] {$\morphism$};
+        \draw[->] (\dom p) -- (\cod p) node[midway, above] {$\morphism'$};
+      }
+
+      \foreach \letter/\letterp/\morphism in {A/\alpha, B/\beta, C/\gamma, D/\delta, E/\epsilon}{
+        \draw[->] (\letter 1) -- (\letter 1p);
+        \draw[->] (\letter 2) -- (\letter 2p);
+        \draw[white, ->] ($.5*(\letter 1) + .5*(\letter 2)$) -- ($.5*(\letter 1p) + .5*(\letter 2p)$) node[midway] {$\color{black} \morphism$};
+        % \draw[->] (\letter 1) -- (\letter 1p) node[midway, left] {$\morphism$};
+        % \draw[->] (\letter 2) -- (\letter 2p) node[midway, right] {$\morphism$};
+      }
+
+      \node at (A1) {\footnotesize $a$};
+      \draw[white, ->] (A1) -- (A1p);
+      \draw[thick, ->>] (A1) -- (A1p);
+      \node at (B1) {\footnotesize $b$};
+      \draw[white, ->] (B1) -- (B1p);
+      \draw[thick, ->>] (B1) -- (B1p);
+
+      \node at (C1) {\footnotesize $c$};
+      \node at (A1p) {\footnotesize $a'$};
+      \node at (B1p) {\footnotesize $b'$};
+      \node at (C1p) {\footnotesize $0$};
+
+      \node at (D1p) {\footnotesize $0$};
+      \node at (D1) {\footnotesize $0$};
+      \draw[white, ->] (D1) -- (D1p);
+      \draw[white, thick] (D1) -- (D1p);
+      \draw[thick, arrows={Hooks[right, length=1mm]->}] (D1) -- (D1p);
+      \draw[thick, ->] (1.375,0) arc (0:330:.375);
+
+      \draw[white, ->] (B2) -- (B2p);
+      \draw[red, thick, ->>] (B2) -- (B2p);
+      \node[red] at (B2) {\footnotesize $\color{red}\ol b$};
+      \node[red] at (B2p) {\footnotesize $\color{red}\ol{b}'$};
+    \end{tikzpicture}
+    \caption{Injectivity, indicated by the hooked arrow, and
+      commutativity.}
+  \end{figure}
+\end{solution}
 
 %%% Local Variables:
 %%% TeX-master: "../main"

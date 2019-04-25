@@ -1,0 +1,8 @@
+* Rook monoids
+* Hypergraphs
+* Adjacency matrices; some other matrix thing
+* Partial rankings
+* Traces in general
+* Collapsing stuff
+* Martin Malandro
+* Partial permutations

@@ -824,7 +824,45 @@
 \end{solution}
 
 \section{Lefschetz}
+\begin{definition}[Free Abelian Group]
+  A group
+  \[
+    G \cong \osum_{i=1}^n \ZZ
+  \]
+  is called the \emph{free abelian group of rank $n$}.
+\end{definition}
+\begin{definition}[Torsion Group]
+  Let $G$ be a group. Denote the \emph{torsion subgroup}, $G_{\rm
+    tor}$, by
+  \[
+    G_{\rm tor} = \set{g \in G \MID \exists n \in \NN \st g^n =
+      \epsilon},
+  \]
+  that is, the subgroup of all elements with finite order.
+\end{definition}
+\begin{problem}[FK]
+  Prove that $G_{\rm tor}$ is indeed a subgroup of $G$.
+\end{problem}
+\begin{solution}
+  Let $g_1, g_2 \in G_{\rm tor}$. WTS $g_1 g_2^{-1} \in G_{\rm tor}$.
+  % Then $\exists n_1, n_2 \in \NN \st$
+  % \[
+  %   g_1^{n_1} = \epsilon, \qquad\qquad\qquad g_2^{n_2} = \epsilon.
+  % \]
+  % WTS $g_1g_2$ has finite order. Let $k = \lcm(n_1, n_2)$. Then
+  % $\exists m_1, m_2 \in \NN \st n_1 =m_1 k$, and $n_2 = m_2 k$. Now,
+  % \begin{align*}
 
+  % \end{align*}
+\end{solution}
+\begin{definition}
+  Let $G$ be a finitely generated abelian group, which we can express
+  as
+  \[
+    G = G_{\rm free} \oplus G_{\rm tor},
+  \]
+  the direct sum of a free and a torsion group.
+\end{definition}
 
 %%% Local Variables:
 %%% TeX-master: "../main"

@@ -1,116 +1,88 @@
-# from ordered_set import OrderedSet as oset
+# For powerset generation
+from itertools import combinations, chain
+
 from scipy.special import binom
 from sympy.combinatorics import Permutation
-
-class Simplex:
-    """
-
-    """
-    def __init__(faces):
-        """
-        faces: a dictionary with
-        """
-        self.faces = faces
-        self.n = max(faces.keys())
-        n = self.n
-        for k in range(n):
-            try:
-                assert(binom(n,k) == len(faces[i]))
-            except AssertionError as err:
-                raise(err, "faces are not of the correct size!")
-        return
-
-
-    def intersect(other):
-        """
-        iterate through the keys of the simplex dictionary and
-        intersect the result
-        """
-        # self n, other simplex n
-        s_n, o_n = self.n, other.n
-
-        # new simplex dict
-        new_sdict = {}
-        if s_n > o_n:
-            # If self is higher dimensional than other, then we'll
-            # need a simplex with dimensions matching other's (because
-            # the higher dimensional ones will intersect to empty)
-            new_sdict = other.sdict.copy()
-
-            # Intersect all the parts from self
-            for i in range(o_n+1):
-                new_sdict[i] |= self.sdict[i]
-
-            return Simplex(new_sdict, o_n)
-
-        # else, o_n >= s_n
-        else:
-            new_sdict = self.sdict.copy()
-
-            # Union in all the parts from self
-            for i in range(s_n+1):
-                new_sdict[i] |= other.sdict[i]
-
-            return Simplex(new_sdict, s_n)
-
-
-    def __and__(other):
-        """
-        perform an operator override
-        """
-        return self.intersect(other)
-
-
-    def union(other):
-        """
-        iterate through the simplex dictionaries
-        """
-        s_n, o_n = self.n, other.n
-        # max_n = max(s_n, o_n)
-
-        new_sdict = {}
-        if s_n > o_n:
-            # If self is higher dimensional than other, then we'll
-            # need a simplex with dimensions matching self's
-            new_sdict = self.sdict.copy()
-
-            # Union in all the parts from other
-            for i in range(o_n+1):
-                new_sdict[i] |= other.sdict[i]
-
-            return Simplex(new_sdict, s_n)
-
-        # else, o_n >= s_n
-        else:
-            # If self is higher dimensional than other, then we'll
-            # need a simplex with dimensions matching self's
-            new_sdict = other.sdict.copy()
-
-            # Union in all the parts from self
-            for i in range(s_n+1):
-                new_sdict[i] |= self.sdict[i]
-
-            return Simplex(new_sdict, s_n)
-
-
-    def __or__(other):
-        return self.union(other)
 
 
 class SimplicialComplex:
     """
     attributes: ordered sets of simplices?
     """
-    def __init__(sdict, n):
+    def __init__(self, sdict):
         """
-        initialize the simplex dictionary
+        sdict:
+            name: simplex dictionary
+            type: dictionary with keys ints, values sets of ints representing vertices.
+                {int : {verts}}
+
         """
         self.sdict = sdict
-        self.n = n
+        self.n = max(sdict.keys())
+        self.is_valid()
         return
 
+    def __repr__(self):
+        out_str = f"Simplicial Complex of max dimension {self.n}." + "\n---------------------------------------------\n" + "Subsimplices:\n"
+        for i in range(self.n+1):
+            out_str += f"    i={i}:"
+            sorted_simps = sorted([sorted(list(simp)) for simp in list(self.sdict[i])])
+            for i, simp in enumerate(sorted_simps):
+                if i == 0:
+                    out_str += " {" + str(simp)[1:-1] + "}\n"
+                else:
+                    # Trim out the list stuff
+                    out_str += "         {" + str(simp)[1:-1] + "}\n"
+            out_str += "\n"
+        return out_str
 
-    def intersect(other):
+
+    def is_valid(self):
+        """
+        check if self is a valid simplicial complex
+        """
+        bad_simps = {}
+        # Check that all of the simplices are actually valid by
+        for i in range(0, self.n+1, -1):
+            for simplex in sdict[i]:
+                is_valid, bad_simps = check_faces(simplex, bad_simps)
+                try:
+                    assert(is_valid)
+                except AssertionError as err:
+                    print(f"Invalid simplicial complex; not all faces of\
+                            constituent simplices are included!\n\n Failed on\
+                            simplex {simplex}.")
+                    raise(err)
+        return
+
+    def check_faces(self, simplex, bad_simps):
+        """
+        Inputs:
+        -------
+        simplex: k-simplex (represented as a set of ints)
+        """
+        # Get the dimension of the simplex
+        k = len(simplex)
+
+        # Need to check all the way down to 0 simplices. k-simplices
+        # aren't necessary, since this will only be called by
+        # iterating over all k-simplices.
+        for r in range(0, k, -1):
+            r_combo_iterator = chain.from_iterable(combinations(simplex, r))
+            for r_combo in r_subset_iterator:
+                # chain.from_iterable spits out a tuple, not a set
+                r_subset = set(r_combo)
+
+                # Is this really a valid r simplex?
+                if r_subset in self.sdict[r]:
+                    pass
+                elif r_subset in bad_simps:
+                    return False, bad_simps
+                else:
+                    return False, bad_simps | {simplex, r_subset}
+        return True, bad_simps
+
+    def intersect(self, other):
         """
         iterate through the keys of the simplex dictionary and
         intersect the result
@@ -130,9 +102,9 @@ class SimplicialComplex:
             for i in range(o_n+1):
                 new_sdict[i] |= self.sdict[i]
 
-            return Simplex(new_sdict, o_n)
+            return SimplicialComplex(new_sdict)
 
-        # else, o_n >= s_n
+        # o_n >= s_n
         else:
             new_sdict = self.sdict.copy()
 
@@ -140,17 +112,17 @@ class SimplicialComplex:
             for i in range(s_n+1):
                 new_sdict[i] |= other.sdict[i]
 
-            return Simplex(new_sdict, s_n)
+            return SimplicialComplex(new_sdict)
 
 
-    def __and__(other):
+    def __and__(self, other):
         """
         perform an operator override
         """
         return self.intersect(other)
 
 
-    def union(other):
+    def union(self, other):
         """
         iterate through the simplex dictionaries
         """
@@ -167,9 +139,9 @@ class SimplicialComplex:
             for i in range(o_n+1):
                 new_sdict[i] |= other.sdict[i]
 
-            return Simplex(new_sdict, s_n)
+            return SimplicialComplex(new_sdict)
 
-        # else, o_n >= s_n
+        # o_n >= s_n
         else:
             # If self is higher dimensional than other, then we'll
             # need a simplex with dimensions matching self's
@@ -179,11 +151,38 @@ class SimplicialComplex:
             for i in range(s_n+1):
                 new_sdict[i] |= self.sdict[i]
 
-            return Simplex(new_sdict, s_n)
+            return SimplicialComplex(new_sdict)
 
 
-    def __or__(other):
+    def __or__(self, other):
         return self.union(other)
 
+
+def standard_simp(verts):
+    """
+    For recursively constructing a standard n-simplex from a list of verts.
+    Basically, so that I can pass in something like [2,3,4], and get all of the
+    things on those vertices without having to go through the construction
+    explicitly.
+
+    returns a simplex dictionary
+    """
+    k = len(verts)
+
+    # Initialize the dictionary
+    sdict = {}
+
+    for r in range(1,k+1):
+        sub_faces = {frozenset(r_face) for r_face in combinations(verts, r)}
+        # 0-simplices are points, not the empty set.
+        sdict[r-1] = sub_faces
+    return sdict
+
+
 def test_simplex():
-    return
+    sdict1 = standard_simp({1,2,3})
+    sdict2 = standard_simp({2,3,4})
+
+    return SimplicialComplex(sdict1) | SimplicialComplex(sdict2)
+
+test = test_simplex()

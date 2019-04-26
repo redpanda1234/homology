@@ -1,4 +1,6 @@
 # For powerset generation
+from copy import deepcopy
+
 from itertools import combinations, chain
 
 from scipy.special import binom
@@ -96,7 +98,7 @@ class SimplicialComplex:
             # If self is higher dimensional than other, then we'll
             # need a simplex with dimensions matching other's (because
             # the higher dimensional ones will intersect to empty)
-            new_sdict = other.sdict.copy()
+            new_sdict = deepcopy(other.sdict)
 
             # Intersect all the parts from self
             for i in range(o_n+1):
@@ -110,7 +112,7 @@ class SimplicialComplex:
 
         # o_n >= s_n
         else:
-            new_sdict = self.sdict.copy()
+            new_sdict = deepcopy(self.sdict)
 
             # Union in all the parts from self
             for i in range(s_n+1):
@@ -141,7 +143,7 @@ class SimplicialComplex:
         if s_n > o_n:
             # If self is higher dimensional than other, then we'll
             # need a simplex with dimensions matching self's
-            new_sdict = self.sdict.copy()
+            new_sdict = deepcopy(self.sdict)
 
             # Union in all the parts from other
             for i in range(o_n+1):
@@ -153,7 +155,7 @@ class SimplicialComplex:
         else:
             # If self is higher dimensional than other, then we'll
             # need a simplex with dimensions matching self's
-            new_sdict = other.sdict.copy()
+            new_sdict = deepcopy(other.sdict)
 
             # Union in all the parts from self
             for i in range(s_n+1):
@@ -278,10 +280,10 @@ def Hom_smap(K,L):
 
         else:
             for lv in lvset:
-                new_smap = smap.copy()
+                new_smap = deepcopy(smap)
 
                 # pop a vertex out
-                new_kvset = kvset.copy()
+                new_kvset = deepcopy(kvset)
                 this_k = new_kvset.pop()
 
                 # Randomly assign an image

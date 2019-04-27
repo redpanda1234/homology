@@ -21,7 +21,7 @@ class SimplicialComplex:
         """
         self.sdict = sdict
         self.n = max(sdict.keys())
-        self.is_valid()
+        # assert(self.is_valid())
         return
 
     def __repr__(self):
@@ -43,45 +43,44 @@ class SimplicialComplex:
         """
         check if self is a valid simplicial complex
         """
-        bad_simps = {}
+        bad_simps = set()
         # Check that all of the simplices are actually valid by
-        for i in range(0, self.n+1, -1):
-            for simplex in sdict[i]:
-                is_valid, bad_simps = check_faces(simplex, bad_simps)
-                try:
-                    assert(is_valid)
-                except AssertionError as err:
-                    print(f"Invalid simplicial complex; not all faces of\
-                            constituent simplices are included!\n\n Failed on\
-                            simplex {simplex}.")
-                    raise(err)
-        return
+        for i in range(self.n, -1, -1):
+            for simplex in self.sdict[i]:
+                valid, bad_simps = self.check_faces(simplex, bad_simps, i)
+                if not valid:
+                    print("Invalid simplicial complex; not all faces of constituent simplices are included!\n\nFailed on simplex " + str(simplex)[10:-1] + " in the following complex:")
+                    print(self)
+                    print("Complex is missing ", str(bad_simps)[10:-1], "\n\n\n\n")
+                    return False
+        return True
 
-    def check_faces(self, simplex, bad_simps):
+    def check_faces(self, simplex, bad_simps, k):
         """
         Inputs:
         -------
         simplex: k-simplex (represented as a set of ints)
         """
-        # Get the dimension of the simplex
-        k = len(simplex)
-
         # Need to check all the way down to 0 simplices. k-simplices
         # aren't necessary, since this will only be called by
         # iterating over all k-simplices.
-        for r in range(0, k, -1):
+
+        # TODO --- bad_simps sort of isn't necessary here, is it?
+        for r in range(k-1, -1, -1):
             r_combo_iterator = chain.from_iterable(combinations(simplex, r))
-            for r_combo in r_subset_iterator:
+            for r_combo in r_combo_iterator:
                 # chain.from_iterable spits out a tuple, not a set
-                r_subset = set(r_combo)
+                r_subset = frozenset({r_combo})
+                i = len(r_subset)-1
 
                 # Is this really a valid r simplex?
-                if r_subset in self.sdict[r]:
+                if r_subset in self.sdict[i]:
                     pass
                 elif r_subset in bad_simps:
                     return False, bad_simps
                 else:
-                    return False, bad_simps | {simplex, r_subset}
+                    # Or the r_subset into bad_simps
+                    return False, bad_simps | {r_subset}
         return True, bad_simps
 
     def intersect(self, other):
@@ -170,52 +169,59 @@ class SimplicialComplex:
 
     def subtract(self, other):
         """
-        todo
+        TODO
         """
         return
 
 # We need these things to work without having to go through the
 # overhead of instantiating a class.
-# TODO: refactor to define methods in terms of these, perhaps?
-def is_valid(sdict):
+# TODO: refactor
+
+def valid_sdict(sdict):
     """
     check if self is a valid simplicial complex
     """
-    bad_simps = {}
-       # Check that all of the simplices are actually valid by
-    for i in range(0, len(sdict.keys()), -1):
+    bad_simps = set()
+    # Check that all of the simplices are actually valid by
+    for i in range(len(sdict)-1, -1, -1):
         for simplex in sdict[i]:
-            is_valid, bad_simps = check_faces(sdict, simplex, bad_simps)
-            if not is_valid:
+            valid, bad_simps = sdict_check_faces(sdict, simplex, bad_simps, i)
+            if not valid:
+                # print("Invalid simplicial complex; not all faces of constituent simplices are included!\n\nFailed on simplex " + str(simplex)[10:-1] + " in the following complex:")
+                # print(sdict)
+                # print("Complex is missing ", str(bad_simps)[10:-1], "\n\n\n\n")
                 return False
     return True
 
-def check_faces(sdict, simplex, bad_simps):
+def sdict_check_faces(sdict, simplex, bad_simps, k):
     """
     Inputs:
     -------
     simplex: k-simplex (represented as a set of ints)
     """
-    # Get the dimension of the simplex
-    k = len(simplex)
-
     # Need to check all the way down to 0 simplices. k-simplices
     # aren't necessary, since this will only be called by
     # iterating over all k-simplices.
-    for r in range(0, k, -1):
+
+    # TODO --- bad_simps sort of isn't necessary here, is it?
+    for r in range(k-1, -1, -1):
         r_combo_iterator = chain.from_iterable(combinations(simplex, r))
-        for r_combo in r_subset_iterator:
+        for r_combo in r_combo_iterator:
             # chain.from_iterable spits out a tuple, not a set
-            r_subset = set(r_combo)
+            r_subset = frozenset({r_combo})
+            i = len(r_subset)-1
 
             # Is this really a valid r simplex?
-            if r_subset in sdict[r]:
+            if r_subset in sdict[i]:
                 pass
             elif r_subset in bad_simps:
                 return False, bad_simps
             else:
-                return False, bad_simps | {simplex, r_subset}
+                # Or the r_subset into bad_simps
+                return False, bad_simps | {r_subset}
     return True, bad_simps
+
+
 
 def apply_hom(f, K):
     """
@@ -224,26 +230,64 @@ def apply_hom(f, K):
     Apply the simplicial map f over the simplex dict K
     """
     # Max value of n we can iterate to
-    max_iter = len(K)+1
-    out_sdict = {frozenset() for i in range(max_iter)}
+    max_iter = len(K)-1
+    # print(max_iter)
+    out_sdict = {i:set() for i in range(max_iter+1)}
     # Iterate through dimensions
-    for n in range(max_iter):
+    for n in range(max_iter-1, -1, -1):
         for knsimp in K[n]:
             # Image simplex
-            imsimp = {}
+            imsimp = set()
             # Iterate through this n simplex in k
             for vert in knsimp:
-                imsimp.add(f[vert])
+                if vert in f:
+                    imsimp.add(f[vert])
+
             # Image of this n simplex need not be an n simplex
-            out_sdict[len(imsimp)] |= frozenset(imsimp)
-        # Currently in the middle of trying to write the logic to
-        # merge all the images of the simplices (as determined by
-        # verts) together
-    # This needs testing!
+            try:
+                out_sdict[len(imsimp)] |= {frozenset(imsimp)}
+            except KeyError as err:
+                print("out_sdict: ", out_sdict)
+                print("imsimp: ", imsimp)
+                print("key attempted: ", len(imsimp)-1)
+                raise(err)
+
+    # Filter out empty entries
+    out_sdict = {k:v for (k,v) in out_sdict.items() if v}
     return out_sdict
 
+def smap_constructor(memo, all_smaps, smap, kverts, lverts, ksdict):
+    # kverts, lverts = K.sdict[0], L.sdict[0]
 
-def Hom_smap(K,L):
+    if not kverts:
+        return memo, all_smaps
+    for bad_map in memo:
+        if frozendict_subset(bad_map, smap):
+            return False
+
+    # Iterate all k vertices --- this actually double-counts still. How to fix this?
+    for kv in kverts:
+        new_kverts = deepcopy(kverts)
+        new_kverts.remove(kv)
+        # Iterate
+        for lv in lverts:
+            new_smap = deepcopy(smap)
+            new_smap[kv] = lv
+            if valid_sdict(apply_hom(new_smap, ksdict)):
+                next_level = smap_constructor(memo, all_smaps, new_smap, new_kverts, lverts, ksdict)
+                if next_level:
+                    print(next_level)
+                    memo, all_smaps = next_level
+                    # Fricken python not having a immutable dictionary type... smh
+                    all_smaps.add(frozenset(new_smap.items()))
+            else:
+                memo.add(frozenset(new_smap.items()))
+                return False
+
+    return memo, all_smaps
+
+
+def Hom(K,L):
     """
     Homset of simplicial maps.
 
@@ -252,55 +296,11 @@ def Hom_smap(K,L):
     generate all simplicial maps between the two simplicial complexes
     provided.
     """
-    kverts, lverts = k.sdict[0], l.sdict[0]
-
-    # Store previous vertex configurations that we've already tried in
-    # a memo so that maybe we won't have n! runtime?
-    memo = {}
-
-
-    # Initialize output set of simplicial mpas
-    all_smaps = {}
-
-    # Current simplicial map (represented as a dictionary)
-    smap = {}
-
-    def smap_constructor(smap, kvset, lvset):
-        """
-        kvset, lvset --- same as kverts, lverts. Just using a
-        different name b/c I forgot how global vars work in python and
-        want to avoid naming conflicts.
-        """
-        # Base case: all points in the domain have been assigned.
-        if not(kverts):
-            return smap
-        for bad_map in memo:
-            if dict_subset(bad_map, smap):
-                return False
-
-        else:
-            for lv in lvset:
-                new_smap = deepcopy(smap)
-
-                # pop a vertex out
-                new_kvset = deepcopy(kvset)
-                this_k = new_kvset.pop()
-
-                # Randomly assign an image
-                new_smap[this_k] = lv
-
-                new_complex = apply_hom(new_smap, kvset)
-                if is_valid(new_complex):
-                    # TODO: Maybe figure out a way to lazy-evaluate
-                    # these things. Perhaps an iterator could be
-                    # useful?
-
-                    return smap_constructor(smap_copy, new_kvset, lvset)
-                else:
-                    memo.add(smap)
-                    return False
-
-    return
+    kverts, ksdict = K.sdict[0], K.sdict
+    lverts = L.sdict[0]
+    # We don't need the memo
+    _, all_smaps = smap_constructor(set(), set(), dict(), kverts, lverts, ksdict)
+    return all_smaps
 
 def dict_subset(d1, d2):
     """
@@ -308,6 +308,7 @@ def dict_subset(d1, d2):
 
     in particular, if d1 <= d2
     """
+    d1 = dict(d1)
     return all(d1.get(k, object()) == v for (k, v) in d2.items())
 
 
@@ -342,6 +343,37 @@ def test_simplex():
     scomp1 = SimplicialComplex(sdict1)
     scomp2 = SimplicialComplex(sdict2)
     scomp3 = SimplicialComplex(sdict3)
-    return scomp1, scomp2, scomp3
 
-scomp1, scomp2, scomp3 = test_simplex()
+    s1dict = {0 : {frozenset({1})},
+              1 : {frozenset({1,2})},
+              2 : {frozenset({1,2,3})}}
+
+    s2dict = {0 : {frozenset({1}), frozenset({2})},
+              1 : {frozenset({1,2}), frozenset({2,3}), frozenset({1,3})},
+              2 : {frozenset({1,2,3})}}
+
+    s3dict = {0 : {frozenset({1}), frozenset({2}), frozenset({3}), frozenset({4})},
+              1 : {frozenset({1,2}), frozenset({2,3}), frozenset({1,3})}}
+
+
+    s1 = SimplicialComplex(s1dict)
+    s2 = SimplicialComplex(s2dict)
+    s3 = SimplicialComplex(s3dict)
+
+
+    assert(scomp1.is_valid())
+    assert(not s1.is_valid())
+    assert((scomp1 & scomp2).is_valid())
+    assert(not s2.is_valid())
+    assert(s3.is_valid())
+
+    return scomp1, scomp2, scomp3, s1
+
+scomp1, scomp2, scomp3, s1 = test_simplex()
+
+f = {1:1, 2:1, 3:2}
+g = {1:1, 2:3, 3:2}
+kp = apply_hom(f, scomp1.sdict)
+lp = apply_hom(g, scomp1.sdict)
+
+aut_scomp1 = Hom(scomp1, scomp1)

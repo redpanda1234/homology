@@ -1,0 +1,301 @@
+\documentclass{fkletter}
+\usepackage{fancyhdr}
+\fancyhf{}
+\lhead{Forest Kobayashi}
+\chead{Errata found}
+\rhead{Topology Through Inquiry}
+\thispagestyle{fancy}
+\begin{document}
+\section*{Large-Scale Comments}
+\begin{enumerate}
+  \item Given that many courses using the book might not employ \emph{every}
+    chapter, it might be helpful to add a glossary of all notation defined
+    throughout the book to make it easier to find anything not covered.
+  \item Throughout the first part of the book, lots of definitions are given
+    with iffs. E.g., ``Call an object $x$ a \underline{\phantom{thingy}} iff it
+    satisfies properties \underline{\phantom{llist of properties}}.'' This isn't
+    as consistently adhered to in the second half.
+\end{enumerate}
+\section*{Chapter 3}
+\begin{enumerate}
+  \item Notational inconsistency. Section 3.1, page 46: ``there is a designated
+    set $U_x$ in {\color{red} X} with $x \in U_x$ such that $f(U_x) \subset
+    V$.'' Here, the {\color{red} X} should be in math font, i.e.\
+    ${\color{green} X}$.
+  % \item Possible undesirable formatting. Section 3.1, page 48: in the statement
+  %   of theorem 3.1 (``Let $\set{U_i}_{i=1}^n$ be a finite collection of open
+  %   sets''), ``finite'' is not italicized, whereas the surrounding text is. This
+  %   is likely due to the use of \verb|\emph| inside an italicized environment.
+  %   {\color{red} While this is indeed the expected behavior, it might be worth
+  %     considering using boldface together with italics to emphasize finite in
+  %     this context --- however, it's certainly a matter of personal preference.}
+  \item Possibly undesirable notation. Section 3.2, definition of an open ball:
+    ``in $\RR^n$, the open ball of radius $\epsilon > 0$ around a point $p \in
+    \RR^n$ is the set''
+    \[
+      {\color{red}B(p,\epsilon)} = \set{x \in \RR^n \MID d(p,x) < \epsilon}
+    \]
+\end{enumerate}
+\section*{Chapter 4}
+\begin{enumerate}
+  \item Inconsitent notation. Section 4.4, Theorem 4.30: ``Let $(X,\ms T_Y)$ be
+    a topological space, and $(Y, {\color{red} T_Y})$ be a subspace.'' Should be
+    script/cal $T_Y$.
+\end{enumerate}
+\section*{Chapter 7}
+\begin{enumerate}
+  \item Incomplete definition. Section 8.5, definition of a cone. ``Given a
+    topological space $X$, consider the quotient space $X \times [0,1]$ such
+    that all points $(x,0)$ are identified to a single point $p$.'' The word
+    ``cone'' is never mentioned explicitly here!
+  \item Undefined notation. Section 8.5, right after the definition of a cone:
+    $\Ss^1$ is used before it has been defined.
+  \item Possibly ungrammatical sentence: ``It is called a lemma{\color{red},}
+    because it first appeared in a paper in which Urysohn used it to prove a
+    theorem about the existence of metrics on certain kinds of spaces.'' Seems
+    the comma shouldn't be there.
+\end{enumerate}
+\section*{Chapter 11}
+\begin{enumerate}
+  \item Possibly ambiguous parse structure? Section 11.4, page 167: ``Another
+    category of theorem we will prove is fixed point theorems.'' While this
+    sentence is grammatically correct if parsed as ``Another (category of
+    (theorem we will prove)) is (fixed point theorems),'' {\color{red}it is easy
+      for a first-time reader to parse the sentence as ``Another (category of
+      theorem) we will prove is (fixed point theorems),'' which I think has a
+      number agreement error (``category of theorem'' is singular, ``is'' is
+      singular, ``fixed point theorems'' is plural --- easy to not realize
+      ``fixed point theorems'' is the title of the category).} Not sure if this
+    is actually a problem though.
+  \item Number agreement error. Section 11.4, page 167: ``Another type of
+    theorem that we will prove {\color{red} are} theorems about geometric
+    separation.'' This is sort of the dual of the part above --- ``type of
+    theorem that we will prove'' is singular no matter how you parse it, ``are''
+    is plural.
+\end{enumerate}
+\section*{Chapter 12}
+\begin{enumerate}
+  \item Notational error. Exercise 12.1, page 170: ``Show that the torus
+    {\color{red}$T^2$} is homeomorphic to $\sS^1 \times \sS^1$.'' Torus should
+    be denoted $\color{green}\TT^2$.
+  \item Possible error. Section 12.1, page 172 --- ``The basis for the topology
+    is the collection of {\color{red}open cones} with the cone point at the
+    origin.'' I believe this should be double cones?
+\end{enumerate}
+\section*{Chapter 15}
+\begin{enumerate}
+  \item Small typesetting inconsistency. Section 15.1, definition of a standard
+    $n$-ball:
+    \[
+      B^n = \set{(x_1, \ldots, x_n) \in \RR^n \MID x_1^2 + {\color{red} \ldots}
+        + x_n^2 \leq 1}.
+    \]
+    In the definition of of the $n$-cube above this, {\color{red}$\cdots$
+    (\verb|\cdots|) is used to indicate continuation of $\times$. Here, and in
+    the definition of the standard $n$-sphere below it, $\ldots$ (\verb|\ldots|)
+    is used to indicate continuation of $+$.} This may be a matter of personal
+    preference, but I've always assumed standard practice is to use $\ldots$
+    (\verb|\ldots|) for the continuation of enumerations (e.g., sets or lists),
+    and $\cdots$ (\verb|\cdots|) for the continuation of operations. Either way,
+    it probably ought to be consistent between $+$ and $\times$.
+  \item Possible clarification suggestion. Section 15.1, definition of the
+    standard $n$-sphere. We define
+    \[
+      \sS^n = \set{(x_0, \ldots, x_n) \in \RR^{n+1} \MID x_0^2 + \cdots + x_n^2
+        = 1}.
+    \]
+    {\color{red}Since we're reindexing from $0$ here (instead of adding an
+      $x_{n+1}$ coordinate), it might be worth pointing that out to the reader,
+      especially seeing as both of the previous examples started their indexing
+      at $1$.} This could easily be incorporated into the note below without
+    adding too much text, however it's non-essential.
+  \item Possible grammatical error. Section 15.1, definition of a manifold: ``An
+    \emph{$n$-dimensional manifold} or \emph{$n$-manifold} is a {\color{red}
+      separable, metric space, $M$} [\ldots]''. It seems like one or more of
+    these commas should not be there --- in this context, isn't ``metric'' usually
+    used as an adjective? Either way, the comma usage is inconsistent with that
+    in theorem 15.4 (``for a separable, metric space $M^n$, the following are
+    equivalent'').
+  \item Notational inconsistency. Section 15.1. ``For example, in the
+    {\color{red} closed disk $\DD^2$}, [\ldots]''. We defined $\DD^2$ to refer
+    to the unit square in the section above. Should this be $B^2$ instead?
+  \item Possibly incomplete definition. Section 15.2, definition of affinely
+    independent. ``recall that a set of points $v_0, \ldots, v_k$ in $\RR^n$ is
+    \emph{affinely independent} if $\set{v_1 - v_0, \ldots, v_k - v_0}$ is a
+    linearly independent set.'' {\color{red} As far as I can tell, $v_0$ is not
+      privileged, hence it should be mentioned that we require this to hold for
+      all $v_i$?}
+  \item Possibly incomplete definition. Section 15.2, definition of convex
+    combination. ``A \emph{convex combination} of $v_0, \ldots, v_k$ is a linear
+    combination of those points whose coefficients sum to 1.'' {\color{red} I
+      believe it should also be mentioned that we require said coefficients to
+      be non-negative.}
+  % \item Possibly unclear definition. Section 15.2, definition of the underlying
+  %   space of a simplicial complex. ``[\ldots] with a topology of sets whose
+  %   intersection with each simpliex $\sigma$ in $K$ is {\color{red} open in
+  %     $\sigma$}.'' From this it's unclear from this which topology we're
+  %   supposed to use to determine if the intersection is open in $\sigma$ --- I'm
+  %   assuming the standard topology on $\RR^n$?
+  \item Simple typo. Section 15.3, definition of PL. ``A continuous map $f :
+    \abs{K} \to \abs{L}$ is called \emph{piecewise linear} if and only
+    {\color{red} it}'' --- should be ``if.''
+  \item Simple typo. Section 15.4, exercise 15.23: ``{\color{red} Let $K$ is a
+      complex} [\ldots]'' --- should be ``Let $K$ be a complex.''
+  \item Inconsistent use of notation. Section 15.4, exercise 15.28: ``If the
+    simplex $\color{red} \sigma= \set{v_0,\ldots,v_n}$ is the minimal face of
+    [\ldots]'' --- should be $\simp{k}$ (no commas)
+\end{enumerate}
+\section*{Chapter 16}
+\begin{enumerate}
+  \item Tricky to parse sentence, and also slight incosistency in phrasing.
+    Section 16.1, intuition: ``Although not exactly accurate, a good way to
+    start to understand homology for a space $X$ is to view an $n$-manifold in
+    $X$ that is not the boundary of an
+    {\color{red}$(n+1)$-manifold-with-boundary} as capturing some geometry of
+    $X$ while an $n$-manifold that is the boundary of an
+    {\color{red}$(n+1)$-dimensional manifold-with-boundary} is not detecting any
+    hole or structure.''
+
+    Seems like the two highlighted red regions should be phrased identically, to
+    make the connection between them clear? Also, it might be better to split
+    this up as follows: ``Although not exactly accurate, a good way to start to
+    understand homology for a space $X$ is to consider an $n$-manifold $M$. If
+    $M$ is not the boundary of an $(n+1)$-manifold-with-boundary, then $M$ can
+    capture some geometry of $X$, while if $M$ \emph{is} the boundary of some
+    $(n+1)$-manifold-with-boundary in $X$, then $M$ doesn't detect a hole or
+    structure. The key here is to notice that boundary relationships between
+    $n$-manifolds and $(n+1)$-manifolds in $X$ can carry information about the
+    presence of hollowness and/or holes.''
+  % \item General comment: Not a big problem but the section does get a bit wordy
+  %   in the motivating example with Figure 16.1. Maybe it'd be easier to follow
+  %   with more diagrams? That said, the section as is still does a great job of
+  %   delivering intuition to the reader.
+  \item There's a bit of a throwaway comment (in red) and also a typo (in blue)
+    in the motivating example: ``In fact, these two sets of edges differ
+    ({\color{red} where we take the difference mod 2, meaning} we just look at
+    the set of all the edges that are in one set, but not {\color{blue}\bfseries
+      it} in the other) [\ldots]'' For a reader, it's a bit strange seeing the
+    mention of $\zmod{2}$ sort of shoehorned in like this. It's great intuition,
+    but it might be easier to digest if given in its own sentence instead of a
+    parenthetical?
+  \item Suggested additional definition. Section 16.2: before defining an
+    $n$-chain in $K$, it might be worth defining what a formal operation is?
+  % \item Suggested clarification: in the definition of an $n$-chain group, it
+  %   seems we're actually defining is a module with formal linear combination
+  %   (even though we still refer to $\msf C_n(K)$ as a group)?
+  \item Ambiguous diagram. Section 16.2, first example: in figure 16.2, edges
+    and vertices are unlabled, but we name them in the following example.
+  \item Typographical error: Section 16.2, definition of the boundary operator:
+    \[
+      \partial(\sigma) = \sum_{i=0}^n \set{v_0 {\color{red}\cdots\hspace{-.16cm}
+          \widehat{\ } v_i} \cdots v_n}
+    \]
+    I believe that it should look like
+    \[
+      \partial(\sigma) = \sum_{i=0}^n \simpdel{i}{n}
+    \]
+    which can be generated with the code \verb|\cdots \widehat{v_i} \cdots|
+
+  \item Suggested additional clarification. In section 16.2, when we define
+    $n$-cycles and $n$-boundaries, it might be worth explicitly stating that
+    \[
+      \msf Z_n(K) = \ker \partial_n \qquad \text{and} \qquad \msf B_n(K) =
+      \im\partial_{n+1}
+    \]
+  \item Possible typos. Theorem 16.7: ``If $K$ is a one-point space, $H_n(K)
+    \cong 0$ for $\color{red} n \geq 0$ and $\color{blue}H_0(K) \cong \ZZ$.'' I
+    believe the part in red should be $n > 0$, and the part in blue should be
+    $\ZZ_2$ (especially since the next theorem asserts that if $K$ is connected,
+    then $\msf H_0(K) \cong \ZZ_2$).
+  \item Suggested terminology clarification. Theorem 16.8: ``If $K$ is
+    {\color{red} connected} [\ldots]'' --- it might be worth drawing a
+    distinction between ``simplicially connected'' and ``connected'' (in the
+    topological sense).
+  \item Possible typo. Section 16.2, definition of the simplicial cone operator:
+    ``Define the \emph{simplicial cone operator} $\Cone_x : \msf C_n(K) \to \msf
+    C_{n+1}({\color{red}w*K})$ by extending the definition of $\Cone_x(\sigma)$
+    linearly to chains.'' I believe this should be ${\color{red}x * K}$?
+  \item Possible typo. Section 16.2, exercise 16.19: ``Suggest a homomorphism
+    from $\msf C_n(K) \to \msf C_n(\sd K)$ that commutes with $\partial$. Could
+    its induced homomorphism {\color{red} on homology} be an inverse for
+    $\lambda_*$?'' --- seems like this should be ``{\color{green} on the
+      homology group}?'' Not sure though.
+  \item Inconsistent notation. Section 16.2, exercise 16.21: ``Show that
+    $\lambda_\# \circ \SD = \msf{id}$, the identity map on $\color{red} C_n(K)$,
+    and therefore $\lambda_* \circ \SD_* = \msf{id}_*$, the identity map on
+    $\color{red} \msf H_n(K)$'' --- these both should be in sans-serif font:
+    $\color{green}\msf C_n(K)$ and $\color{green} \msf H_n(K)$, respectively.
+  \item Undefined term. Section 16.4, Exercise 16.32: ``Can a {\color{red}
+      trivial cycle} in $A \cap B$ be {\color{red} non-trivial} in $A$?'' This
+    is the first time this term is introduced.
+
+    Also, as a general note, the wording in this question is a bit confusing.
+    Are we looking at $n$-cycles? Or $n$-chains? Or are we treating elements of
+    $\msf H_n(A\cap B)$? Furthermore: there are two somewhat-reasonable ways to
+    parse the wording of this question. For the following, let $\iota : A\cap B
+    \into A$, and let $\pi : A \onto A \cap A$. In the question, we define some
+    $\sigma \in A \cap B$, but it's not completely clear based on the context
+    whether we're being asked to consider
+    \begin{enumerate}[label=(\arabic*)]
+      \item Whether $\iota(\sigma)$ can be non-trivial in $A$, or
+      \item Whether there exists non-trivial $\tau \in A$ such that
+        $\pi(\sigma) = \iota$.
+    \end{enumerate}
+  \item Simple typo. Section 16.3, Corollary 16.31: ``{\color{red}If } $K$ is a
+    strong deformation retract of $L${\color{red}.} Then $K$ and $L$ have
+    isomorphic $\zmod{2}$ homologies.'' Either the period should be a comma, or
+    the ``If'' should be a ``Let'' or something.
+  \item Ungrammatical sentence. Section 16.4, ``A second observation starts with
+    a cycle in $A$, {\color{red} and asks if,} in $K$, that cycle in $A$ is
+    homologous to a cycle in $B$, {\color{red} and, if so, is there} a cycle in
+    their intersection that is homologous to both?''
+\end{enumerate}
+\section{Chapter 18}
+\begin{enumerate}
+  \item Minor inconsistency. Section 18.1, definition of boundary of an oriented
+    $n$-simplex.
+    \begin{leftbar}
+      For $n \geq 1$, the \emph{boundary of an oriented $n$-simplex} $\sigma =
+      \osimp{n}$ is
+      \[
+        \partial(\sigma) = \sum_{{\color{red} i}=0}^n (-1)^{\color{red}
+          i}\osimpdel{\color{red}i}{n}.
+      \]
+      Recall that $\osimpdel{\color{red}k}{n}$ represents the simplex with
+      vertex $v_{\color{red} k}$ removed [\ldots].
+    \end{leftbar}
+    usage of $i$ and $k$ should probably remain consistent. {\color{blue} Fixed
+      on the Dropbox}
+  \item Inconsistent notation. Section 18.1, definition of boundary operator.
+    \[
+      \partial_n : {\color{red} C}_n(K) \to {\color{red} C}_{n-1}(K)
+    \]
+    these should be sans-serif $\msf C$'s. {\color{blue} Corrected on the
+      Dropbox.}
+  \item Ibid. Actually, this persists throughout quite a lot of chapter 18.
+    {\color{blue} I've corrected (I think) all occurrences of these errors on
+      the Dropbox version}
+  \item Minor typo. Section 18.1, Theorem 18.9: ``If $K$ is a one-point space,
+    $\msf H_n(K) \cong 0$ for $n {\color{red} \geq} 0$ and $\msf H_0(K) \cong
+    \ZZ$.'' I believe the inequality should be strict. {\color{blue} Corrected
+      in the Dropbox.}
+  \item Typo. Section 18.1, definition of simplicial cone operator: ``$\Cone_x :
+    \msf C_n(K) \to \msf C_{n+1}({\color{red}w} * K)$.'' I believe the $w$
+    should be an $x$. {\color{blue} I've corrected this in the dropbox folder.}
+  \item Misc.\ typos. Section 18.1, definition of relative chain group:
+    ``[\ldots] Then the chain group ${\color{red}C}_n(K)$ can be vieweed
+    {\color{red} a} subgroup of the chain group $C_n(K)$ consisting of all
+    chains that are zero on any simplex outside ${\color{red}\mathbb{K}}'$.''
+
+    Should be sans-serif $C$; should be ``as a'' (not ``a''); should probably be
+    just $K'$? Also, instead of \verb|\emph{}|, I believe \verb|\textbf{}| was
+    used in this definition.
+
+    Lastly, there's an errant ``.'' that should be included in the displaymath
+    line.
+
+    {\color{blue} All but the \verb|\textbf{}| have been corrected on the
+      dropbox (wasn't sure if this was intentional, but I think it was
+      inconsistent throughout the rest)}
+\end{enumerate}
+\end{document}

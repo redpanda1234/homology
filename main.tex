@@ -1,0 +1,99 @@
+\documentclass[verbose]{fkbook}
+
+
+
+% For resolution of that one triangulation
+\usetikzlibrary{intersections}
+
+% For the tetrahedron thing
+\usetikzlibrary{backgrounds}
+
+% For 3d plots
+\usepackage{tikz-3dplot}
+% \usepackage{tikz-cd}
+\usetikzlibrary{external, arrows.meta}
+\tikzexternalize
+\tikzsetexternalprefix{figures/}
+
+\usepackage{fkthm}
+% For music note in subtitle
+
+\usepackage{wasysym}
+
+\begin{document}
+\pagestyle{plain}
+\frontmatter
+
+\fkauthor{Forest Kobayashi}
+\fktitle{Homology Theory}
+\fksubtitle{Notes \& Exercises from my Independent Study}
+\fkalttitle{(Or: \itshape If I could save Klein in a bottle \eighthnote)}
+\fkaffiliation{{Department of Mathematics\\}{\itshape Harvey Mudd College\\}}
+\fksupervisor{Francis Su}
+\fksupervisoraffiliation{Department of Mathematics, Harvey Mudd College}
+
+\maketitlepage
+\tableofcontents
+
+\chapter{Introduction}
+\section*{What's this?}\noindent\indent
+This document is a compendium of notes, exercises, and other miscellany from my
+independent study in Homology Theory. For this, I am working through the second
+half of \emph{Topology Through Inquiry} by Michael Starbird and Francis Su
+(i.e., chapters 11-20), under supervision from Prof.\ Su himself. Rough topic
+coverage should be discernable from the table of contents, as I've tried to
+name each section identically to the corresponding title in the book.
+
+\section*{Notation}
+Most notation I use is fairly standard. Here's a (by no means exhaustive) list
+of some stuff I do.
+\begin{itemize}
+  \item ``WTS'' stands for ``want to show,'' $\st$ for ``such that.'' WLOG, as
+    usual, is without loss of generality.
+  \item End-of-proof things: $\blacksquare$ is QED for exercises and theorems.
+    $\square$ is used in recursive proofs (e.g., proving a Lemma within a
+    theorem proof). If doing a proof with casework, $\cmark$ will be used to
+    denote the end of each case.
+  \item $\contra$ means contradiction
+  \item $\mathscr{T}(U)$ will denote the topology of a topological space $U$.
+  \item $\mc P(A)$ is the powerset of $A$. I don't like using $2^A$.
+  \item $\onto$ denotes surjection.
+  \item $\into$ denotes injection.
+  \item Thus, $\bij$ denotes bijection.
+  \item \textbf{Important:} I use $f\fim[A]$ for the image of $A$ under $f$, and
+    $f\fpre[B]$ for the inverse image of $B$ under $f$.
+  \item $\sim$ and $\equiv$ are used for equivalence relations. $\cong$ is used
+    to denote homeomorphism and isomorphism of groups. $\simeq$ is for Homotopy
+    equivalence.
+  \item $\epsilon$ is for trivial elements (e.g., the trivial path), while
+    $\varepsilon$ is for small positive quantities.
+  \item $\ol{U}$ denotes the closure of $U$, $\interior{U}$ is the interior of
+    $U$.
+  \item $A^c$ is $A$ complement.
+  \item $\simp{k}$ denotes a simplex on $k+1$ vertices (that is, a $k$-simplex).
+    $\simpdel{i}{k}$ is the same simplex with the $i$\textsuperscript{th} vertex
+    deleted.
+  \item $[n] = \set{i \MID i = 0,1,\ldots, n}$.
+\end{itemize}
+
+\mainmatter
+
+\pagestyle{main}
+\setcounter{chapter}{14}
+\input{chapters/chapter15.tex}
+\input{chapters/chapter16.tex}
+\setcounter{chapter}{17}
+\input{chapters/chapter18.tex}
+\input{chapters/may.tex}
+\input{chapters/rotman.tex}
+
+\chapter{Appendix}
+\section{List of Definitions}
+\listofdefinitions
+
+\end{document}
+%%% Local Variables:
+%%% TeX-master: t
+%%% TeX-engine: default-shell-escape
+%%% TeX-command-extra-option: -pdf
+%%% End:

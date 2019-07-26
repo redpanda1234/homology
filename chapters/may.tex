@@ -1,0 +1,39 @@
+\chapter{Some Homological Algebra}
+The big idea: algebraic topology assigns discrete algebraic invariants to
+topological spaces and continuous maps. Book for this section: James May's
+\emph{A Concise Course in Algebraic Topology}
+
+\section{Chain complexes}
+\begin{definition}[Chain/Cochain Complexes]
+  Let $R$ be a commutative ring. A \emph{chain complex} over $R$ is a sequence
+  of maps of $R$-modules
+  \[
+    \cdots \rightarrow X_{i+1} \xrightarrow{d_{i+1}} X_i \xrightarrow{d_i}
+    X_{i-1} \rightarrow \cdots
+  \]
+  such that $d_i \circ d_{i+1} = 0$ for all $i$. We generally abbreviate $d =
+  d_i$. A \emph{cochain complex} over $R$ is an analogous sequence
+  \[
+    \cdots \rightarrow Y^{i-1} \xrightarrow{d^{i-1}} Y^i \xrightarrow{d^i}
+    Y^{i-1} \rightarrow \cdots
+  \]
+  with $d^i \circ d^{i-1}$.
+
+  We usually require chain complexes to satisfy $X_i = 0$ for $i < 0$, and
+  cochain complexes to satisfy $Y^i = 0$ for $i < 0$. Without this distinction,
+  the definitions are equivalent.
+\end{definition}
+\begin{definition}[Some definitions]
+  Elements of $\ker d_i$ are called cycles. Elements of $\im d_{i+1}$ are called
+  boundaries. Write $B_i(X) \subset Z_i(X) \subset X_i$ for the submodules of
+  boundaries and dycles, and define the $i$\textsuperscript{th} homology group
+  $H_i(X)$ by
+  \[
+    H_i(X) = Z_i(X) / B_i(X).
+  \]
+  We write $H_*(X)$ for the sequence of $R$-modules $H_i(X)$. We understand
+\end{definition}
+
+%%% Local Variables:
+%%% TeX-master: "../main"
+%%% End:

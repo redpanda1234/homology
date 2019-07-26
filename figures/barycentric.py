@@ -143,6 +143,8 @@ def draw(simplex):
 
     return
 
-for m in range(1,4):
+for m in range(1,5):
+    triangle = Simplex(r=1.5, m=m, offset_percent=.75)
+    draw(triangle)
     triangle = Simplex(r=1.5, m=m)
-    draw(triangle) 
+    draw(triangle)

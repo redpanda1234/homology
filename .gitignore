@@ -13,6 +13,7 @@
 *.dvi
 *.lo*
 *.dpth
+*.md5
 homology-notes/figures/*
 !homology-notes/figures/*.tex
 homology-notes/figures/*barycentric*

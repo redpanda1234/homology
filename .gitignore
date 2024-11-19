@@ -15,5 +15,6 @@
 *.dpth
 homology-notes/figures/*
 !homology-notes/figures/*.tex
-homology-notes/figures/*barycentric*
+!homology-notes/figures/*.pdf
+# homology-notes/figures/*barycentric*
 **/auto/
